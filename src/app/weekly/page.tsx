@@ -40,11 +40,16 @@ export default async function WeeklyIndexPage() {
               className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs hover:border-blue-300 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div>
-                <div className="flex items-center gap-2 text-xs text-blue-900 font-semibold font-mono mb-1">
-                  <Calendar className="w-3.5 h-3.5 text-blue-700" />
-                  <span>Coverage: {rep.startDate} to {rep.endDate}</span>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-blue-900 font-semibold font-mono mb-1.5">
+                  <span className="bg-blue-900 text-white font-mono font-bold text-xs px-2.5 py-0.5 rounded shadow-2xs">
+                    W{rep.weekNumber}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-slate-700">
+                    <Calendar className="w-3.5 h-3.5 text-blue-700" />
+                    <span>Coverage: {rep.startDate} to {rep.endDate}</span>
+                  </span>
                   <span className="text-slate-300">•</span>
-                  <span>Year {rep.year} Week {rep.weekNumber}</span>
+                  <span>Year {rep.year}</span>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
                   <Link href={`/weekly/${rep.slug}`} className="hover:text-blue-900 transition-colors">

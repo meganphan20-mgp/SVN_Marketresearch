@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getWeeklyReport, getWeeklyReports } from '@/lib/data/intelligence-store';
+import { getWeeklyReport, getWeeklyReports, getIntelligenceStories } from '@/lib/data/intelligence-store';
 import { Header } from '@/components/layout/Header';
 import { StoryCard } from '@/components/story/StoryCard';
 import { WeeklyReportTracker } from '@/components/analytics/WeeklyReportTracker';
@@ -34,7 +34,10 @@ export async function generateMetadata({ params }: { params: Promise<{ week: str
 
 export default async function WeeklyReportPage({ params }: { params: Promise<{ week: string }> }) {
   const { week } = await params;
-  const report = await getWeeklyReport(week);
+  const [report, allStories] = await Promise.all([
+    getWeeklyReport(week),
+    getIntelligenceStories(),
+  ]);
 
   if (!report) {
     notFound();
@@ -104,15 +107,19 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
             </h2>
             <div className="space-y-4">
               {report.topDevelopments.map((dev, idx) => {
-                const matchedStory = report.curatedStories?.find(
-                  s => (dev.storyId && (s.id === dev.storyId || s.slug === dev.storyId)) ||
-                       s.title.toLowerCase().trim() === dev.title.toLowerCase().trim()
+                // Check if dev.storyId is a valid story in allStories or curatedStories
+                const storyById = dev.storyId 
+                  ? allStories.find(s => s.id === dev.storyId || s.slug === dev.storyId)
+                    || report.curatedStories?.find(s => s.id === dev.storyId || s.slug === dev.storyId)
+                  : null;
+
+                const matchedStory = storyById || (
+                  report.curatedStories?.find(s => s.title.toLowerCase().trim() === dev.title.toLowerCase().trim()) ||
+                  allStories.find(s => s.title.toLowerCase().trim() === dev.title.toLowerCase().trim()) ||
+                  allStories.find(s => s.title.toLowerCase().includes(dev.title.toLowerCase().slice(0, 30)) || dev.title.toLowerCase().includes(s.title.toLowerCase().slice(0, 30)))
                 );
-                const storyHref = dev.storyId 
-                  ? `/story/${dev.storyId}` 
-                  : matchedStory 
-                    ? `/story/${matchedStory.id}` 
-                    : null;
+
+                const storyHref = matchedStory ? `/story/${matchedStory.id}` : null;
 
                 return (
                   <div key={idx} className="border-l-4 border-blue-900 pl-4 py-1">
@@ -147,9 +154,14 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {report.topBusinessOpportunities.map((opp, idx) => {
-                const matchedStory = report.curatedStories?.find(
-                  s => s.title.toLowerCase().includes(opp.headline.toLowerCase().slice(0, 25)) ||
-                       (opp.targetCompanyOrProject && s.companiesMentioned?.some(c => c.name.toLowerCase().includes(opp.targetCompanyOrProject.toLowerCase())))
+                const candidates = (report.curatedStories && report.curatedStories.length > 0)
+                  ? [...report.curatedStories, ...allStories]
+                  : allStories;
+
+                const matchedStory = candidates.find(
+                  s => (opp.targetCompanyOrProject && s.companiesMentioned?.some(c => c.name.toLowerCase().includes(opp.targetCompanyOrProject.toLowerCase()))) ||
+                       s.title.toLowerCase().includes(opp.headline.toLowerCase().slice(0, 25)) ||
+                       opp.headline.toLowerCase().includes(s.title.toLowerCase().slice(0, 25))
                 );
                 const oppHref = matchedStory ? `/story/${matchedStory.id}` : null;
 
@@ -320,17 +332,25 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
           </section>
 
           {/* CURATED HIGH-VALUE INTELLIGENCE STORIES SECTION */}
-          <section className="pt-8 border-t border-slate-200">
-            <h2 className="text-lg font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center justify-between">
-              <span>Curated High-Value Intelligence Stories ({report.curatedStoryCount})</span>
-              <span className="text-xs font-normal text-slate-500 font-mono">Score 8.0 - 10.0</span>
-            </h2>
-            <div className="space-y-4">
-              {report.curatedStories.map((story) => (
-                <StoryCard key={story.id} story={story} />
-              ))}
-            </div>
-          </section>
+          {(() => {
+            const displayCuratedStories = (report.curatedStories && report.curatedStories.length > 0)
+              ? report.curatedStories
+              : allStories.filter(s => s.publicationDate >= report.startDate && s.publicationDate <= report.endDate);
+
+            return (
+              <section className="pt-8 border-t border-slate-200">
+                <h2 className="text-lg font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center justify-between">
+                  <span>Curated High-Value Intelligence Stories ({displayCuratedStories.length || report.curatedStoryCount || 0})</span>
+                  <span className="text-xs font-normal text-slate-500 font-mono">Score 8.0 - 10.0</span>
+                </h2>
+                <div className="space-y-4">
+                  {displayCuratedStories.map((story) => (
+                    <StoryCard key={story.id} story={story} />
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
         </div>
       </main>
     </div>

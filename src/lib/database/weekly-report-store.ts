@@ -134,14 +134,27 @@ export async function getWeeklyReportsFromPostgres(): Promise<WeeklyReport[]> {
 export async function getWeeklyReportBySlugFromPostgres(slug: string): Promise<WeeklyReport | null> {
   const pool = getPostgresPool();
   try {
+    const raw = (slug || '').trim().toLowerCase();
+    let normalized = raw;
+    const match = raw.match(/^(?:2026-)?w?(\d{1,2})$/i);
+    const weekNum = match ? parseInt(match[1], 10) : null;
+    if (weekNum) {
+      normalized = `2026-w${weekNum}`;
+    }
+
     const res = await pool.query(`
       SELECT * FROM public.weekly_reports
-      WHERE slug = $1 OR id::text = $1
+      WHERE slug = $1 
+         OR slug = $2 
+         OR LOWER(slug) = LOWER($1) 
+         OR id::text = $1 
+         OR ($3::smallint IS NOT NULL AND week_number = $3::smallint)
+      ORDER BY year DESC, week_number DESC
       LIMIT 1;
-    `, [slug]);
+    `, [slug, normalized, weekNum]);
 
     if (res.rows.length === 0) {
-      if (slug === SAMPLE_WEEKLY_REPORT.slug || slug === SAMPLE_WEEKLY_REPORT.id) {
+      if (slug === SAMPLE_WEEKLY_REPORT.slug || slug === SAMPLE_WEEKLY_REPORT.id || normalized === SAMPLE_WEEKLY_REPORT.slug) {
         return SAMPLE_WEEKLY_REPORT;
       }
       return null;

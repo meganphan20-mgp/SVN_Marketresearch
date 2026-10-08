@@ -453,13 +453,16 @@ export async function getStoryById(id: string): Promise<IntelligenceStory | null
   if (await isPostgresConnected()) {
     try {
       const pgStory = await getStoryByIdFromPostgres(id);
-      return pgStory;
+      if (pgStory) {
+        return pgStory;
+      }
     } catch (e) {
       console.warn('[Intelligence Store] PostgreSQL fetch story error:', e);
     }
   }
 
-  const story = storiesState.find(s => s.id === id || s.slug === id);
+  const story = storiesState.find(s => s.id === id || s.slug === id)
+    || SAMPLE_INTELLIGENCE_STORIES.find(s => s.id === id || s.slug === id);
   return story || null;
 }
 

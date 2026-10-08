@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search, ShieldCheck, Menu, X, Globe, FileText, Settings } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, Globe, Settings } from 'lucide-react';
 
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
@@ -59,14 +59,6 @@ export function Header() {
               <Search className="w-3.5 h-3.5 text-slate-400" />
               <span>Search intelligence...</span>
               <kbd className="bg-slate-800 text-[10px] text-slate-400 px-1 rounded font-mono border border-slate-700">⌘K</kbd>
-            </Link>
-
-            <Link
-              href="/weekly"
-              className="flex items-center gap-1.5 text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Weekly Briefing</span>
             </Link>
 
             <ThemeToggle />
@@ -154,11 +146,11 @@ export function Header() {
               <span>Admin Console</span>
             </Link>
             <Link
-              href="/weekly/2026-w40"
+              href="/weekly"
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs font-semibold text-blue-400 px-3 py-1.5"
             >
-              Weekly Report (W40)
+              Weekly Reports
             </Link>
           </div>
         </div>
