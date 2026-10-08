@@ -706,10 +706,9 @@ export async function getIntelligenceStoriesFromPostgres(
 export async function getStoryByIdFromPostgres(idOrSlug: string): Promise<IntelligenceStory | null> {
   const pool = getPostgresPool();
   try {
-    const isId = isUuid(idOrSlug);
     const sql = `
       SELECT id FROM public.intelligence_stories 
-      WHERE ${isId ? 'id = $1 OR slug = $1' : 'slug = $1'} 
+      WHERE id::text = $1 OR slug = $1 
       LIMIT 1;
     `;
     const res = await pool.query(sql, [idOrSlug]);
@@ -717,7 +716,8 @@ export async function getStoryByIdFromPostgres(idOrSlug: string): Promise<Intell
 
     const stories = await getIntelligenceStoriesFromPostgres();
     return stories.find(s => s.id === res.rows[0].id) || null;
-  } catch {
+  } catch (err) {
+    console.warn(`[StoryStore] getStoryByIdFromPostgres error for ${idOrSlug}:`, err);
     return null;
   }
 }
@@ -728,14 +728,14 @@ export async function getStoryByIdFromPostgres(idOrSlug: string): Promise<Intell
 export async function deleteStoryFromPostgres(idOrSlug: string): Promise<boolean> {
   const pool = getPostgresPool();
   try {
-    const isId = isUuid(idOrSlug);
     const sql = `
       DELETE FROM public.intelligence_stories 
-      WHERE ${isId ? 'id = $1 OR slug = $1' : 'slug = $1'};
+      WHERE id::text = $1 OR slug = $1;
     `;
     const res = await pool.query(sql, [idOrSlug]);
     return (res.rowCount ?? 0) > 0;
-  } catch {
+  } catch (err) {
+    console.warn(`[StoryStore] deleteStoryFromPostgres error for ${idOrSlug}:`, err);
     return false;
   }
 }

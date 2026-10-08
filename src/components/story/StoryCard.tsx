@@ -73,7 +73,7 @@ export function StoryCard({ story, showFullDetails = false }: Props) {
   };
 
   return (
-    <article className="bg-white border border-slate-200 rounded-lg shadow-xs hover:border-slate-300 transition-all duration-150 p-5 md:p-6 mb-4">
+    <article id={`story-${story.id}`} className="bg-white border border-slate-200 rounded-lg shadow-xs hover:border-slate-300 transition-all duration-150 p-5 md:p-6 mb-4 scroll-mt-20">
       {/* Top Meta Header */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">

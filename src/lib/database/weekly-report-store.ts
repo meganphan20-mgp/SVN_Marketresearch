@@ -147,7 +147,21 @@ export async function getWeeklyReportBySlugFromPostgres(slug: string): Promise<W
       return null;
     }
 
-    return mapPostgresRowToWeeklyReport(res.rows[0]);
+    const report = mapPostgresRowToWeeklyReport(res.rows[0]);
+    if (Array.isArray(res.rows[0].curated_story_ids) && res.rows[0].curated_story_ids.length > 0) {
+      try {
+        const { getIntelligenceStoriesFromPostgres } = await import('./story-store');
+        const allStories = await getIntelligenceStoriesFromPostgres();
+        const idSet = new Set(res.rows[0].curated_story_ids);
+        report.curatedStories = allStories.filter(s => idSet.has(s.id));
+        if (report.curatedStories.length > 0) {
+          report.curatedStoryCount = report.curatedStories.length;
+        }
+      } catch (e) {
+        console.warn('[WeeklyReportStore] Error populating curated stories:', e);
+      }
+    }
+    return report;
   } catch (err) {
     console.warn(`[WeeklyReportStore] PostgreSQL query for slug "${slug}" failed:`, err);
     if (slug === SAMPLE_WEEKLY_REPORT.slug || slug === SAMPLE_WEEKLY_REPORT.id) {
