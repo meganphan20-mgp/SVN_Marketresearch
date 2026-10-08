@@ -6,6 +6,7 @@ export interface ReportOpportunityItem {
   sector: string;
   strategicRationale: string;
   actionWindow: string;
+  storyId?: string;
 }
 
 export interface SuggestedBdAction {

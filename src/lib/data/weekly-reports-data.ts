@@ -37,14 +37,16 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         headline: 'Direct Power Purchase Agreement (DPPA) Rooftop Expansion',
         actionWindow: 'Q3-Q4 2026',
         strategicRationale: 'Industrial park tenants seeking off-site renewable power offtake agreements under Decree 80/2024/ND-CP framework.',
-        targetCompanyOrProject: 'Long Duc Industrial Park Rooftop Solar'
+        targetCompanyOrProject: 'Long Duc Industrial Park Rooftop Solar',
+        storyId: '11111111-0401-4444-8888-000000000001',
       },
       {
         sector: 'Logistics',
         headline: 'Cold-Chain Logistics Partnership in Southern Key Economic Zone',
         actionWindow: 'Immediate (Next 60 Days)',
         strategicRationale: 'Expanding temperature-controlled distribution networks connecting Long Duc IP to Cai Mep port.',
-        targetCompanyOrProject: 'Dong Nai Logistics Hub'
+        targetCompanyOrProject: 'Dong Nai Logistics Hub',
+        storyId: 'c4a56ebe-78ab-44b1-85b4-80b87ec20b77',
       }
     ],
     macroPolicy: 'Macroeconomic indicators reflect steady GDP growth (6.8% YoY) with stable FX reserves. The State Bank of Vietnam maintained policy rates, prioritizing credit flow into green manufacturing and export-oriented processing.',
@@ -114,19 +116,19 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         title: 'Promulgation of DPPA Decree No. 80/2024/ND-CP Accelerates Clean Power for Industrial Parks',
         summary: 'Opens direct electricity trade between renewable IPPs and industrial consumers, fundamentally transforming corporate sustainability procurement in Vietnam.',
         significance: 'Enables Sojitz to guarantee clean power to Long Duc IP tenants, securing a decisive leasing edge over regional competitors.',
-        storyId: 'af381a91-be25-40c7-825c-ffd99eae1934',
+        storyId: '11111111-0401-4444-8888-000000000001',
       },
       {
         title: 'Sumitomo Corporation Breaks Ground on $4.2B North Hanoi Smart City Project',
         summary: 'Commenced 272-hectare mixed-use smart township in Dong Anh with a 100MW microgrid and modern Japanese commercial district.',
         significance: 'Signals Sumitomo aggressive push to dominate the northern FDI industrial and executive living ecosystem.',
-        storyId: '74e32d9d-d434-4949-a550-f43f0072d79f',
+        storyId: '11111111-0402-4444-8888-000000000002',
       },
       {
         title: 'Mitsui & Co. and Petrovietnam Sign $740M Block B Gas Pipeline Package',
         summary: 'Petrovietnam and Mitsui unit MOECO awarded major EPC contracts for the pipeline connecting Block B to Can Tho.',
         significance: 'Accelerates the timeline for southwest gas baseload power, creating industrial spin-offs in Can Tho.',
-        storyId: '5bad090d-195a-49e2-9b72-ec952c3be122',
+        storyId: '11111111-0403-4444-8888-000000000003',
       },
     ],
     topBusinessOpportunities: [
@@ -136,6 +138,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Renewable Energy & Industrial Parks',
         strategicRationale: 'Take immediate advantage of Decree 80 to establish private-wire and synthetic DPPA contracts with Japanese electronics tenants needing RE100 compliance.',
         actionWindow: 'Q4 2026 - Q1 2027',
+        storyId: '11111111-0401-4444-8888-000000000001',
       },
       {
         headline: 'Strategic Partnership with Masan Logistics (Supra)',
@@ -143,6 +146,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Logistics & Retail FMCG',
         strategicRationale: 'Co-invest in modern cold chain and automated distribution centers to distribute Sojitz food and consumer products across WinMart nationwide network.',
         actionWindow: 'Next 60 Days',
+        storyId: '11111111-0404-4444-8888-000000000004',
       },
       {
         headline: 'Polypropylene Off-take Mandate with Stavian Quang Yen',
@@ -150,6 +154,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Plastics & Chemicals',
         strategicRationale: 'Secure export marketing rights and domestic distribution allocation for 600k MT/year PP plant prior to mechanical completion.',
         actionWindow: 'Q4 2026',
+        storyId: '11111111-0405-4444-8888-000000000005',
       },
     ],
     macroPolicy: 'Macroeconomic indicators for Q3 2026 demonstrate Vietnam GDP growth at 7.4% year-on-year, propelled by electronics processing exports and surging FDI disbursements ($17.3B YTD, +8.9%). The State Bank of Vietnam (SBV) has maintained policy rates steady to support credit expansion while stabilizing the VND against the USD. Decree 80 (DPPA) is the chief regulatory breakthrough, with implementing circulars from MOIT expected by late October.',
@@ -243,6 +248,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Logistics & Seaports',
         strategicRationale: 'Partner with port operators to establish dedicated temperature-controlled bonded warehouses for Japanese chemical and automotive parts distributors.',
         actionWindow: 'Q4 2026',
+        storyId: '22222222-0391-4444-8888-000000000001',
       },
       {
         headline: 'Chilled FMCG Co-Distribution Agreement with Masan MEATDeli',
@@ -250,6 +256,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Retail & Consumer Goods',
         strategicRationale: 'Leverage Masan newly expanded cold chain distribution network to market premium Japanese food and packaged goods nationwide.',
         actionWindow: 'Next 45 Days',
+        storyId: '22222222-0394-4444-8888-000000000004',
       },
       {
         headline: 'Da Nang High-Tech Industrial Zone Expansion for Chip Packaging',
@@ -257,6 +264,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Industrial Parks & High-Tech',
         strategicRationale: 'Explore ready-built factory (RBF) lease facilities tailored for Japanese semiconductor materials and testing vendors expanding near Renesas and FPT hubs.',
         actionWindow: 'Q1 2027',
+        storyId: '22222222-0395-4444-8888-000000000005',
       },
     ],
     macroPolicy: 'The National Assembly economic committee reviewed draft amendments to the Law on Investment and Law on Bidding, aimed at streamlining approvals for strategic mega-infrastructure projects and high-tech parks. Exchange rates stabilized at 24,950 VND/USD following calibrated liquidity management by the SBV. Industrial manufacturing output (IIP) expanded 8.6% year-on-year, led by electronics and chemical processing.',
@@ -350,6 +358,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Industrial Parks & Energy',
         strategicRationale: 'Deploy resilience audits, rooftop storm reinforcement, and auxiliary diesel-solar microgrids for Japanese tenants seeking high-uptime guarantees.',
         actionWindow: 'Immediate (Next 30 Days)',
+        storyId: '33333333-0381-4444-8888-000000000001',
       },
       {
         headline: 'Off-take Mandate for Hoa Phat High-Grade HRC Export Distribution',
@@ -357,6 +366,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Metals & Manufacturing',
         strategicRationale: 'Negotiate exclusive regional export agency rights for Dung Quat 2 automotive and container-grade hot-rolled coil to Japan and ASEAN markets.',
         actionWindow: 'Q4 2026',
+        storyId: '33333333-0383-4444-8888-000000000003',
       },
       {
         headline: 'Polymer Distribution Agreement with Stavian for Southern Plastic Converters',
@@ -364,6 +374,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         sector: 'Plastics & Chemicals',
         strategicRationale: 'Partner with Stavian to supply locally produced PP/PE resins from Long Son complex to Japanese injection molding clients in Dong Nai and Binh Duong.',
         actionWindow: 'Q4 2026',
+        storyId: '33333333-0384-4444-8888-000000000004',
       },
     ],
     macroPolicy: 'State Bank of Vietnam kept the benchmark refinancing rate at 4.5% while deploying targeted credit lines to assist storm-affected agricultural and manufacturing exporters. Government tax authorities implemented automatic 6-month deferrals on corporate income tax and land rental fees for manufacturing plants located in disaster-declared northern provinces.',

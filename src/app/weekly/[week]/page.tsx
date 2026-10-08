@@ -119,18 +119,19 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
                   allStories.find(s => s.title.toLowerCase().includes(dev.title.toLowerCase().slice(0, 30)) || dev.title.toLowerCase().includes(s.title.toLowerCase().slice(0, 30)))
                 );
 
-                const storyHref = matchedStory ? `/story/${matchedStory.id}` : null;
+                const targetStoryId = dev.storyId || matchedStory?.id || matchedStory?.slug;
+                const storyHref = targetStoryId ? `/story/${targetStoryId}` : null;
 
                 return (
                   <div key={idx} className="border-l-4 border-blue-900 pl-4 py-1">
                     {storyHref ? (
                       <Link
                         href={storyHref}
-                        className="group inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-blue-700 transition-colors mb-1"
+                        className="group inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-blue-900 transition-colors mb-1"
                         title="View detailed verified intelligence story dossier"
                       >
                         <span className="group-hover:underline">{dev.title}</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700 shrink-0 transition-colors" />
+                        <ExternalLink className="w-3.5 h-3.5 text-blue-600 group-hover:text-blue-800 shrink-0 transition-colors" />
                       </Link>
                     ) : (
                       <h3 className="text-sm font-bold text-slate-900 mb-1">{dev.title}</h3>
@@ -158,12 +159,15 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
                   ? [...report.curatedStories, ...allStories]
                   : allStories;
 
-                const matchedStory = candidates.find(
-                  s => (opp.targetCompanyOrProject && s.companiesMentioned?.some(c => c.name.toLowerCase().includes(opp.targetCompanyOrProject.toLowerCase()))) ||
-                       s.title.toLowerCase().includes(opp.headline.toLowerCase().slice(0, 25)) ||
-                       opp.headline.toLowerCase().includes(s.title.toLowerCase().slice(0, 25))
-                );
-                const oppHref = matchedStory ? `/story/${matchedStory.id}` : null;
+                const matchedStory = opp.storyId
+                  ? candidates.find(s => s.id === opp.storyId || s.slug === opp.storyId)
+                  : candidates.find(
+                      s => (opp.targetCompanyOrProject && s.companiesMentioned?.some(c => c.name.toLowerCase().includes(opp.targetCompanyOrProject.toLowerCase()))) ||
+                           s.title.toLowerCase().includes(opp.headline.toLowerCase().slice(0, 25)) ||
+                           opp.headline.toLowerCase().includes(s.title.toLowerCase().slice(0, 25))
+                    );
+                const targetOppId = opp.storyId || matchedStory?.id || matchedStory?.slug;
+                const oppHref = targetOppId ? `/story/${targetOppId}` : null;
 
                 return (
                   <div key={idx} className="bg-emerald-50/50 border border-emerald-200 rounded-lg p-4 flex flex-col justify-between">
@@ -178,7 +182,7 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
                           title="View related intelligence story dossier"
                         >
                           <span className="group-hover:underline">{opp.headline}</span>
-                          <ExternalLink className="w-3 h-3 text-emerald-600/70 group-hover:text-emerald-800 shrink-0 transition-colors" />
+                          <ExternalLink className="w-3 h-3 text-emerald-600 group-hover:text-emerald-800 shrink-0 transition-colors" />
                         </Link>
                       ) : (
                         <h3 className="text-sm font-bold text-slate-900 mb-2 leading-snug">{opp.headline}</h3>
@@ -333,9 +337,15 @@ export default async function WeeklyReportPage({ params }: { params: Promise<{ w
 
           {/* CURATED HIGH-VALUE INTELLIGENCE STORIES SECTION */}
           {(() => {
+            const dateMatched = allStories.filter(s => s.publicationDate >= report.startDate && s.publicationDate <= report.endDate);
+            const refMatched = allStories.filter(s => 
+              report.topDevelopments.some(d => d.storyId === s.id) || 
+              report.topBusinessOpportunities.some(o => o.storyId === s.id)
+            );
+            const combined = Array.from(new Map([...dateMatched, ...refMatched].map(s => [s.id, s])).values());
             const displayCuratedStories = (report.curatedStories && report.curatedStories.length > 0)
               ? report.curatedStories
-              : allStories.filter(s => s.publicationDate >= report.startDate && s.publicationDate <= report.endDate);
+              : combined;
 
             return (
               <section className="pt-8 border-t border-slate-200">

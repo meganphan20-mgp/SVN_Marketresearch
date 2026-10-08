@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import crypto from 'crypto';
+import { INITIAL_WEEKLY_REPORTS } from '../src/lib/data/weekly-reports-data';
 
 const pool = new Pool({
   connectionString: 'postgresql://postgres@localhost:5432/market_intelligence',
@@ -70,6 +71,36 @@ async function main() {
         sourceTitle: 'Block B gas project signs key pipeline EPC contracts with Japanese partners',
         sourceUrl: 'https://en.baochinhphu.vn/block-b-gas-pipeline-milestone.html',
       },
+      {
+        id: '11111111-0404-4444-8888-000000000004',
+        title: 'Masan Group Accelerates Logistics Optimization via Supra Distribution Network',
+        slug: 'masan-group-accelerates-logistics-optimization-supra-network',
+        pubDate: '2026-10-03',
+        category: 'PARTNERSHIP',
+        sectorSlug: 'retail',
+        summary: 'Following the injection of $250M from Bain Capital, Masan Group announced plans to spin off or partner on its proprietary Supra logistics platform. Supra currently handles over 60% of WinCommerce dry and ambient distribution across 3,600 retail stores.',
+        whyItMatters: 'Sojitz Retail & Consumer division operates extensive food and beverage distribution in Vietnam. A strategic logistics partnership with Masan Supra provides immense operational scale and cost advantages.',
+        suggestedBdAction: 'Arrange an executive working session in Ho Chi Minh City to explore a cold-chain distribution joint venture or co-utilization agreement.',
+        businessImpact: 'PARTNERSHIP',
+        relevanceScore: 8,
+        sourceTitle: 'Masan toi uu hoa chi phi chuoi cung ung thong qua nen tang Supra',
+        sourceUrl: 'https://cafef.vn/masan-supra-logistics-2026.chn',
+      },
+      {
+        id: '11111111-0405-4444-8888-000000000005',
+        title: 'Stavian Petrochemical Commences Commercial Construction on $1.5B Quang Yen PP Plant',
+        slug: 'stavian-petrochemical-commercial-construction-quang-yen-pp',
+        pubDate: '2026-10-04',
+        category: 'EXPANSION',
+        sectorSlug: 'chemicals',
+        summary: 'Stavian Petrochemical held an EPC milestone ceremony for its $1.5B Polypropylene (PP) production facility located in Bac Tien Phong Industrial Zone, Quang Ninh. The facility will have an annual nameplate capacity of 600,000 metric tons upon completion.',
+        whyItMatters: 'Sojitz Chemicals & Plastics Division trades extensive polymer resins across Asia. Securing export marketing rights or domestic allocation before mechanical completion protects market share.',
+        suggestedBdAction: 'Negotiate exclusive overseas off-take agency terms for 50,000 MT/year PP for Japanese automotive molding clients.',
+        businessImpact: 'OPPORTUNITY',
+        relevanceScore: 8,
+        sourceTitle: 'Stavian day nhanh tien do nha may hoa dau Quang Yen',
+        sourceUrl: 'https://vneconomy.vn/stavian-quang-yen-petrochemical.htm',
+      },
 
       // === WEEK 39 STORIES (2026-09-21 to 2026-09-27) ===
       {
@@ -131,6 +162,21 @@ async function main() {
         relevanceScore: 8,
         sourceTitle: 'Masan Consumer and WinCommerce expand temperature-controlled cold chain distribution',
         sourceUrl: 'https://vneconomy.vn/masan-wincommerce-chuoi-lanh-meatdeli.htm',
+      },
+      {
+        id: '22222222-0395-4444-8888-000000000005',
+        title: 'Da Nang High-Tech Park Attracts $120M Packaging and Testing Vendor Expansion',
+        slug: 'da-nang-high-tech-park-semiconductor-packaging-testing',
+        pubDate: '2026-09-27',
+        category: 'INVESTMENT',
+        sectorSlug: 'industrial-parks',
+        summary: 'Da Nang High-Tech Park granted investment certificates for a $120M precision testing and semiconductor packaging facility, expanding dedicated ready-built factory (RBF) infrastructure for tier-2 international component suppliers.',
+        whyItMatters: 'Signals increasing demand for specialized high-tech ready-built factory models. Highlights opportunities for Sojitz to develop specialized clean-room factory spaces in southern and central parks.',
+        suggestedBdAction: 'Explore developing specialized cleanroom ready-built factories (RBF) tailored for Japanese semiconductor materials vendors.',
+        businessImpact: 'OPPORTUNITY',
+        relevanceScore: 8,
+        sourceTitle: 'Da Nang attracts foreign high-tech capital for semiconductor testing hub',
+        sourceUrl: 'https://en.baochinhphu.vn/da-nang-high-tech-park-semiconductor-investment.html',
       },
 
       // === WEEK 38 STORIES (2026-09-14 to 2026-09-20) ===
@@ -248,7 +294,7 @@ async function main() {
           $7, 'PRIMARY', 95,
           '{}', now()
         )
-        ON CONFLICT (id) DO NOTHING;
+        ON CONFLICT (story_id, article_url) DO NOTHING;
       `, [
         sourceCitationId, s.id, defaultSource.name, s.sourceTitle, s.sourceUrl,
         s.pubDate + 'T07:00:00Z', s.pubDate,
@@ -256,8 +302,36 @@ async function main() {
     }
     console.log(`[Seed] Seeded ${historicalStories.length} historical intelligence stories.`);
 
-    // 4. Define the 3 Weekly Reports (W40, W39, W38)
+    // 4. Define the 4 Weekly Reports (W41, W40, W39, W38)
     const reportsToInsert = [
+      // === WEEK 41 (2026-10-05 to 2026-10-11) ===
+      {
+        id: '3deb34aa-9b94-45a2-a279-e9e2f3d1af6d',
+        year: 2026,
+        weekNumber: 41,
+        startDate: '2026-10-05',
+        endDate: '2026-10-11',
+        title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 41, 2026',
+        slug: '2026-w41',
+        executiveSummary: INITIAL_WEEKLY_REPORTS[0].executiveSummary,
+        topDevelopments: INITIAL_WEEKLY_REPORTS[0].topDevelopments,
+        topOpportunities: INITIAL_WEEKLY_REPORTS[0].topBusinessOpportunities,
+        macroPolicy: INITIAL_WEEKLY_REPORTS[0].macroPolicy,
+        maInvestment: INITIAL_WEEKLY_REPORTS[0].maInvestment,
+        japaneseCompanies: INITIAL_WEEKLY_REPORTS[0].japaneseCompanies,
+        tradingHouses: INITIAL_WEEKLY_REPORTS[0].japaneseTradingHouses,
+        vietnamCorporateWatch: INITIAL_WEEKLY_REPORTS[0].vietnamCorporateWatch,
+        sectorIntelligence: INITIAL_WEEKLY_REPORTS[0].sectorIntelligence,
+        risksAnalysis: INITIAL_WEEKLY_REPORTS[0].risksAnalysis,
+        sojitzWatchList: INITIAL_WEEKLY_REPORTS[0].whatSojitzShouldWatch,
+        suggestedBdActions: INITIAL_WEEKLY_REPORTS[0].suggestedBdActions,
+        curatedStoryIds: [
+          'af381a91-be25-40c7-825c-ffd99eae1934',
+          '74e32d9d-d434-4949-a550-f43f0072d79f',
+          '5bad090d-195a-49e2-9b72-ec952c3be122',
+        ],
+      },
+
       // === WEEK 40 (2026-09-28 to 2026-10-04) ===
       {
         id: '40404040-4040-4040-4040-404040404040',
@@ -295,6 +369,7 @@ async function main() {
             sector: 'Renewable Energy & Industrial Parks',
             strategicRationale: 'Take immediate advantage of Decree 80 to establish private-wire and synthetic DPPA contracts with Japanese electronics tenants needing RE100 compliance.',
             actionWindow: 'Q4 2026 - Q1 2027',
+            storyId: '11111111-0401-4444-8888-000000000001',
           },
           {
             headline: 'Strategic Partnership with Masan Logistics (Supra)',
@@ -302,6 +377,7 @@ async function main() {
             sector: 'Logistics & Retail FMCG',
             strategicRationale: 'Co-invest in modern cold chain and automated distribution centers to distribute Sojitz food and consumer products across WinMart nationwide network.',
             actionWindow: 'Next 60 Days',
+            storyId: '11111111-0404-4444-8888-000000000004',
           },
           {
             headline: 'Polypropylene Off-take Mandate with Stavian Quang Yen',
@@ -309,6 +385,7 @@ async function main() {
             sector: 'Plastics & Chemicals',
             strategicRationale: 'Secure export marketing rights and domestic distribution allocation for 600k MT/year PP plant prior to mechanical completion.',
             actionWindow: 'Q4 2026',
+            storyId: '11111111-0405-4444-8888-000000000005',
           },
         ],
         macroPolicy: 'Macroeconomic indicators for Q3 2026 demonstrate Vietnam GDP growth at 7.4% year-on-year, propelled by electronics processing exports and surging FDI disbursements ($17.3B YTD, +8.9%). The State Bank of Vietnam (SBV) has maintained policy rates steady to support credit expansion while stabilizing the VND against the USD. Decree 80 (DPPA) is the chief regulatory breakthrough, with implementing circulars from MOIT expected by late October.',
@@ -362,6 +439,8 @@ async function main() {
           '11111111-0401-4444-8888-000000000001',
           '11111111-0402-4444-8888-000000000002',
           '11111111-0403-4444-8888-000000000003',
+          '11111111-0404-4444-8888-000000000004',
+          '11111111-0405-4444-8888-000000000005',
         ],
       },
 
@@ -402,6 +481,7 @@ async function main() {
             sector: 'Logistics & Seaports',
             strategicRationale: 'Partner with port operators to establish dedicated temperature-controlled bonded warehouses for Japanese chemical and automotive parts distributors.',
             actionWindow: 'Q4 2026',
+            storyId: '22222222-0391-4444-8888-000000000001',
           },
           {
             headline: 'Chilled FMCG Co-Distribution Agreement with Masan MEATDeli',
@@ -409,6 +489,7 @@ async function main() {
             sector: 'Retail & Consumer Goods',
             strategicRationale: 'Leverage Masan newly expanded cold chain distribution network to market premium Japanese food and packaged goods nationwide.',
             actionWindow: 'Next 45 Days',
+            storyId: '22222222-0394-4444-8888-000000000004',
           },
           {
             headline: 'Da Nang High-Tech Industrial Zone Expansion for Chip Packaging',
@@ -416,6 +497,7 @@ async function main() {
             sector: 'Industrial Parks & High-Tech',
             strategicRationale: 'Explore ready-built factory (RBF) lease facilities tailored for Japanese semiconductor materials and testing vendors expanding near Renesas and FPT hubs.',
             actionWindow: 'Q1 2027',
+            storyId: '22222222-0395-4444-8888-000000000005',
           },
         ],
         macroPolicy: 'The National Assembly economic committee reviewed draft amendments to the Law on Investment and Law on Bidding, aimed at streamlining approvals for strategic mega-infrastructure projects and high-tech parks. Exchange rates stabilized at 24,950 VND/USD following calibrated liquidity management by the SBV. Industrial manufacturing output (IIP) expanded 8.6% year-on-year, led by electronics and chemical processing.',
@@ -470,6 +552,7 @@ async function main() {
           '22222222-0392-4444-8888-000000000002',
           '22222222-0393-4444-8888-000000000003',
           '22222222-0394-4444-8888-000000000004',
+          '22222222-0395-4444-8888-000000000005',
         ],
       },
 
@@ -510,6 +593,7 @@ async function main() {
             sector: 'Industrial Parks & Energy',
             strategicRationale: 'Deploy resilience audits, rooftop storm reinforcement, and auxiliary diesel-solar microgrids for Japanese tenants seeking high-uptime guarantees.',
             actionWindow: 'Immediate (Next 30 Days)',
+            storyId: '33333333-0381-4444-8888-000000000001',
           },
           {
             headline: 'Off-take Mandate for Hoa Phat High-Grade HRC Export Distribution',
@@ -517,6 +601,7 @@ async function main() {
             sector: 'Metals & Manufacturing',
             strategicRationale: 'Negotiate exclusive regional export agency rights for Dung Quat 2 automotive and container-grade hot-rolled coil to Japan and ASEAN markets.',
             actionWindow: 'Q4 2026',
+            storyId: '33333333-0383-4444-8888-000000000003',
           },
           {
             headline: 'Polymer Distribution Agreement with Stavian for Southern Plastic Converters',
@@ -524,6 +609,7 @@ async function main() {
             sector: 'Plastics & Chemicals',
             strategicRationale: 'Partner with Stavian to supply locally produced PP/PE resins from Long Son complex to Japanese injection molding clients in Dong Nai and Binh Duong.',
             actionWindow: 'Q4 2026',
+            storyId: '33333333-0384-4444-8888-000000000004',
           },
         ],
         macroPolicy: 'State Bank of Vietnam kept the benchmark refinancing rate at 4.5% while deploying targeted credit lines to assist storm-affected agricultural and manufacturing exporters. Government tax authorities implemented automatic 6-month deferrals on corporate income tax and land rental fees for manufacturing plants located in disaster-declared northern provinces.',

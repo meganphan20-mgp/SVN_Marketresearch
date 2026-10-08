@@ -1426,17 +1426,22 @@ const RAW_SAMPLE_STORIES: IntelligenceStory[] = [
   }
 ];
 
-export const SAMPLE_INTELLIGENCE_STORIES: IntelligenceStory[] = RAW_SAMPLE_STORIES.map(story => {
-  return {
-    ...story,
-    isLegacy: false,
-    sourceGrounded: true,
-    ingestionPipelineVersion: 'v1_aligned',
-    originalUrls: story.sources.map(s => s.articleUrl || ''),
-    verifiedSourceCount: story.sources.length,
-    articleStatus: (story.sources.length >= 2 ? 'MULTI_SOURCE_VERIFIED' : 'SINGLE_SOURCE_VERIFIED') as any,
-  };
-});
+import { HISTORICAL_INTELLIGENCE_STORIES } from './historical-stories-data';
+
+export const SAMPLE_INTELLIGENCE_STORIES: IntelligenceStory[] = [
+  ...RAW_SAMPLE_STORIES.map(story => {
+    return {
+      ...story,
+      isLegacy: false,
+      sourceGrounded: true,
+      ingestionPipelineVersion: 'v1_aligned',
+      originalUrls: story.sources.map(s => s.articleUrl || ''),
+      verifiedSourceCount: story.sources.length,
+      articleStatus: (story.sources.length >= 2 ? 'MULTI_SOURCE_VERIFIED' : 'SINGLE_SOURCE_VERIFIED') as any,
+    };
+  }),
+  ...HISTORICAL_INTELLIGENCE_STORIES,
+];
 
 import { INITIAL_WEEKLY_REPORTS } from './weekly-reports-data';
 export { INITIAL_WEEKLY_REPORTS };
