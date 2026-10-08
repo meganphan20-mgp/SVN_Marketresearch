@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Search, ShieldCheck, Menu, X, Globe, FileText, Settings } from 'lucide-react';
 
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
+
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -67,6 +69,8 @@ export function Header() {
               <span>Weekly Briefing</span>
             </Link>
 
+            <ThemeToggle />
+
             <Link
               href="/admin/analytics"
               title="Executive Telemetry & Reader Analytics"
@@ -84,8 +88,9 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle & Theme */}
           <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle />
             <Link
               href="/search"
               className="p-2 text-slate-300 hover:text-white rounded"

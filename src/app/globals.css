@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --bg-page: #f8fafc;
@@ -9,6 +11,18 @@
     --border-corporate: #e2e8f0;
     --navy-header: #0a192f;
     --navy-accent: #1e3a8a;
+    color-scheme: light;
+  }
+
+  html.dark {
+    --bg-page: #0b1120;
+    --bg-card: #131d31;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-corporate: #1e293b;
+    --navy-header: #050a14;
+    --navy-accent: #2563eb;
+    color-scheme: dark;
   }
 
   body {
@@ -16,7 +30,121 @@
     color: var(--text-primary);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.15s ease, color 0.15s ease;
   }
+}
+
+/* Comprehensive Dark Tone System */
+html.dark {
+  background-color: #0b1120;
+}
+
+html.dark body {
+  background-color: #0b1120;
+  color: #f1f5f9;
+}
+
+/* Base surface overrides in dark mode */
+html.dark .bg-\[\#F8FAFC\],
+html.dark .bg-\[\#f8fafc\],
+html.dark .bg-slate-50,
+html.dark .bg-gray-50 {
+  background-color: #0b1120 !important;
+}
+
+html.dark .bg-white {
+  background-color: #131d31 !important;
+}
+
+html.dark .border-slate-200,
+html.dark .border-slate-300,
+html.dark .border-gray-200 {
+  border-color: #1e293b !important;
+}
+
+html.dark .text-slate-900,
+html.dark .text-gray-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-800,
+html.dark .text-gray-800 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-600,
+html.dark .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+html.dark .bg-slate-100,
+html.dark .bg-gray-100 {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1e293b !important;
+}
+
+html.dark .hover\:bg-slate-50:hover {
+  background-color: #1a263e !important;
+}
+
+html.dark .bg-blue-50 {
+  background-color: rgba(30, 58, 138, 0.25) !important;
+  color: #93c5fd !important;
+}
+
+html.dark .bg-blue-50\/70 {
+  background-color: rgba(30, 58, 138, 0.2) !important;
+}
+
+html.dark .text-blue-900,
+html.dark .text-blue-950 {
+  color: #93c5fd !important;
+}
+
+html.dark .border-blue-100,
+html.dark .border-blue-200 {
+  border-color: #1e3a8a !important;
+}
+
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-50\/50 {
+  background-color: rgba(6, 78, 59, 0.25) !important;
+  border-color: #065f46 !important;
+}
+
+html.dark .text-emerald-900,
+html.dark .text-emerald-950 {
+  color: #6ee7b7 !important;
+}
+
+html.dark .bg-amber-50 {
+  background-color: rgba(120, 53, 15, 0.25) !important;
+}
+
+html.dark .bg-rose-50 {
+  background-color: rgba(136, 19, 55, 0.25) !important;
+  border-color: #881337 !important;
+}
+
+html.dark .text-rose-950 {
+  color: #fca5a5 !important;
+}
+
+html.dark .bg-slate-900 {
+  background-color: #070d19 !important;
+}
+
+html.dark .border-slate-800 {
+  border-color: #1e293b !important;
 }
 
 /* Custom scrollbars and utility styling */
@@ -29,11 +157,23 @@
   background: #f1f5f9;
 }
 
+html.dark ::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
 
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }

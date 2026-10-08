@@ -61,13 +61,13 @@ export const INITIAL_COMPANIES: WatchlistCompany[] = [
 
 export const INITIAL_SOURCES: NewsSourceConfig[] = [
   // Tier 1: Official & Global Authoritative (Weight 1.0)
-  // Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Vietnam News, The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz
+  // Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Báo Chính Phủ (English), The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz
   { id: 'src-gazette', name: 'Official Government Gazettes', domain: 'baochinhphu.vn', allowedDomains: ['baochinhphu.vn'], tier: 'TIER_1', description: 'Official Government Gazettes and legal decrees of the Government of Vietnam.', trustWeight: 1.0, isOfficialIr: true, isActive: true, articleCount: 140 },
   { id: 'src-ft', name: 'Financial Times', domain: 'ft.com', allowedDomains: ['ft.com'], tier: 'TIER_1', description: 'Global strategic investment trends, supply chain realignments, and geopolitical risk.', trustWeight: 1.0, isOfficialIr: false, isActive: true, articleCount: 84 },
   { id: 'src-vneconomy', name: 'VnEconomy', domain: 'vneconomy.vn', allowedDomains: ['vneconomy.vn'], tier: 'TIER_1', description: 'Vietnam Economic Times portal covering macro indicators, corporate earnings, and real estate.', trustWeight: 1.0, rssUrl: 'https://vneconomy.vn/doanh-nghiep.htm', isOfficialIr: false, isActive: true, articleCount: 520 },
   { id: 'src-vnexpress', name: 'VnExpress', domain: 'vnexpress.net', allowedDomains: ['vnexpress.net', 'e.vnexpress.net'], tier: 'TIER_1', description: 'Leading mainstream digital newspaper with dedicated business, macro, and market coverage.', trustWeight: 1.0, rssUrl: 'https://vnexpress.net/rss/kinh-doanh.rss', isOfficialIr: false, isActive: true, articleCount: 680 },
   { id: 'src-vietnamnet', name: 'VietnamNet', domain: 'vietnamnet.vn', allowedDomains: ['vietnamnet.vn'], tier: 'TIER_1', description: 'State-affiliated media focusing on technology policy, enterprise restructuring, and foreign diplomacy.', trustWeight: 1.0, rssUrl: 'https://vietnamnet.vn/rss/kinh-doanh.rss', isOfficialIr: false, isActive: true, articleCount: 390 },
-  { id: 'src-vietnamnews', name: 'Vietnam News', domain: 'vietnamnews.vn', allowedDomains: ['vietnamnews.vn'], tier: 'TIER_1', description: 'English-language national daily covering official state visits, trade agreements, and legal updates.', trustWeight: 1.0, rssUrl: 'https://vietnamnews.vn/rss/economy.rss', isOfficialIr: false, isActive: true, articleCount: 340 },
+  { id: 'src-baochinhphu-en', name: 'Báo Chính Phủ (English)', domain: 'en.baochinhphu.vn', allowedDomains: ['en.baochinhphu.vn', 'baochinhphu.vn'], tier: 'TIER_1', description: 'Official English-language portal of the Government of Vietnam, covering authoritative state directives, decrees, and socioeconomic policy announcements.', trustWeight: 1.0, isOfficialIr: true, isActive: true, articleCount: 340 },
   { id: 'src-theinvestor', name: 'The Investor', domain: 'theinvestor.vn', allowedDomains: ['theinvestor.vn'], tier: 'TIER_1', description: 'Specialized foreign investment portal focusing on manufacturing, logistics, and renewable energy.', trustWeight: 1.0, rssUrl: 'https://theinvestor.vn/corporate-c1/', isOfficialIr: false, isActive: true, articleCount: 295 },
   { id: 'src-cafef', name: 'CafeF', domain: 'cafef.vn', allowedDomains: ['cafef.vn'], tier: 'TIER_1', description: 'High-frequency financial portal tracking stock movements, corporate leadership, and project rumors.', trustWeight: 1.0, rssUrl: 'https://cafef.vn/doanh-nghiep.rss', isOfficialIr: false, isActive: true, articleCount: 820 },
   { id: 'src-tuoitre', name: 'Tuoi Tre Online', domain: 'tuoitre.vn', allowedDomains: ['tuoitre.vn', 'tuoitrenews.vn'], tier: 'TIER_1', description: 'National socio-economic newspaper covering major infrastructure and municipal policies.', trustWeight: 1.0, rssUrl: 'https://tuoitre.vn/rss/kinh-doanh.rss', isOfficialIr: false, isActive: true, articleCount: 420 },
@@ -1122,7 +1122,7 @@ const RAW_SAMPLE_STORIES: IntelligenceStory[] = [
     "relevanceScore": 8,
     "verificationStatus": "SINGLE_SOURCE",
     "confidenceScore": 59,
-    "verificationRationale": "Reported exclusively by single outlet (Vietnam News). Monitoring for peer corroboration across Vietnamese business media.",
+    "verificationRationale": "Reported exclusively by single outlet (Báo Chính Phủ). Monitoring for peer corroboration across Vietnamese business media.",
     "extractedFacts": {
       "location": "Hà Nội",
       "dealValueUsd": null,
@@ -1136,12 +1136,12 @@ const RAW_SAMPLE_STORIES: IntelligenceStory[] = [
       {
         "id": "745b1dd2-ca5d-4a23-8b10-705087674632",
         "sourceId": "b571af5e-b6b0-4640-9c8b-29fb9ede9bfd",
-        "sourceName": "Vietnam News",
+        "sourceName": "Báo Chính Phủ (English)",
         "sourceTier": "TIER_1",
         "articleTitle": "WB raises Việt Nam’s 2026 growth forecast to 7.4 per cent on strong AI-related exports",
-        "articleUrl": "https://vietnamnews.vn/economy/1801368/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
-        "validatedUrl": "https://vietnamnews.vn/economy/1801368/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
-        "canonicalUrl": "https://vietnamnews.vn/economy/1801368/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
+        "articleUrl": "https://en.baochinhphu.vn/economy/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
+        "validatedUrl": "https://en.baochinhphu.vn/economy/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
+        "canonicalUrl": "https://en.baochinhphu.vn/economy/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
         "publishedAt": "2026-10-06T00:00:00.000Z",
         "sourcePublicationDateLocal": "2026-10-06",
         "isPrimaryClaimSource": false,

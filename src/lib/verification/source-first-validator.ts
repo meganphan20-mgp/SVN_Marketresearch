@@ -244,7 +244,7 @@ export function parseArticleHtml(html: string, fallbackUrl: string): {
   if (title) {
     title = decodeHtmlEntities(
       title
-        .replace(/\s*[-–|•]\s*(VnExpress|VnExpress International|VietnamPlus|Reuters|Nikkei Asia|Bloomberg|VIR|VnEconomy|The Investor|CafeF|CafeBiz|Tuoi Tre|Thanh Nien|Báo Đầu Tư|VietnamNet|Vietnam News)[\w\s.]*$/i, '')
+        .replace(/\s*[-–|•]\s*(VnExpress|VnExpress International|VietnamPlus|Reuters|Nikkei Asia|Bloomberg|VIR|VnEconomy|The Investor|CafeF|CafeBiz|Tuoi Tre|Thanh Nien|Báo Đầu Tư|VietnamNet|Báo Chính Phủ|VGP News)[\w\s.]*$/i, '')
     );
   }
 

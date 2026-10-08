@@ -64,7 +64,7 @@ export default async function SourcesDirectoryPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-300">
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
               <span className="font-bold text-blue-400 block mb-1">Tier 1: Official & Global Authoritative (Weight 1.0)</span>
-              <p>Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Vietnam News, The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz.</p>
+              <p>Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Báo Chính Phủ (English), The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz.</p>
             </div>
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
               <span className="font-bold text-slate-300 block mb-1">Tier 2: Premier Vietnamese Business & Economic Media (Weight 0.7)</span>

@@ -58,13 +58,13 @@ const EXACT_SOURCES: SourceDef[] = [
     rssUrl: 'https://vietnamnet.vn/rss/kinh-doanh.rss'
   },
   {
-    name: 'Vietnam News',
-    domain: 'vietnamnews.vn',
+    name: 'Báo Chính Phủ (English)',
+    domain: 'en.baochinhphu.vn',
     tier: 'TIER_1',
     weight: 1.0,
-    desc: 'English-language national daily covering official state visits, trade agreements, and legal updates.',
-    isIr: false,
-    rssUrl: 'https://vietnamnews.vn/rss/economy.rss'
+    desc: 'Official English-language portal of the Government of Vietnam, covering authoritative state directives, decrees, and socioeconomic policy announcements.',
+    isIr: true,
+    rssUrl: undefined
   },
   {
     name: 'The Investor',
@@ -291,7 +291,8 @@ async function main() {
        OR source_name ILIKE '%CafeBiz%' 
        OR source_name ILIKE '%CafeF%' 
        OR source_name ILIKE '%VietnamNet%' 
-       OR source_name ILIKE '%Vietnam News%' 
+       OR source_name ILIKE '%Báo Chính Phủ%' 
+       OR source_name ILIKE '%baochinhphu%' 
        OR source_name ILIKE '%Báo Đầu Tư%' 
        OR source_name ILIKE '%Dau tu%' 
        OR source_name ILIKE '%VnEconomy%';
