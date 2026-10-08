@@ -39,9 +39,11 @@ const JAPANESE_SOGO_SHOSHA = [
  * active sectors, and watchlist companies.
  */
 export async function matchKnowledgeBank(
-  extraction: ArticleExtractionRecord
+  extraction: ArticleExtractionRecord,
+  title?: string
 ): Promise<KnowledgeBankMatchResult> {
-  const fullText = `${extraction.source_url}\n${extraction.geographies.join(' ')}\n${extraction.entities.map(e => e.name).join(' ')}\n${extraction.verified_facts.map(f => typeof f === 'string' ? f : (f?.claim_text || '')).join(' ')}\n${extraction.explicit_company_statements.map(f => typeof f === 'string' ? f : (f?.claim_text || '')).join(' ')}`;
+  const titleText = (title || '').toLowerCase();
+  const fullText = `${titleText}\n${extraction.source_url}\n${extraction.geographies.join(' ')}\n${extraction.entities.map(e => e.name).join(' ')}\n${extraction.verified_facts.map(f => typeof f === 'string' ? f : (f?.claim_text || '')).join(' ')}\n${extraction.explicit_company_statements.map(f => typeof f === 'string' ? f : (f?.claim_text || '')).join(' ')}`;
 
   const matchedAssets: string[] = [];
   const matchedCompetitors: string[] = [];
@@ -92,7 +94,7 @@ export async function matchKnowledgeBank(
     if (div.code === 'INFRA_LOGISTICS' && (extraction.primary_event_type === 'LOGISTICS_PROJECT' || extraction.primary_event_type === 'NEW_FACTORY' || fullText.toLowerCase().includes('long đức') || fullText.toLowerCase().includes('khu công nghiệp'))) {
       divMatches = true;
     }
-    if (div.code === 'FOOD_RETAIL' && (fullText.toLowerCase().includes('thực phẩm') || fullText.toLowerCase().includes('fmcg') || fullText.toLowerCase().includes('bán lẻ') || fullText.toLowerCase().includes('metro'))) {
+    if (div.code === 'FOOD_RETAIL' && (fullText.toLowerCase().includes('thực phẩm') || fullText.toLowerCase().includes('cà phê') || fullText.toLowerCase().includes('coffee') || fullText.toLowerCase().includes('fmcg') || fullText.toLowerCase().includes('bán lẻ') || fullText.toLowerCase().includes('retail') || fullText.toLowerCase().includes('f&b') || fullText.toLowerCase().includes('agri-processing') || fullText.toLowerCase().includes('nestlé') || fullText.toLowerCase().includes('nestle'))) {
       divMatches = true;
     }
 
@@ -155,8 +157,13 @@ export async function matchKnowledgeBank(
       const secKeywords = [sec.name, sec.slug, ...(sec.keywords || [])];
 
       for (const kw of secKeywords) {
-        if (kw.length >= 3 && new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(fullText)) {
-          score += 5;
+        if (kw.length >= 3) {
+          const kwRegex = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+          if (titleText && kwRegex.test(titleText)) {
+            score += 25; // Keywords in title indicate the primary subject of the story
+          } else if (kwRegex.test(fullText)) {
+            score += 5;
+          }
         }
       }
 

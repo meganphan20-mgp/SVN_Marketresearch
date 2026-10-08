@@ -70,7 +70,7 @@ export async function scoreArticleRelevance(
   }
 
   // 2. Knowledge Bank Matching
-  const kbMatch = await matchKnowledgeBank(extraction);
+  const kbMatch = await matchKnowledgeBank(extraction, rawArticle.title);
 
   const matchedAssets = kbMatch.matchedAssets;
   const matchedCompetitors = kbMatch.matchedCompetitors;
