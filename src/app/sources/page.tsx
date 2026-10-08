@@ -63,20 +63,20 @@ export default async function SourcesDirectoryPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-300">
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
-              <span className="font-bold text-blue-400 block mb-1">Tier 1: Weight 1.0</span>
-              <p>Government gazettes, stock exchanges, corporate IR statements, and global wires (Reuters, Nikkei, Bloomberg, FT).</p>
+              <span className="font-bold text-blue-400 block mb-1">Tier 1: Official & Global Authoritative (Weight 1.0)</span>
+              <p>Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Vietnam News, The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz.</p>
             </div>
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
-              <span className="font-bold text-slate-300 block mb-1">Tier 2: Weight 0.7</span>
-              <p>Leading Vietnamese economic and investment media (VIR, VnEconomy, VnExpress, VietnamNet, The Investor).</p>
+              <span className="font-bold text-slate-300 block mb-1">Tier 2: Premier Vietnamese Business & Economic Media (Weight 0.7)</span>
+              <p>Reuters, Bloomberg, Nikkei Asia, Vietnam Investment Review, SSC/HOSE/HNX, Corporate Investor Relations.</p>
             </div>
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
-              <span className="font-bold text-amber-400 block mb-1">Tier 3: Weight 0.4</span>
-              <p>Specialist trade journals, industry portals (CafeF, Saigon Times) providing granular market chatter.</p>
+              <span className="font-bold text-amber-400 block mb-1">Tier 3: Specialist & Domestic Financial Portals (Weight 0.4)</span>
+              <p>Saigon Times, Industry Associations, Specialized Trade Journals.</p>
             </div>
             <div className="p-3 bg-slate-800/80 rounded border border-slate-700">
-              <span className="font-bold text-purple-400 block mb-1">Discovery: Weight 0.1</span>
-              <p>Early-signal detection (LinkedIn, corporate blogs). Triggers immediate crawler corroborate before publishing.</p>
+              <span className="font-bold text-purple-400 block mb-1">Discovery Only (Weight 0.1)</span>
+              <p>LinkedIn, Corporate Blogs, Aggregators. Cannot verify a story alone; triggers crawler corroboration.</p>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default async function SourcesDirectoryPage() {
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
             <span className="w-3 h-3 rounded-full bg-blue-600" />
             <h2 className="text-base font-bold text-slate-900 uppercase">
-              Tier 1: Official & Authoritative Primary Sources ({tier1.length})
+              Tier 1: Official & Global Authoritative ({tier1.length})
             </h2>
           </div>
 
@@ -123,7 +123,7 @@ export default async function SourcesDirectoryPage() {
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
             <span className="w-3 h-3 rounded-full bg-slate-600" />
             <h2 className="text-base font-bold text-slate-900 uppercase">
-              Tier 2: Premier Vietnamese Business & Economic Press ({tier2.length})
+              Tier 2: Premier Vietnamese Business & Economic Media ({tier2.length})
             </h2>
           </div>
 
@@ -133,7 +133,7 @@ export default async function SourcesDirectoryPage() {
                 <div>
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
                     <span className="font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                      TIER 2 PRESS
+                      TIER 2 PREMIER
                     </span>
                     <span className="text-slate-600 font-bold">Weight: 0.7</span>
                   </div>
@@ -147,7 +147,7 @@ export default async function SourcesDirectoryPage() {
                   </p>
                 </div>
                 <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                  <span>National Coverage</span>
+                  <span>Premier Economic Media / IR</span>
                   <span className="font-bold text-slate-700">{src.articleCount} Scanned Articles</span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default async function SourcesDirectoryPage() {
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
             <span className="w-3 h-3 rounded-full bg-amber-500" />
             <h2 className="text-base font-bold text-slate-900 uppercase">
-              Tier 3: Specialist & Financial Media ({tier3.length})
+              Tier 3: Specialist & Domestic Financial Portals ({tier3.length})
             </h2>
           </div>
 
@@ -184,7 +184,7 @@ export default async function SourcesDirectoryPage() {
                   </p>
                 </div>
                 <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                  <span>Industry Specific</span>
+                  <span>Specialist Portal / Trade</span>
                   <span className="font-bold text-slate-700">{src.articleCount} Scanned Articles</span>
                 </div>
               </div>
@@ -197,7 +197,7 @@ export default async function SourcesDirectoryPage() {
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
             <span className="w-3 h-3 rounded-full bg-purple-500" />
             <h2 className="text-base font-bold text-slate-900 uppercase">
-              Discovery Only Nodes ({discovery.length})
+              Discovery Only ({discovery.length})
             </h2>
           </div>
 
