@@ -7,7 +7,7 @@ import { ArrowLeft, Building2, TrendingUp, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Top Vietnamese Corporations Watch | Sojitz Vietnam',
-  description: 'Intelligence surveillance across leading Vietnamese conglomerates: Masan, Vingroup, Stavian, THACO, Hoa Phat, FPT, Becamex, Gelex, Vinamilk, Sabeco, Sovico, TTC.',
+  description: 'Intelligence surveillance across 19 leading Vietnamese conglomerates: Masan, Nova, T&T, TTC, Taseco, Son Kim, KN Group, Vinamilk, Stavian, Vingroup, Sun Group, Hoa Phat, BRG, Sovico, Masterise, FPT, CMC, THACO, Hoa Sen.',
 };
 
 export default async function VietnamCompaniesHubPage() {

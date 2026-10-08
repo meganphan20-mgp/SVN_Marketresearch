@@ -196,10 +196,10 @@ export function StoryDetailClientView({ story }: Props) {
         </p>
       </div>
 
-      {/* Why It Matters To Sojitz Vietnam */}
-      <div className="bg-slate-900 text-white rounded-xl p-5 md:p-6 mb-6 shadow-sm">
-        <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2">
-          <Briefcase className="w-4 h-4" />
+      {/* Why It Matters To Sojitz Vietnam (Dark Background, Light Text) */}
+      <div className="bg-[#0B172E] text-white rounded-xl p-5 md:p-6 mb-6 shadow-sm border-l-4 border-blue-500">
+        <div className="flex items-center gap-2 text-blue-300 font-bold text-xs uppercase tracking-wider mb-2">
+          <Briefcase className="w-4 h-4 text-blue-400" />
           <span>Why It Matters To Sojitz Vietnam</span>
         </div>
         <p className="text-slate-100 leading-relaxed text-sm md:text-base">
@@ -209,12 +209,12 @@ export function StoryDetailClientView({ story }: Props) {
 
       {/* Suggested BD Action Callout Box */}
       {story.suggestedBdAction && (
-        <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-5 mb-8 shadow-2xs">
-          <div className="flex items-center gap-2 text-emerald-950 font-bold text-xs uppercase tracking-wider mb-2">
-            <Target className="w-4 h-4 text-emerald-700" />
+        <div className="bg-emerald-50/90 dark:bg-[#072418] border-l-4 border-emerald-600 dark:border-emerald-500 rounded-r-xl p-5 mb-8 shadow-2xs">
+          <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold text-xs uppercase tracking-wider mb-2">
+            <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span>Suggested Business Development (BD) Action</span>
           </div>
-          <p className="text-emerald-950 leading-relaxed text-sm md:text-base font-medium">
+          <p className="text-slate-900 dark:text-emerald-100 leading-relaxed text-sm md:text-base font-medium">
             {story.suggestedBdAction}
           </p>
         </div>

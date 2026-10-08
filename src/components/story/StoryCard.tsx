@@ -170,25 +170,25 @@ export function StoryCard({ story, showFullDetails = false }: Props) {
         {story.summary}
       </p>
 
-      {/* Why It Matters To Sojitz - Strategic Callout Box */}
-      <div className="bg-slate-50 border-l-4 border-blue-900 rounded-r-md p-3.5 mb-3 text-sm">
-        <div className="flex items-center gap-1.5 font-bold text-blue-950 text-xs uppercase tracking-wider mb-1">
-          <Briefcase className="w-3.5 h-3.5 text-blue-900" />
+      {/* Why It Matters To Sojitz - Strategic Callout Box (Dark Background, Light Text) */}
+      <div className="bg-[#0B172E] border-l-4 border-blue-500 rounded-r-md p-3.5 mb-3 text-sm shadow-xs">
+        <div className="flex items-center gap-1.5 font-bold text-blue-300 text-xs uppercase tracking-wider mb-1.5">
+          <Briefcase className="w-3.5 h-3.5 text-blue-400" />
           <span>Why It Matters to Sojitz Vietnam</span>
         </div>
-        <p className="text-slate-800 leading-relaxed text-[13.5px]">
+        <p className="text-slate-100 leading-relaxed text-[13.5px] font-normal">
           {story.whyItMattersToSojitz}
         </p>
       </div>
 
       {/* Suggested BD Action Callout */}
       {story.suggestedBdAction && (
-        <div className="bg-emerald-50/70 border-l-4 border-emerald-600 rounded-r-md p-3.5 mb-4 text-sm">
-          <div className="flex items-center gap-1.5 font-bold text-emerald-950 text-xs uppercase tracking-wider mb-1">
-            <Target className="w-3.5 h-3.5 text-emerald-700" />
+        <div className="bg-emerald-50/90 dark:bg-[#072418] border-l-4 border-emerald-600 dark:border-emerald-500 rounded-r-md p-3.5 mb-4 text-sm">
+          <div className="flex items-center gap-1.5 font-bold text-emerald-800 dark:text-emerald-300 text-xs uppercase tracking-wider mb-1">
+            <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>Suggested BD Action</span>
           </div>
-          <p className="text-emerald-900 leading-relaxed text-[13.5px] font-medium">
+          <p className="text-emerald-950 dark:text-emerald-100 leading-relaxed text-[13.5px] font-medium">
             {story.suggestedBdAction}
           </p>
         </div>

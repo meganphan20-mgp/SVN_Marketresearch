@@ -176,6 +176,34 @@ export async function getSectors(): Promise<Sector[]> {
 }
 
 export async function getCompanies(): Promise<WatchlistCompany[]> {
+  if (await isPostgresConnected()) {
+    try {
+      const pool = getPostgresPool();
+      const { rows } = await pool.query(`
+        SELECT id, name, ticker, slug, origin, aliases, description, website_url, is_active
+        FROM companies
+        WHERE is_active = true
+        ORDER BY name ASC
+      `);
+      if (rows && rows.length > 0) {
+        return rows.map((row: any) => ({
+          id: row.id,
+          name: row.name,
+          ticker: row.ticker,
+          slug: row.slug,
+          origin: row.origin,
+          aliases: row.aliases || [],
+          description: row.description,
+          websiteUrl: row.website_url,
+          isActive: row.is_active,
+          storyCount: storiesState.filter(s => s.companiesMentioned?.some(c => c.slug === row.slug)).length,
+        }));
+      }
+    } catch (e) {
+      console.warn('[Intelligence Store] Postgres fetch companies fallback:', e);
+    }
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const { data, error } = await supabase
@@ -194,7 +222,7 @@ export async function getCompanies(): Promise<WatchlistCompany[]> {
           description: row.description,
           websiteUrl: row.website_url,
           isActive: row.is_active,
-          storyCount: storiesState.filter(s => s.companiesMentioned.some(c => c.slug === row.slug)).length,
+          storyCount: storiesState.filter(s => s.companiesMentioned?.some(c => c.slug === row.slug)).length,
         }));
       }
     } catch (e) {
