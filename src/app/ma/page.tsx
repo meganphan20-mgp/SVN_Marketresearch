@@ -17,8 +17,32 @@ export default async function MaPage() {
     s.businessImpact === 'PARTNERSHIP' || 
     s.category.toLowerCase().includes('m&a') ||
     s.category.toLowerCase().includes('investment') ||
-    s.category.toLowerCase().includes('joint venture')
+    s.category.toLowerCase().includes('joint venture') ||
+    (s.extractedFacts?.dealValueUsd != null && s.extractedFacts.dealValueUsd > 0)
   );
+
+  // Compute metrics dynamically from verified stories
+  const totalDealValueMillion = maStories.reduce((acc, s) => acc + (s.extractedFacts?.dealValueUsd || 0), 0);
+  const formattedDealValue = totalDealValueMillion >= 1000
+    ? `$${(totalDealValueMillion / 1000).toFixed(2)}B+`
+    : totalDealValueMillion > 0
+    ? `$${totalDealValueMillion.toFixed(1)}M+`
+    : 'Undisclosed';
+
+  const disclosedDealsCount = maStories.filter(s => (s.extractedFacts?.dealValueUsd || 0) > 0).length;
+
+  const equityDealsCount = maStories.filter(s => 
+    s.businessImpact === 'MA_INVESTMENT' || 
+    s.category.toLowerCase().includes('m&a') || 
+    (s.extractedFacts?.stakePercentage != null && s.extractedFacts.stakePercentage > 0)
+  ).length;
+
+  const jvDealsCount = maStories.filter(s => 
+    s.businessImpact === 'PARTNERSHIP' || 
+    s.category.toLowerCase().includes('joint venture') || 
+    s.category.toLowerCase().includes('partnership') ||
+    (s.extractedFacts?.keyPartners && s.extractedFacts.keyPartners.length > 0)
+  ).length;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
@@ -63,31 +87,37 @@ export default async function MaPage() {
               <span>Tracked Deal Value</span>
             </div>
             <div className="text-2xl font-black text-slate-900 font-mono">
-              $9.85B+
+              {formattedDealValue}
             </div>
-            <span className="text-[11px] text-slate-400">Sum of verified deals & commitments</span>
+            <span className="text-[11px] text-slate-500">
+              Sum of disclosed capital values across {disclosedDealsCount} verified transactions
+            </span>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase mb-1">
               <PieChart className="w-4 h-4 text-blue-600" />
-              <span>Equity Injections</span>
+              <span>Equity & Strategic Stakes</span>
             </div>
             <div className="text-2xl font-black text-slate-900 font-mono">
-              6 Deals
+              {equityDealsCount} Deals
             </div>
-            <span className="text-[11px] text-slate-400">Private equity & strategic stakes</span>
+            <span className="text-[11px] text-slate-500">
+              Private equity, debt-to-equity conversions & strategic stakes
+            </span>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase mb-1">
               <Building2 className="w-4 h-4 text-indigo-600" />
-              <span>Joint Ventures</span>
+              <span>Joint Ventures & Alliances</span>
             </div>
             <div className="text-2xl font-black text-slate-900 font-mono">
-              5 Major JVs
+              {jvDealsCount} Strategic JVs
             </div>
-            <span className="text-[11px] text-slate-400">Industrial, smart city & retail</span>
+            <span className="text-[11px] text-slate-500">
+              Cross-border consortiums, infrastructure & operational alliances
+            </span>
           </div>
         </div>
 
