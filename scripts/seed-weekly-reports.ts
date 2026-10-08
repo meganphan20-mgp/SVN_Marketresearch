@@ -39,7 +39,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 9,
         sourceTitle: 'Decree 80/2024/ND-CP creates direct power purchase mechanism for enterprises',
-        sourceUrl: 'https://en.baochinhphu.vn/decree-80-dppa-mechanism-2026.html',
+        sourceUrl: 'https://baochinhphu.vn/tao-dieu-kien-cho-doanh-nghiep-nguoi-dan-tham-gia-san-xuat-tieu-thu-va-tham-gia-vao-thi-truong-dien-102241008100922054.htm',
       },
       {
         id: '11111111-0402-4444-8888-000000000002',
@@ -54,7 +54,7 @@ async function main() {
         businessImpact: 'COMPETITOR_MOVEMENT',
         relevanceScore: 8,
         sourceTitle: 'Sumitomo and BRG launch mega smart city development in northern Hanoi',
-        sourceUrl: 'https://vneconomy.vn/sumitomo-brg-smart-city-dong-anh.htm',
+        sourceUrl: 'https://vneconomy.vn/ha-noi-khoi-cong-sieu-du-an-thanh-pho-thong-minh-42-ty-usd.htm',
       },
       {
         id: '11111111-0403-4444-8888-000000000003',
@@ -69,7 +69,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
         sourceTitle: 'Block B gas project signs key pipeline EPC contracts with Japanese partners',
-        sourceUrl: 'https://en.baochinhphu.vn/block-b-gas-pipeline-milestone.html',
+        sourceUrl: 'https://baochinhphu.vn/bao-dam-dua-4-du-an-su-dung-khi-lo-b-o-mon-vao-van-hanh-dung-quy-hoach-102260108151227471.htm',
       },
       {
         id: '11111111-0404-4444-8888-000000000004',
@@ -84,7 +84,7 @@ async function main() {
         businessImpact: 'PARTNERSHIP',
         relevanceScore: 8,
         sourceTitle: 'Masan toi uu hoa chi phi chuoi cung ung thong qua nen tang Supra',
-        sourceUrl: 'https://cafef.vn/masan-supra-logistics-2026.chn',
+        sourceUrl: 'https://cafef.vn/kham-pha-cong-than-supra-giup-wincommerce-tiet-kiem-13-chi-phi-188231031075350669.chn',
       },
       {
         id: '11111111-0405-4444-8888-000000000005',
@@ -99,7 +99,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
         sourceTitle: 'Stavian day nhanh tien do nha may hoa dau Quang Yen',
-        sourceUrl: 'https://vneconomy.vn/stavian-quang-yen-petrochemical.htm',
+        sourceUrl: 'https://vneconomy.vn/quang-ninh-trao-giay-chung-nhan-dau-tu-du-an-nha-may-hoa-dau-tri-gia-1-5-ty-usd.htm',
       },
 
       // === WEEK 39 STORIES (2026-09-21 to 2026-09-27) ===
@@ -116,7 +116,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 9,
         sourceTitle: 'Groundbreaking on Berths 7 and 8 at Lach Huyen International Gateway Port',
-        sourceUrl: 'https://vneconomy.vn/khoi-cong-ben-7-8-cang-lach-huyen.htm',
+        sourceUrl: 'https://vneconomy.vn/ruc-rich-chuan-bi-thi-cong-2-ben-cang-container-tai-lach-huyen-nang-len-8-ben-den-nam-2027.htm',
       },
       {
         id: '22222222-0392-4444-8888-000000000002',
@@ -146,7 +146,7 @@ async function main() {
         businessImpact: 'RISK',
         relevanceScore: 7,
         sourceTitle: 'Novaland reaches credit agreement to accelerate Dong Nai flagship project works',
-        sourceUrl: 'https://cafef.vn/novaland-tai-cau-truc-tin-dung-aqua-city.chn',
+        sourceUrl: 'https://cafef.vn/novaland-hoan-tat-tai-cau-truc-con-quy-dat-hon-2400-ha-chua-trien-khai-188260414153750599.chn',
       },
       {
         id: '22222222-0394-4444-8888-000000000004',
@@ -161,7 +161,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
         sourceTitle: 'Masan Consumer and WinCommerce expand temperature-controlled cold chain distribution',
-        sourceUrl: 'https://vneconomy.vn/masan-wincommerce-chuoi-lanh-meatdeli.htm',
+        sourceUrl: 'https://vneconomy.vn/vi-mo-tich-cuc-va-mua-mua-sam-cuoi-nam-don-bay-tang-truong-loi-nhuan-cua-masan.htm',
       },
       {
         id: '22222222-0395-4444-8888-000000000005',
@@ -176,7 +176,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
         sourceTitle: 'Da Nang attracts foreign high-tech capital for semiconductor testing hub',
-        sourceUrl: 'https://en.baochinhphu.vn/da-nang-high-tech-park-semiconductor-investment.html',
+        sourceUrl: 'https://baochinhphu.vn/da-nang-tung-buoc-hien-thuc-hoa-phat-trien-cong-nghiep-vi-mach-ban-dan-102231228122956848.htm',
       },
 
       // === WEEK 38 STORIES (2026-09-14 to 2026-09-20) ===
@@ -193,7 +193,7 @@ async function main() {
         businessImpact: 'MARKET_INTELLIGENCE',
         relevanceScore: 9,
         sourceTitle: 'Government issues comprehensive relief decree to stabilize northern industrial supply chains',
-        sourceUrl: 'https://en.baochinhphu.vn/government-decree-typhoon-industrial-relief.html',
+        sourceUrl: 'https://baochinhphu.vn/nghi-quyet-143-nq-cp-luc-day-quan-trong-cho-doanh-nghiep-phuc-hoi-sau-bao-lu-102240919102435489.htm',
       },
       {
         id: '33333333-0382-4444-8888-000000000002',
@@ -208,7 +208,7 @@ async function main() {
         businessImpact: 'COMPETITOR_MOVEMENT',
         relevanceScore: 8,
         sourceTitle: 'Sumitomo-BRG begins leasing for high-tech industrial zone in North Hanoi',
-        sourceUrl: 'https://vneconomy.vn/sumitomo-mo-ban-khu-cong-nghe-bac-ha-noi.htm',
+        sourceUrl: 'https://vneconomy.vn/fujimart-su-pha-tron-giua-am-thuc-viet-va-van-hoa-phuc-vu-nhat.htm',
       },
       {
         id: '33333333-0383-4444-8888-000000000003',
@@ -223,7 +223,7 @@ async function main() {
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
         sourceTitle: 'Hoa Phat prepares Dung Quat 2 steel complex for commercial operations',
-        sourceUrl: 'https://cafef.vn/hoa-phat-hoan-tat-thu-nghiem-lo-cao-dung-quat-2.chn',
+        sourceUrl: 'https://cafef.vn/ty-phu-tran-dinh-long-don-tin-vui-tu-du-an-khu-lien-hop-san-xuat-gang-thep-hoa-phat-dung-quat-2-188250904120221016.chn',
       },
       {
         id: '33333333-0384-4444-8888-000000000004',
@@ -238,7 +238,7 @@ async function main() {
         businessImpact: 'PARTNERSHIP',
         relevanceScore: 7,
         sourceTitle: 'Stavian Chemical secures domestic resin distribution from Long Son complex',
-        sourceUrl: 'https://vneconomy.vn/stavian-hop-tac-cung-ung-hoa-dau-long-son.htm',
+        sourceUrl: 'https://vneconomy.vn/stavian-hoa-chat-lot-top-15-icis-the-gioi.htm',
       },
     ];
 
