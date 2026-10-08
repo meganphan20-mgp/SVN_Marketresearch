@@ -119,9 +119,9 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         storyId: '11111111-0401-4444-8888-000000000001',
       },
       {
-        title: 'Sumitomo Corporation Breaks Ground on $4.2B North Hanoi Smart City Project',
-        summary: 'Commenced 272-hectare mixed-use smart township in Dong Anh with a 100MW microgrid and modern Japanese commercial district.',
-        significance: 'Signals Sumitomo aggressive push to dominate the northern FDI industrial and executive living ecosystem.',
+        title: 'Sumitomo Corporation & BRG Group Advance Phase 1 Infrastructure Milestones for $4.2B North Hanoi Smart City',
+        summary: 'Following its August ground-breaking, the Sumitomo-BRG joint venture finalized Phase 1 infrastructure approvals and arterial site preparation in early October for the 272-hectare smart city.',
+        significance: 'Signals Sumitomo rapid progress in establishing master developer dominance in the high-value Nhat Tan - Noi Bai corridor.',
         storyId: '11111111-0402-4444-8888-000000000002',
       },
       {
