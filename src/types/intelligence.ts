@@ -24,6 +24,7 @@ export interface ExtractedFacts {
   announcedTimeline?: string | null;
   keyPartners?: string[];
   keyQuotes?: string[];
+  materialUpdates?: any[];
 }
 
 export interface DetectedConflict {
@@ -161,7 +162,7 @@ export interface StorySourceLink {
   sourceTitle?: string;
   articleUrl: string; // validated_url (Section 7)
   validatedUrl?: string;
-  canonicalUrl?: string; // canonical_url (Section 7)
+  canonicalUrl?: string | null; // canonical_url (Section 7)
   publishedAt: string; // published_at (Section 7)
   validationTimestamp?: string; // validation_timestamp (Section 7)
   httpStatus?: number; // http_status (Section 7)
@@ -212,7 +213,7 @@ export interface IntelligenceStory {
   storyDate: string;
   country: string;
   category: string;
-  primarySectorId?: string;
+  primarySectorId?: string | null;
   primarySectorName: string;
   primarySectorSlug: string;
   secondarySectors?: string[];
