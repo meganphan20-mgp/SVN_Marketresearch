@@ -1,6 +1,6 @@
 import { getPostgresPool } from './postgres';
 import { WeeklyReport } from '@/types/report';
-import { SAMPLE_WEEKLY_REPORT } from '@/lib/data/mock-intelligence';
+import { INITIAL_WEEKLY_REPORTS, SAMPLE_WEEKLY_REPORT } from '@/lib/data/mock-intelligence';
 import crypto from 'crypto';
 
 /**
@@ -120,28 +120,38 @@ export async function getWeeklyReportsFromPostgres(): Promise<WeeklyReport[]> {
       ORDER BY year DESC, week_number DESC;
     `);
 
-    if (res.rows.length === 0) {
-      return [SAMPLE_WEEKLY_REPORT];
+    const pgReports = (res.rows || []).map(mapPostgresRowToWeeklyReport);
+    
+    // Merge Postgres reports with INITIAL_WEEKLY_REPORTS by slug so all weeks (W41, W40, W39, W38) are guaranteed present
+    const map = new Map<string, WeeklyReport>();
+    for (const r of INITIAL_WEEKLY_REPORTS) {
+      map.set(r.slug, r);
+    }
+    for (const r of pgReports) {
+      map.set(r.slug, r);
     }
 
-    return res.rows.map(mapPostgresRowToWeeklyReport);
+    return Array.from(map.values()).sort((a, b) => {
+      if (a.year !== b.year) return b.year - a.year;
+      return b.weekNumber - a.weekNumber;
+    });
   } catch (err) {
-    console.warn('[WeeklyReportStore] PostgreSQL query failed, falling back to mock:', err);
-    return [SAMPLE_WEEKLY_REPORT];
+    console.warn('[WeeklyReportStore] PostgreSQL query failed, falling back to INITIAL_WEEKLY_REPORTS:', err);
+    return [...INITIAL_WEEKLY_REPORTS];
   }
 }
 
 export async function getWeeklyReportBySlugFromPostgres(slug: string): Promise<WeeklyReport | null> {
   const pool = getPostgresPool();
-  try {
-    const raw = (slug || '').trim().toLowerCase();
-    let normalized = raw;
-    const match = raw.match(/^(?:2026-)?w?(\d{1,2})$/i);
-    const weekNum = match ? parseInt(match[1], 10) : null;
-    if (weekNum) {
-      normalized = `2026-w${weekNum}`;
-    }
+  const raw = (slug || '').trim().toLowerCase();
+  let normalized = raw;
+  const match = raw.match(/^(?:2026-)?w?(\d{1,2})$/i);
+  const weekNum = match ? parseInt(match[1], 10) : null;
+  if (weekNum) {
+    normalized = `2026-w${weekNum}`;
+  }
 
+  try {
     const res = await pool.query(`
       SELECT * FROM public.weekly_reports
       WHERE slug = $1 
@@ -154,8 +164,11 @@ export async function getWeeklyReportBySlugFromPostgres(slug: string): Promise<W
     `, [slug, normalized, weekNum]);
 
     if (res.rows.length === 0) {
-      if (slug === SAMPLE_WEEKLY_REPORT.slug || slug === SAMPLE_WEEKLY_REPORT.id || normalized === SAMPLE_WEEKLY_REPORT.slug) {
-        return SAMPLE_WEEKLY_REPORT;
+      const foundInMock = INITIAL_WEEKLY_REPORTS.find(
+        r => r.slug === slug || r.slug === normalized || (weekNum && r.weekNumber === weekNum) || r.id === slug
+      );
+      if (foundInMock) {
+        return foundInMock;
       }
       return null;
     }
@@ -177,10 +190,13 @@ export async function getWeeklyReportBySlugFromPostgres(slug: string): Promise<W
     return report;
   } catch (err) {
     console.warn(`[WeeklyReportStore] PostgreSQL query for slug "${slug}" failed:`, err);
-    if (slug === SAMPLE_WEEKLY_REPORT.slug || slug === SAMPLE_WEEKLY_REPORT.id) {
-      return SAMPLE_WEEKLY_REPORT;
+    const foundInMock = INITIAL_WEEKLY_REPORTS.find(
+      r => r.slug === slug || r.slug === normalized || (weekNum && r.weekNumber === weekNum) || r.id === slug
+    );
+    if (foundInMock) {
+      return foundInMock;
     }
-    return null;
+    return INITIAL_WEEKLY_REPORTS[0] || null;
   }
 }
 
