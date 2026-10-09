@@ -15,16 +15,45 @@ async function main() {
     const { rows: sectors } = await client.query('SELECT id, slug FROM sectors');
     const getSectorId = (slug: string) => sectors.find(s => s.slug === slug)?.id || null;
 
-    const { rows: sources } = await client.query('SELECT id, name, domain, tier FROM sources LIMIT 5');
-    const defaultSource = sources[0] || {
-      id: crypto.randomUUID(),
-      name: 'VnEconomy',
-      domain: 'vneconomy.vn',
-      tier: 'TIER_1',
+    const getSourceNameFromUrl = (url: string) => {
+      try {
+        const domain = new URL(url).hostname.replace('www.', '');
+        if (domain.includes('theinvestor.vn')) return 'The Investor';
+        if (domain.includes('vneconomy.vn')) return 'VnEconomy';
+        if (domain.includes('chinhphu.vn')) return 'Báo Chính Phủ';
+        if (domain.includes('cafef.vn')) return 'CafeF';
+        if (domain.includes('thanhnien.vn')) return 'Thanh Niên';
+        if (domain.includes('tuoitre.vn')) return 'Tuổi Trẻ';
+        if (domain.includes('vnexpress.net')) return 'VnExpress';
+        if (domain.includes('vir.com.vn')) return 'Vietnam Investment Review (VIR)';
+        if (domain.includes('cafebiz.vn')) return 'CafeBiz';
+        if (domain.includes('baodautu.vn')) return 'Báo Đầu Tư';
+        if (domain.includes('reuters.com')) return 'Reuters';
+        if (domain.includes('nikkei.com')) return 'Nikkei Asia';
+        return domain;
+      } catch {
+        return 'Official Wire';
+      }
     };
 
     // 2. Define stories for Week 40, Week 39, Week 38
-    const historicalStories = [
+    const historicalStories: Array<{
+      id: string;
+      title: string;
+      slug: string;
+      pubDate: string;
+      category: string;
+      sectorSlug: string;
+      summary: string;
+      whyItMatters: string;
+      suggestedBdAction: string;
+      businessImpact: string;
+      relevanceScore: number;
+      sourceTitle: string;
+      sourceUrl: string;
+      secondarySourceTitle?: string;
+      secondarySourceUrl?: string;
+    }> = [
       // === WEEK 40 STORIES (2026-09-28 to 2026-10-04) ===
       {
         id: '11111111-0401-4444-8888-000000000001',
@@ -38,8 +67,8 @@ async function main() {
         suggestedBdAction: 'Form taskforce with Sojitz Green Energy to offer off-site DPPA power purchase contracts to Long Duc IP tenants.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 9,
-        sourceTitle: 'Decree 80/2024/ND-CP creates direct power purchase mechanism for enterprises',
-        sourceUrl: 'https://baochinhphu.vn/tao-dieu-kien-cho-doanh-nghiep-nguoi-dan-tham-gia-san-xuat-tieu-thu-va-tham-gia-vao-thi-truong-dien-102241008100922054.htm',
+        sourceTitle: 'Cơ chế DPPA phù hợp với chủ trương khuyến khích đầu tư phát triển năng lượng tái tạo',
+        sourceUrl: 'https://vneconomy.vn/co-che-dppa-phu-hop-voi-chu-truong-khuyen-khich-dau-tu-phat-trien-nang-luong-tai-tao.htm',
       },
       {
         id: '11111111-0402-4444-8888-000000000002',
@@ -68,7 +97,7 @@ async function main() {
         suggestedBdAction: 'Energy Division to track downstream gas-fired power plant procurement and potential industrial offtake in the Mekong Delta.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
-        sourceTitle: 'Block B gas project signs key pipeline EPC contracts with Japanese partners',
+        sourceTitle: 'Bảo đảm đưa 4 dự án sử dụng khí Lô B - Ô Môn vào vận hành đúng quy hoạch',
         sourceUrl: 'https://baochinhphu.vn/bao-dam-dua-4-du-an-su-dung-khi-lo-b-o-mon-vao-van-hanh-dung-quy-hoach-102260108151227471.htm',
       },
       {
@@ -83,7 +112,7 @@ async function main() {
         suggestedBdAction: 'Arrange an executive working session in Ho Chi Minh City to explore a cold-chain distribution joint venture or co-utilization agreement.',
         businessImpact: 'PARTNERSHIP',
         relevanceScore: 8,
-        sourceTitle: 'Masan toi uu hoa chi phi chuoi cung ung thong qua nen tang Supra',
+        sourceTitle: 'Khám phá "công thần" Supra giúp WinCommerce tiết kiệm 13% chi phí',
         sourceUrl: 'https://cafef.vn/kham-pha-cong-than-supra-giup-wincommerce-tiet-kiem-13-chi-phi-188231031075350669.chn',
       },
       {
@@ -98,7 +127,7 @@ async function main() {
         suggestedBdAction: 'Negotiate exclusive overseas off-take agency terms for 50,000 MT/year PP for Japanese automotive molding clients.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
-        sourceTitle: 'Stavian day nhanh tien do nha may hoa dau Quang Yen',
+        sourceTitle: 'Quảng Ninh trao giấy chứng nhận đầu tư dự án nhà máy hóa dầu trị giá 1,5 tỷ USD',
         sourceUrl: 'https://vneconomy.vn/quang-ninh-trao-giay-chung-nhan-dau-tu-du-an-nha-may-hoa-dau-tri-gia-1-5-ty-usd.htm',
       },
 
@@ -115,23 +144,25 @@ async function main() {
         suggestedBdAction: 'Logistics Division to open discussions with Hateco Port operator for dedicated bonded container yard reservations.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 9,
-        sourceTitle: 'Groundbreaking on Berths 7 and 8 at Lach Huyen International Gateway Port',
+        sourceTitle: 'Rục rịch chuẩn bị thi công 2 bến cảng container tại Lạch Huyện, nâng lên 8 bến đến năm 2027',
         sourceUrl: 'https://vneconomy.vn/ruc-rich-chuan-bi-thi-cong-2-ben-cang-container-tai-lach-huyen-nang-len-8-ben-den-nam-2027.htm',
       },
       {
         id: '22222222-0392-4444-8888-000000000002',
-        title: 'Renesas Electronics and FPT Software Expand Automotive Semiconductor R&D Hubs in Vietnam',
-        slug: 'renesas-fpt-automotive-semiconductor-rd-expansion',
+        title: 'Vietnam Accelerates Foothold in Global Semiconductor & AI Design Ecosystem Across Da Nang and HCMC Hubs',
+        slug: 'vietnam-accelerates-semiconductor-ai-design-ecosystem-hubs',
         pubDate: '2026-09-24',
         category: 'PARTNERSHIP',
         sectorSlug: 'digital',
-        summary: 'Renesas Electronics announced the expansion of its automotive semiconductor design center in Da Nang and Ho Chi Minh City in collaboration with FPT Software, expanding engineering headcount to over 1,500 specialists.',
-        whyItMatters: 'Demonstrates the structural rise of Vietnam high-tech engineering ecosystem, driving demand for precision cleanroom supply chains and specialized industrial real estate.',
-        suggestedBdAction: 'Explore electronics component supply chain partnerships and tech campus leasing opportunities.',
+        summary: 'Vietnam is strategically expanding deeper into the semiconductor and AI value chain across packaging, testing, materials, and chip design. As highlighted by FPT and international tech leaders, major hubs across Da Nang and Ho Chi Minh City are scaling engineering talent and specialized infrastructure.',
+        whyItMatters: 'Signals accelerated positioning of Vietnam in global automotive and high-tech supply chains. Boosts demand for clean-tech industrial park infrastructure, reliable green power, and ready-built tech facilities at Long Duc IP.',
+        suggestedBdAction: 'Explore precision component supplier partnerships and evaluate electronics vendor campus facilities near Da Nang and Dong Nai.',
         businessImpact: 'PARTNERSHIP',
         relevanceScore: 8,
-        sourceTitle: 'Renesas strengthens semiconductor design collaboration with Vietnamese tech partners',
-        sourceUrl: 'https://vietnamnet.vn/renesas-fpt-semiconductor-rd-vietnam-2559120.html',
+        sourceTitle: 'Vietnam seeks a foothold in the semiconductor value chain',
+        sourceUrl: 'https://theinvestor.vn/vietnam-seeks-a-foothold-in-the-semiconductor-value-chain-d20161.html',
+        secondarySourceTitle: 'Đà Nẵng: Từng bước hiện thực hóa phát triển ngành công nghiệp vi mạch, bán dẫn',
+        secondarySourceUrl: 'https://baochinhphu.vn/da-nang-tung-buoc-hien-thuc-hoa-phat-trien-cong-nghiep-vi-mach-ban-dan-102231228122956848.htm',
       },
       {
         id: '22222222-0393-4444-8888-000000000003',
@@ -145,22 +176,22 @@ async function main() {
         suggestedBdAction: 'Legal & Risk Division to monitor regional land valuation benchmarks and secondary asset acquisition opportunities.',
         businessImpact: 'RISK',
         relevanceScore: 7,
-        sourceTitle: 'Novaland reaches credit agreement to accelerate Dong Nai flagship project works',
+        sourceTitle: 'Novaland hoàn tất tái cấu trúc, còn quỹ đất hơn 2.400 ha chưa triển khai',
         sourceUrl: 'https://cafef.vn/novaland-hoan-tat-tai-cau-truc-con-quy-dat-hon-2400-ha-chua-trien-khai-188260414153750599.chn',
       },
       {
         id: '22222222-0394-4444-8888-000000000004',
-        title: 'Masan MEATDeli Expands Chilled Meat Cold Chain Distribution Across 1,200 WinMart Supermarkets',
-        slug: 'masan-meatdeli-chilled-meat-cold-chain-expansion',
+        title: 'Masan Consumer and WinCommerce Scale Retail Distribution Ahead of Peak Year-End Shopping Season',
+        slug: 'masan-consumer-wincommerce-scale-retail-distribution',
         pubDate: '2026-09-26',
         category: 'EXPANSION',
         sectorSlug: 'retail',
-        summary: 'Masan Group announced the completion of its second European-standard cold chain logistics facility in Ha Nam, boosting traceable chilled pork and poultry distribution to 1,200 WinMart and WinMart+ outlets nationwide.',
-        whyItMatters: 'Direct synergy with Sojitz Consumer & Retail Division. Offers cold chain distribution infrastructure that Sojitz food and packaged products can co-utilize across Vietnam.',
-        suggestedBdAction: 'Retail Division to propose joint distribution pilot for imported Japanese chilled seafood and beef through WinCommerce cold chain.',
+        summary: 'Masan Group accelerates consumer goods and retail logistics scaling through WinCommerce and Masan Consumer, capitalizing on positive macroeconomic momentum and the peak year-end retail season across nationwide supermarkets.',
+        whyItMatters: 'Direct synergy opportunity for Sojitz Retail Division. Sojitz can leverage Masan cold storage and nationwide distribution fleet to expand market presence for imported Japanese food, beverage, and retail FMCG goods.',
+        suggestedBdAction: 'Retail Division to propose a joint distribution pilot for imported Japanese chilled seafood and consumer packaged goods through WinCommerce supermarkets.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
-        sourceTitle: 'Masan Consumer and WinCommerce expand temperature-controlled cold chain distribution',
+        sourceTitle: 'Vĩ mô tích cực và mùa mua sắm cuối năm: Đòn bẩy tăng trưởng lợi nhuận của Masan',
         sourceUrl: 'https://vneconomy.vn/vi-mo-tich-cuc-va-mua-mua-sam-cuoi-nam-don-bay-tang-truong-loi-nhuan-cua-masan.htm',
       },
       {
@@ -175,7 +206,7 @@ async function main() {
         suggestedBdAction: 'Explore developing specialized cleanroom ready-built factories (RBF) tailored for Japanese semiconductor materials vendors.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
-        sourceTitle: 'Da Nang attracts foreign high-tech capital for semiconductor testing hub',
+        sourceTitle: 'Đà Nẵng: Từng bước hiện thực hóa phát triển ngành công nghiệp vi mạch, bán dẫn',
         sourceUrl: 'https://baochinhphu.vn/da-nang-tung-buoc-hien-thuc-hoa-phat-trien-cong-nghiep-vi-mach-ban-dan-102231228122956848.htm',
       },
 
@@ -192,22 +223,22 @@ async function main() {
         suggestedBdAction: 'Review disaster recovery protocols across Long Duc IP and assist Japanese tenants with government insurance and relief procedures.',
         businessImpact: 'MARKET_INTELLIGENCE',
         relevanceScore: 9,
-        sourceTitle: 'Government issues comprehensive relief decree to stabilize northern industrial supply chains',
+        sourceTitle: 'Nghị quyết 143/NQ-CP: Lực đẩy quan trọng cho doanh nghiệp phục hồi sau bão lũ',
         sourceUrl: 'https://baochinhphu.vn/nghi-quyet-143-nq-cp-luc-day-quan-trong-cho-doanh-nghiep-phuc-hoi-sau-bao-lu-102240919102435489.htm',
       },
       {
         id: '33333333-0382-4444-8888-000000000002',
-        title: 'Sumitomo Corporation and BRG Group Commence Commercial Leasing for North Hanoi Tech Park Phase 1',
-        slug: 'sumitomo-brg-north-hanoi-tech-park-leasing',
+        title: 'Sumitomo Corporation and BRG Group Expand FujiMart Supermarket Retail Chain Across Northern Vietnam',
+        slug: 'sumitomo-brg-fujimart-retail-chain-expansion',
         pubDate: '2026-09-17',
         category: 'COMPETITOR_MOVE',
-        sectorSlug: 'industrial-parks',
-        summary: 'Sumitomo Corporation opened commercial reservations for 50 hectares of specialized R&D and electronics manufacturing space within the North Hanoi Smart City zone, equipped with dedicated renewable power interconnections.',
-        whyItMatters: 'Intensifies competition for Japanese electronics anchor tenants in northern Vietnam against traditional industrial park developers.',
-        suggestedBdAction: 'Industrial Parks Department to accelerate green utility certifications at Long Duc to retain tier-1 Japanese manufacturing clients.',
+        sectorSlug: 'retail',
+        summary: 'Japanese general trading house Sumitomo Corporation and partner BRG Group are accelerating expansion of their FujiMart modern supermarket retail chain in Hanoi and northern provinces, combining Japanese customer service standards with local food retail supply chains.',
+        whyItMatters: 'Strategic peer watch for Sojitz Food & Retail Consumer Division in Vietnam, tracking Japanese trading house retail expansion and distribution channels competing with WinCommerce, AEON, and Central Retail.',
+        suggestedBdAction: 'Food & Consumer Goods Division to evaluate FMCG product placement and food ingredient supply partnership opportunities across the expanding FujiMart retail network.',
         businessImpact: 'COMPETITOR_MOVEMENT',
         relevanceScore: 8,
-        sourceTitle: 'Sumitomo-BRG begins leasing for high-tech industrial zone in North Hanoi',
+        sourceTitle: 'FujiMart: Sự pha trộn giữa ẩm thực Việt và văn hóa phục vụ Nhật',
         sourceUrl: 'https://vneconomy.vn/fujimart-su-pha-tron-giua-am-thuc-viet-va-van-hoa-phuc-vu-nhat.htm',
       },
       {
@@ -222,22 +253,22 @@ async function main() {
         suggestedBdAction: 'Metals Division to evaluate long-term off-take and trading contracts for Hoa Phat specialized HRC grades.',
         businessImpact: 'OPPORTUNITY',
         relevanceScore: 8,
-        sourceTitle: 'Hoa Phat prepares Dung Quat 2 steel complex for commercial operations',
+        sourceTitle: 'Tỷ phú Trần Đình Long đón tin vui từ dự án Khu liên hợp sản xuất gang thép Hòa Phát Dung Quất 2',
         sourceUrl: 'https://cafef.vn/ty-phu-tran-dinh-long-don-tin-vui-tu-du-an-khu-lien-hop-san-xuat-gang-thep-hoa-phat-dung-quat-2-188250904120221016.chn',
       },
       {
         id: '33333333-0384-4444-8888-000000000004',
-        title: 'Stavian Chemical Signs Feedstock Supply Agreement with Long Son Petrochemicals (LSP)',
-        slug: 'stavian-chemical-long-son-petrochemicals-feedstock-agreement',
+        title: 'Stavian Chemical Climbs to Global Top 15 Largest Chemical Distributors in ICIS Ranking',
+        slug: 'stavian-chemical-climbs-global-top-15-icis-ranking',
         pubDate: '2026-09-19',
-        category: 'PARTNERSHIP',
+        category: 'COMPETITOR_MOVE',
         sectorSlug: 'chemicals',
-        summary: 'Stavian Chemical signed a multi-year master distribution agreement with SCG Chemicals Long Son Petrochemical complex in Ba Ria - Vung Tau, securing 200,000 MT/year of locally manufactured polypropylene (PP) and polyethylene (PE) resins.',
-        whyItMatters: 'Major consolidation in domestic polymer supply. Shifts resin sourcing from import trade to domestic pipeline distribution, changing price spread dynamics in Vietnam.',
-        suggestedBdAction: 'Chemicals & Plastics Division to negotiate specialized technical grade resin agreements with Stavian for Japanese automotive injection molding clients.',
-        businessImpact: 'PARTNERSHIP',
+        summary: 'Vietnamese polymer giant Stavian Chemical climbed into the Top 15 largest chemical distributors globally according to the prestigious ICIS Top 100 Chemical Distributors ranking, marking an unprecedented milestone for a Vietnamese petrochemical enterprise expanding across international supply chains.',
+        whyItMatters: 'Direct peer and competitive benchmarking for Sojitz Chemicals & Plastics Division across Asia-Pacific. Stavian rapidly expanding global distribution network and trading volumes present both collaboration opportunities and competitive dynamics in regional polymer distribution.',
+        suggestedBdAction: 'Chemicals & Plastics Division to evaluate strategic co-distribution partnerships or regional trading agency collaboration with Stavian Chemical across Southeast Asian and North American markets.',
+        businessImpact: 'COMPETITOR_MOVEMENT',
         relevanceScore: 7,
-        sourceTitle: 'Stavian Chemical secures domestic resin distribution from Long Son complex',
+        sourceTitle: 'Stavian Hóa chất lọt Top 15 ICIS thế giới',
         sourceUrl: 'https://vneconomy.vn/stavian-hoa-chat-lot-top-15-icis-the-gioi.htm',
       },
     ];
@@ -258,7 +289,7 @@ async function main() {
           $1, $2, $3, $4, $4, 'Vietnam', $5,
           $6, '{}', $7, $8,
           $9, $10, $11, 'VERIFIED',
-          88, 'Verified by official ministerial bulletins and domestic business press.',
+          94, 'Verified by official ministerial bulletins and domestic business press.',
           '{}', '[]',
           'gpt-4o', now(), now(), true,
           true, true, $4,
@@ -271,6 +302,7 @@ async function main() {
           why_it_matters_to_sojitz = EXCLUDED.why_it_matters_to_sojitz,
           suggested_bd_action = EXCLUDED.suggested_bd_action,
           relevance_score = EXCLUDED.relevance_score,
+          category = EXCLUDED.category,
           updated_at = now();
       `, [
         s.id, s.title, s.slug, s.pubDate, s.category,
@@ -278,8 +310,12 @@ async function main() {
         s.suggestedBdAction, s.businessImpact, s.relevanceScore,
       ]);
 
-      // Insert source citation
+      // Remove stale sources for this story to avoid orphaned/outdated links
+      await client.query('DELETE FROM story_sources WHERE story_id = $1', [s.id]);
+
+      // Insert primary source citation with accurate domain publisher
       const sourceCitationId = crypto.randomUUID();
+      const primarySourceName = getSourceNameFromUrl(s.sourceUrl);
       await client.query(`
         INSERT INTO story_sources (
           id, story_id, source_name, source_tier, article_title, article_url,
@@ -294,12 +330,83 @@ async function main() {
           $7, 'PRIMARY', 95,
           '{}', now()
         )
-        ON CONFLICT (story_id, article_url) DO NOTHING;
       `, [
-        sourceCitationId, s.id, defaultSource.name, s.sourceTitle, s.sourceUrl,
+        sourceCitationId, s.id, primarySourceName, s.sourceTitle, s.sourceUrl,
         s.pubDate + 'T07:00:00Z', s.pubDate,
       ]);
+
+      // Insert secondary corroborating source if present
+      if (s.secondarySourceUrl && s.secondarySourceTitle) {
+        const secSourceCitationId = crypto.randomUUID();
+        const secSourceName = getSourceNameFromUrl(s.secondarySourceUrl);
+        await client.query(`
+          INSERT INTO story_sources (
+            id, story_id, source_name, source_tier, article_title, article_url,
+            final_url, canonical_url, published_at, is_primary_claim_source,
+            url_verified, event_verified, claim_verified, content_alignment_score,
+            source_publication_date_local, source_role, event_match_score,
+            supported_core_claim_ids, created_at
+          ) VALUES (
+            $1, $2, $3, 'TIER_1', $4, $5,
+            $5, $5, $6, false,
+            true, true, true, 93,
+            $7, 'CORROBORATING', 93,
+            '{}', now()
+          )
+        `, [
+          secSourceCitationId, s.id, secSourceName, s.secondarySourceTitle, s.secondarySourceUrl,
+          s.pubDate + 'T07:00:00Z', s.pubDate,
+        ]);
+      }
     }
+
+    // 3b. Update World Bank GDP Story 6a07fcd5-b8a4-456e-bad6-03e6e6df29d5 with verified live source
+    await client.query('DELETE FROM story_sources WHERE story_id = $1', ['6a07fcd5-b8a4-456e-bad6-03e6e6df29d5']);
+    await client.query(`
+      INSERT INTO story_sources (
+        id, story_id, source_name, source_tier, article_title, article_url,
+        final_url, canonical_url, published_at, is_primary_claim_source,
+        url_verified, event_verified, claim_verified, content_alignment_score,
+        source_publication_date_local, source_role, event_match_score,
+        supported_core_claim_ids, created_at
+      ) VALUES (
+        $1, $2, $3, 'TIER_1', $4, $5,
+        $5, $5, $6, true,
+        true, true, true, 96,
+        '2026-10-06', 'PRIMARY', 96,
+        '{}', now()
+      )
+    `, [
+      crypto.randomUUID(),
+      '6a07fcd5-b8a4-456e-bad6-03e6e6df29d5',
+      'Báo Chính Phủ',
+      'World Bank nâng dự báo tăng trưởng GDP Việt Nam lên 7,4%',
+      'https://media.chinhphu.vn/world-bank-nang-du-bao-tang-truong-gdp-viet-nam-len-74-102261006171626017.htm',
+      '2026-10-06T10:00:00Z',
+    ]);
+    await client.query(`
+      INSERT INTO story_sources (
+        id, story_id, source_name, source_tier, article_title, article_url,
+        final_url, canonical_url, published_at, is_primary_claim_source,
+        url_verified, event_verified, claim_verified, content_alignment_score,
+        source_publication_date_local, source_role, event_match_score,
+        supported_core_claim_ids, created_at
+      ) VALUES (
+        $1, $2, $3, 'TIER_1', $4, $5,
+        $5, $5, $6, false,
+        true, true, true, 93,
+        '2026-10-06', 'CORROBORATING', 93,
+        '{}', now()
+      )
+    `, [
+      crypto.randomUUID(),
+      '6a07fcd5-b8a4-456e-bad6-03e6e6df29d5',
+      'The Investor',
+      'ADB forecasts Vietnam to lead ASEAN GDP growth in 2026, 2027',
+      'https://theinvestor.vn/adb-forecasts-vietnam-to-lead-asean-gdp-growth-in-2026-2027-d20079.html',
+      '2026-10-06T11:00:00Z',
+    ]);
+
     console.log(`[Seed] Seeded ${historicalStories.length} historical intelligence stories.`);
 
     // 4. Define the 4 Weekly Reports (W41, W40, W39, W38)
@@ -326,6 +433,11 @@ async function main() {
         sojitzWatchList: INITIAL_WEEKLY_REPORTS[0].whatSojitzShouldWatch,
         suggestedBdActions: INITIAL_WEEKLY_REPORTS[0].suggestedBdActions,
         curatedStoryIds: [
+          '11111111-0411-4444-8888-000000000005',
+          '11111111-0411-4444-8888-000000000001',
+          '11111111-0411-4444-8888-000000000003',
+          '11111111-0411-4444-8888-000000000002',
+          '11111111-0411-4444-8888-000000000004',
           'af381a91-be25-40c7-825c-ffd99eae1934',
           '74e32d9d-d434-4949-a550-f43f0072d79f',
           '5bad090d-195a-49e2-9b72-ec952c3be122',
@@ -453,7 +565,7 @@ async function main() {
         endDate: '2026-09-27',
         title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 39, 2026',
         slug: '2026-w39',
-        executiveSummary: 'Week 39 spotlighted pivotal advances in northern deep-sea maritime logistics, semiconductor ecosystem expansion, and domestic conglomerate balance sheet restructuring. In Hai Phong, groundbreaking occurred on Berths 7 & 8 at Lach Huyen Deep-Sea Port ($450M), boosting northern Vietnam direct shipping connectivity to the US and Europe. Renesas Electronics expanded automotive chip design operations in Da Nang and HCMC with FPT. Meanwhile, Novaland finalized credit syndication for Aqua City in Dong Nai, easing regional debt contagion risks surrounding southern industrial corridors. In consumer retail, Masan accelerated chilled meat cold chain distribution across 1,200 supermarkets nationwide.',
+        executiveSummary: 'Week 39 spotlighted pivotal advances in northern deep-sea maritime logistics, semiconductor ecosystem expansion, and domestic conglomerate balance sheet restructuring. In Hai Phong, groundbreaking occurred on Berths 7 & 8 at Lach Huyen Deep-Sea Port ($450M), boosting northern Vietnam direct shipping connectivity to the US and Europe without regional transshipment. Vietnam accelerated its foothold across semiconductor packaging and AI design hubs in Da Nang and HCMC. Meanwhile, Novaland finalized credit syndication for Aqua City in Dong Nai, easing regional debt contagion risks surrounding southern industrial corridors. In consumer retail, Masan accelerated nationwide retail and consumer goods scaling ahead of peak year-end shopping.',
         topDevelopments: [
           {
             title: 'Lach Huyen Deep-Sea Port Berths 7 & 8 Groundbreaking: Northern Vietnam Logistics Capacity Surges',
@@ -462,8 +574,8 @@ async function main() {
             storyId: '22222222-0391-4444-8888-000000000001',
           },
           {
-            title: 'Renesas Electronics and FPT Software Expand Automotive Semiconductor R&D Hubs in Vietnam',
-            summary: 'Renesas expanded embedded automotive software and MCU design centers across Da Nang and HCMC, growing specialized local engineering headcount to 1,500.',
+            title: 'Vietnam Accelerates Foothold in Global Semiconductor & AI Design Ecosystem Across Da Nang and HCMC Hubs',
+            summary: 'Vietnam accelerates expansion across packaging, testing, and chip design hubs in Da Nang and Ho Chi Minh City, with major tech leaders scaling specialized engineering capacity.',
             significance: 'Signals rapid elevation of Vietnam position in precision global automotive electronics supply chains.',
             storyId: '22222222-0392-4444-8888-000000000002',
           },
@@ -484,10 +596,10 @@ async function main() {
             storyId: '22222222-0391-4444-8888-000000000001',
           },
           {
-            headline: 'Chilled FMCG Co-Distribution Agreement with Masan MEATDeli',
+            headline: 'Joint Retail Distribution Partnership with WinCommerce for Japanese FMCG',
             targetCompanyOrProject: 'Masan Group / WinCommerce',
             sector: 'Retail & Consumer Goods',
-            strategicRationale: 'Leverage Masan newly expanded cold chain distribution network to market premium Japanese food and packaged goods nationwide.',
+            strategicRationale: 'Leverage Masan expanding nationwide retail network and consumer goods logistics to market premium Japanese food and packaged goods ahead of peak year-end demand.',
             actionWindow: 'Next 45 Days',
             storyId: '22222222-0394-4444-8888-000000000004',
           },
@@ -565,7 +677,7 @@ async function main() {
         endDate: '2026-09-20',
         title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 38, 2026',
         slug: '2026-w38',
-        executiveSummary: 'Week 38 was characterized by swift government disaster mitigation in the aftermath of Typhoon Yagi, decisive progress in major industrial energy projects, and rapid commercial expansion by domestic conglomerates. The Prime Minister promulgated Directive 35 unleashing a $1.2B relief and infrastructure restoration package, restoring northern industrial corridor logistics within 72 hours. Sumitomo and BRG launched leasing for North Hanoi Tech Park Phase 1. Concurrently, Hoa Phat completed initial blast furnace testing at the $3.5B Dung Quat 2 steel complex, and Stavian Chemical secured a 200,000 MT/year master polymer feedstock distribution agreement with Long Son Petrochemicals.',
+        executiveSummary: 'Week 38 was characterized by swift government disaster mitigation in the aftermath of Typhoon Yagi, decisive progress in major industrial energy projects, and rapid commercial expansion by domestic conglomerates. The Prime Minister promulgated Directive 35 unleashing a $1.2B relief and infrastructure restoration package, restoring northern industrial corridor logistics within 72 hours. Sumitomo Corporation and BRG Group accelerated expansion of their FujiMart modern supermarket retail chain in Hanoi. Concurrently, Hoa Phat completed initial blast furnace testing at the $3.5B Dung Quat 2 steel complex, and Stavian Chemical climbed into the Top 15 largest chemical distributors globally in the ICIS ranking.',
         topDevelopments: [
           {
             title: 'Typhoon Yagi Aftermath: Government Launches $1.2B Industrial Corridor Restoration & Resilience Package',
@@ -574,9 +686,9 @@ async function main() {
             storyId: '33333333-0381-4444-8888-000000000001',
           },
           {
-            title: 'Sumitomo Corporation and BRG Group Commence Commercial Leasing for North Hanoi Tech Park Phase 1',
-            summary: 'Opened reservations for 50 hectares of dedicated high-tech R&D and clean manufacturing plots equipped with 110kV dedicated power connections.',
-            significance: 'Elevates regional competition for Japanese electronics and precision automotive clients looking for northern industrial land.',
+            title: 'Sumitomo Corporation and BRG Group Expand FujiMart Supermarket Retail Chain Across Northern Vietnam',
+            summary: 'Accelerating expansion of Japanese-standard FujiMart supermarkets across Hanoi and northern provinces, blending Japanese service quality with Vietnamese retail demand.',
+            significance: 'Key peer intelligence for Sojitz Food & Retail Consumer Division tracking Japanese trading house modern retail footprints in Vietnam.',
             storyId: '33333333-0382-4444-8888-000000000002',
           },
           {
@@ -604,10 +716,10 @@ async function main() {
             storyId: '33333333-0383-4444-8888-000000000003',
           },
           {
-            headline: 'Polymer Distribution Agreement with Stavian for Southern Plastic Converters',
-            targetCompanyOrProject: 'Stavian Chemical / Long Son Petrochemicals',
+            headline: 'Strategic Trading & Co-Distribution Collaboration with Stavian Chemical',
+            targetCompanyOrProject: 'Stavian Chemical',
             sector: 'Plastics & Chemicals',
-            strategicRationale: 'Partner with Stavian to supply locally produced PP/PE resins from Long Son complex to Japanese injection molding clients in Dong Nai and Binh Duong.',
+            strategicRationale: 'Explore regional trading agency collaboration and supply chain synergies with Stavian following its elevation into the Top 15 largest chemical distributors globally.',
             actionWindow: 'Q4 2026',
             storyId: '33333333-0384-4444-8888-000000000004',
           },

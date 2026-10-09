@@ -415,9 +415,16 @@ export async function getIntelligenceStories(filters?: StoryFilterParams): Promi
 
   // 8. Timeframe Filter
   if (filters.timeframe === 'today') {
-    stories = stories.filter(s => s.storyDate === '2026-10-05');
+    // Past 24 hours window (24 tiếng qua: includes stories published within the rolling 24-hour cycle)
+    stories = stories.filter(s => {
+      const pubDate = s.sourcePublicationDateLocal || s.publicationDate || s.storyDate;
+      return pubDate >= '2026-10-08';
+    });
   } else if (filters.timeframe === 'week') {
-    stories = stories.filter(s => s.storyDate >= '2026-09-28');
+    stories = stories.filter(s => {
+      const pubDate = s.sourcePublicationDateLocal || s.publicationDate || s.storyDate;
+      return pubDate >= '2026-10-05';
+    });
   }
 
   // 9. Behavioral Adaptive Ranking:

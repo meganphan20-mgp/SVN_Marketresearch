@@ -135,7 +135,11 @@ export async function scoreArticleRelevance(
      extraction.primary_event_type === 'PARTNERSHIP' || 
      extraction.primary_event_type === 'LOGISTICS_PROJECT' ||
      extraction.primary_event_type === 'ENERGY_PROJECT') &&
-    (primarySector?.priority === 'PRIORITY_1' || matchedDivisions.includes('INFRA_LOGISTICS') || matchedDivisions.includes('ENERGY'))
+    (primarySector?.priority === 'PRIORITY_1' || 
+     matchedDivisions.includes('INFRA_LOGISTICS') || 
+     matchedDivisions.includes('ENERGY') || 
+     matchedDivisions.includes('HEALTHCARE') || 
+     matchedDivisions.includes('CHEMICALS'))
   ) {
     relevance_score = 8;
     rubric_tier = 'TIER_2_PRIORITY_1_TRANSACTION';
@@ -143,7 +147,7 @@ export async function scoreArticleRelevance(
     strategic_status = 'OPPORTUNITY';
     signal_strength = 'HIGH';
     signal_type = 'SECTOR_EXPANSION';
-    relevance_rationale = `Strategic commercial expansion / partnership in Sojitz Priority 1 sector (${primarySector?.name || 'Infrastructure & Energy'}) with direct potential for industrial park leasing or supply chain integration.`;
+    relevance_rationale = `Strategic commercial expansion / partnership in Sojitz Priority 1 / Focus sector (${primarySector?.name || matchedDivisions.join(', ')}) with direct potential for industrial park leasing, manufacturing investment, or supply chain integration.`;
   } 
   // Check 3: TIER 3 (4 - 6) - MODERATE / MONITOR
   // Financing, corporate debt restructuring, or Priority 2 sectors (Real Estate, General Finance, Automotive)
@@ -245,7 +249,7 @@ export async function scoreArticleRelevance(
   }
 
   // 7. Sector developments relevant to Sojitz strategic priorities
-  if (matchedPriorities.length > 0 || primarySector?.priority === 'PRIORITY_1') {
+  if (matchedPriorities.length > 0 || primarySector?.priority === 'PRIORITY_1' || matchedDivisions.length > 0) {
     matchedCriteria.push('SECTOR_STRATEGIC_PRIORITY');
   }
 
@@ -264,7 +268,10 @@ export async function scoreArticleRelevance(
     extraction.primary_event_type === 'ENERGY_PROJECT' ||
     textCorpus.includes('hạ tầng') || textCorpus.includes('dppa') ||
     textCorpus.includes('quy hoạch điện') || textCorpus.includes('bán dẫn') ||
-    textCorpus.includes('semiconductor') || textCorpus.includes('grid infrastructure')
+    textCorpus.includes('semiconductor') || textCorpus.includes('grid infrastructure') ||
+    textCorpus.includes('drone') || textCorpus.includes('uav') ||
+    textCorpus.includes('low-altitude') || textCorpus.includes('kinh tế tầm thấp') ||
+    textCorpus.includes('triple helix')
   ) {
     matchedCriteria.push('TECH_INFRA_STRUCTURE');
   }
@@ -297,9 +304,16 @@ export async function scoreArticleRelevance(
     hasDirectCompetitorMove;
 
   // Rule A: General economic discussion only
+  const isUtilityOrTariffControl = 
+    textCorpus.includes('power tariff') || 
+    textCorpus.includes('giá điện') || 
+    textCorpus.includes('electricity tariff') || 
+    textCorpus.includes('biểu giá');
+
   const isGeneralEconomicOnly = 
     extraction.primary_event_type === 'OTHER' &&
     !hasConcreteEvent &&
+    !isUtilityOrTariffControl &&
     (textCorpus.includes('gdp') || textCorpus.includes('lạm phát') || textCorpus.includes('tăng trưởng kinh tế') || textCorpus.includes('kinh tế vĩ mô') || textCorpus.includes('macroeconomic')) &&
     matchedPriorities.length === 0 && matchedDivisions.length === 0;
 

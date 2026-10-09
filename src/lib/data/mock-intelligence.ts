@@ -74,7 +74,7 @@ export const INITIAL_SOURCES: NewsSourceConfig[] = [
   // Official Government Gazettes, Financial Times, VnEconomy, VnExpress, VietnamNet, Báo Chính Phủ (English), The Investor, CafeF, Tuoi Tre Online, Thanh Nien News, Dau tu, CafeBiz
   { id: 'src-gazette', name: 'Official Government Gazettes', domain: 'baochinhphu.vn', allowedDomains: ['baochinhphu.vn'], tier: 'TIER_1', description: 'Official Government Gazettes and legal decrees of the Government of Vietnam.', trustWeight: 1.0, isOfficialIr: true, isActive: true, articleCount: 140 },
   { id: 'src-ft', name: 'Financial Times', domain: 'ft.com', allowedDomains: ['ft.com'], tier: 'TIER_1', description: 'Global strategic investment trends, supply chain realignments, and geopolitical risk.', trustWeight: 1.0, isOfficialIr: false, isActive: true, articleCount: 84 },
-  { id: 'src-vneconomy', name: 'VnEconomy', domain: 'vneconomy.vn', allowedDomains: ['vneconomy.vn'], tier: 'TIER_1', description: 'Vietnam Economic Times portal covering macro indicators, corporate earnings, and real estate.', trustWeight: 1.0, rssUrl: 'https://vneconomy.vn/doanh-nghiep.htm', isOfficialIr: false, isActive: true, articleCount: 520 },
+  { id: 'src-vneconomy', name: 'VnEconomy', domain: 'vneconomy.vn', allowedDomains: ['vneconomy.vn', 'en.vneconomy.vn'], tier: 'TIER_1', description: 'Vietnam Economic Times portal covering macro indicators, corporate earnings, and real estate.', trustWeight: 1.0, rssUrl: 'https://vneconomy.vn/doanh-nghiep.htm', isOfficialIr: false, isActive: true, articleCount: 520 },
   { id: 'src-vnexpress', name: 'VnExpress', domain: 'vnexpress.net', allowedDomains: ['vnexpress.net', 'e.vnexpress.net'], tier: 'TIER_1', description: 'Leading mainstream digital newspaper with dedicated business, macro, and market coverage.', trustWeight: 1.0, rssUrl: 'https://vnexpress.net/rss/kinh-doanh.rss', isOfficialIr: false, isActive: true, articleCount: 680 },
   { id: 'src-vietnamnet', name: 'VietnamNet', domain: 'vietnamnet.vn', allowedDomains: ['vietnamnet.vn'], tier: 'TIER_1', description: 'State-affiliated media focusing on technology policy, enterprise restructuring, and foreign diplomacy.', trustWeight: 1.0, rssUrl: 'https://vietnamnet.vn/rss/kinh-doanh.rss', isOfficialIr: false, isActive: true, articleCount: 390 },
   { id: 'src-baochinhphu-en', name: 'Báo Chính Phủ (English)', domain: 'en.baochinhphu.vn', allowedDomains: ['en.baochinhphu.vn', 'baochinhphu.vn'], tier: 'TIER_1', description: 'Official English-language portal of the Government of Vietnam, covering authoritative state directives, decrees, and socioeconomic policy announcements.', trustWeight: 1.0, isOfficialIr: true, isActive: true, articleCount: 340 },
@@ -108,6 +108,428 @@ export const INITIAL_SOURCES: NewsSourceConfig[] = [
 ];
 
 const RAW_SAMPLE_STORIES: IntelligenceStory[] = [
+  {
+    "id": "11111111-0411-4444-8888-000000000005",
+    "title": "Vietnam Shifts FDI Strategy Toward High-Tech Investment and Stronger Domestic Linkages",
+    "slug": "vietnam-shifts-fdi-strategy-toward-high-tech-investment-and-stronger-domestic-linkages",
+    "publicationDate": "2026-10-09",
+    "storyDate": "2026-10-09",
+    "country": "Vietnam",
+    "category": "Investment",
+    "primarySectorId": "00e17d71-ab18-443e-b6e6-6564b0459d24",
+    "primarySectorName": "Industrial Parks",
+    "primarySectorSlug": "industrial-parks",
+    "secondarySectors": [
+      "4db7fccb-593e-4f3a-b6d2-5f25c3ad9dbc",
+      "eeba2312-4c6a-4201-8d5c-1ffede309135"
+    ],
+    "companiesMentioned": [
+      {
+        "id": "comp-sojitz",
+        "name": "Sojitz Corporation",
+        "slug": "sojitz",
+        "origin": "JAPANESE_TRADING_HOUSE",
+        "role": "DEVELOPER"
+      }
+    ],
+    "summary": "Deputy Minister of Planning and Investment Tran Quoc Phuong announced Vietnam's strategic shift in FDI attraction from low-cost assembly to selective high-tech manufacturing, green transition, and mandatory linkages with domestic enterprises. Under the updated framework, preferential investment incentives will prioritize projects that actively transfer technology and integrate Vietnamese Tier-1 and Tier-2 suppliers into global value chains.",
+    "whyItMattersToSojitz": "Directly bolsters Sojitz Corporation's competitive advantage in Vietnam. As a long-standing Japanese general trading house and developer of Long Duc Industrial Park, Sojitz is uniquely positioned to act as the primary bridge facilitating supply-chain matchmaking and supplier development between Japanese multinational tenants and local Vietnamese manufacturers.",
+    "suggestedBdAction": "Establish a dedicated 'Sojitz Supplier Localization Desk' at Long Duc Industrial Park to facilitate technology transfer and supplier matchmaking between Japanese FDI tenants and vetted Vietnamese component manufacturers.",
+    "businessImpact": "OPPORTUNITY",
+    "relevanceScore": 9.0,
+    "verificationStatus": "VERIFIED",
+    "confidenceScore": 96,
+    "verificationRationale": "Keynote policy address delivered by Deputy Minister of Planning and Investment Tran Quoc Phuong, officially documented on VnEconomy English edition.",
+    "extractedFacts": {
+      "location": "Hà Nội",
+      "announcedTimeline": "October 2026",
+      "materialUpdates": [
+        {
+          "facts": [
+            "Vietnam officially pivots FDI policy from quantity to high-tech, eco-friendly, and domestic linkage criteria.",
+            "Deputy Minister Tran Quoc Phuong emphasizes mandatory technology transfer and domestic vendor development for top-tier incentives.",
+            "Aims to deepen integration of Vietnamese Tier-1 and Tier-2 suppliers into multinational global supply chains."
+          ],
+          "rationale": "Keynote strategic address.",
+          "timestamp": "2026-10-09T08:30:00.000Z",
+          "sourceTitle": "Vietnam shifts FDI strategy toward high-tech investment and stronger domestic linkages"
+        }
+      ]
+    },
+    "detectedConflicts": [],
+    "sources": [
+      {
+        "id": "src-w41-vne-05",
+        "sourceId": "src-vneconomy-en",
+        "sourceName": "VnEconomy (English)",
+        "sourceTier": "TIER_1",
+        "articleTitle": "Vietnam shifts FDI strategy toward high-tech investment and stronger domestic linkages",
+        "articleUrl": "https://en.vneconomy.vn/vietnam-shifts-fdi-strategy-toward-high-tech-investment-and-stronger-domestic-linkages.htm",
+        "validatedUrl": "https://en.vneconomy.vn/vietnam-shifts-fdi-strategy-toward-high-tech-investment-and-stronger-domestic-linkages.htm",
+        "canonicalUrl": "https://en.vneconomy.vn/vietnam-shifts-fdi-strategy-toward-high-tech-investment-and-stronger-domestic-linkages.htm",
+        "publishedAt": "2026-10-09T08:30:00.000Z",
+        "sourcePublicationDateLocal": "2026-10-09",
+        "isPrimaryClaimSource": true,
+        "linkStatus": "VERIFIED",
+        "contentMatchScore": 97,
+        "sourceRole": "PRIMARY",
+        "eventMatchScore": 97,
+        "supportedCoreClaimIds": ["claim-vne-05-1"]
+      }
+    ],
+    "originalUrls": [
+      "https://en.vneconomy.vn/vietnam-shifts-fdi-strategy-toward-high-tech-investment-and-stronger-domestic-linkages.htm"
+    ],
+    "aiModelUsed": "Gemini-1.5-Pro",
+    "dateCollected": "2026-10-09",
+    "collectionTimestamp": "2026-10-09T09:00:00.000Z",
+    "aiAnalysisTimestamp": "2026-10-09T09:00:00.000Z",
+    "isHighPriority": true,
+    "isEditorApproved": true,
+    "isPublished": true,
+    "verifiedSourceCount": 1,
+    "sourcePublicationDateLocal": "2026-10-09",
+    "dailyBriefDate": "2026-10-09",
+    "eventDate": "2026-10-09",
+    "firstSeenAt": "2026-10-09T08:30:00.000Z",
+    "lastVerifiedAt": "2026-10-09T09:00:00.000Z",
+    "sourceGrounded": true
+  },
+  {
+    "id": "11111111-0411-4444-8888-000000000001",
+    "title": "Vietnam Pilots Low-Altitude Economy in Dien Bien Using Drones",
+    "slug": "vietnam-pilots-low-altitude-economy-in-dien-bien-using-drones",
+    "publicationDate": "2026-10-08",
+    "storyDate": "2026-10-08",
+    "country": "Vietnam",
+    "category": "Logistics",
+    "primarySectorId": "86856795-a1b9-4d21-8585-d00e6e53af40",
+    "primarySectorName": "Logistics",
+    "primarySectorSlug": "logistics",
+    "secondarySectors": [
+      "c15563f9-025c-40b3-90fe-e8fc26df1d56",
+      "eeba2312-4c6a-4201-8d5c-1ffede309135"
+    ],
+    "companiesMentioned": [],
+    "summary": "Vietnam has launched an experimental pilot of the low-altitude economy in the mountainous province of Dien Bien, completing over 6,000 unmanned aerial vehicle (UAV/drone) flights under the guidance of the Ministry of Science and Technology. The pilot tests commercial cargo delivery, medical logistics, and aerial surveillance, paving the way for Vietnam's first national legal framework on commercial low-altitude airspace management.",
+    "whyItMattersToSojitz": "Directly impacts Sojitz Vietnam's Infrastructure & Logistics Division and Retail Distribution networks. Low-altitude drone logistics offers breakthrough opportunities for automated feeder transport, rapid medical/perishable delivery, and last-mile connectivity between Sojitz industrial parks and regional hubs.",
+    "suggestedBdAction": "Engage Ministry of Science and Technology and drone operators to evaluate low-altitude cargo feeder trials connecting Long Duc Industrial Park with regional distribution centers.",
+    "businessImpact": "OPPORTUNITY",
+    "relevanceScore": 8.5,
+    "verificationStatus": "VERIFIED",
+    "confidenceScore": 92,
+    "verificationRationale": "Confirmed by official publication on VnEconomy English edition with direct statements from Ministry of Science and Technology and local government officials.",
+    "extractedFacts": {
+      "location": "Điện Biên",
+      "announcedTimeline": "October 2026",
+      "materialUpdates": [
+        {
+          "facts": [
+            "Dien Bien province completed over 6,000 test flights with drones/UAVs.",
+            "Pilot guided by the Ministry of Science and Technology for commercial cargo delivery and surveillance.",
+            "Lays groundwork for Vietnam's first national regulatory sandbox on low-altitude airspace."
+          ],
+          "rationale": "Regulatory sandbox milestone.",
+          "timestamp": "2026-10-08T08:00:00.000Z",
+          "sourceTitle": "Vietnam pilots low-altitude economy in Dien Bien using drones"
+        }
+      ]
+    },
+    "detectedConflicts": [],
+    "sources": [
+      {
+        "id": "src-w41-vne-01",
+        "sourceId": "src-vneconomy-en",
+        "sourceName": "VnEconomy (English)",
+        "sourceTier": "TIER_1",
+        "articleTitle": "Vietnam pilots low-altitude economy in Dien Bien using drones",
+        "articleUrl": "https://en.vneconomy.vn/vietnam-pilots-low-altitude-economy-in-dien-bien-using-drones.htm",
+        "validatedUrl": "https://en.vneconomy.vn/vietnam-pilots-low-altitude-economy-in-dien-bien-using-drones.htm",
+        "canonicalUrl": "https://en.vneconomy.vn/vietnam-pilots-low-altitude-economy-in-dien-bien-using-drones.htm",
+        "publishedAt": "2026-10-08T08:00:00.000Z",
+        "sourcePublicationDateLocal": "2026-10-08",
+        "isPrimaryClaimSource": true,
+        "linkStatus": "VERIFIED",
+        "contentMatchScore": 95,
+        "sourceRole": "PRIMARY",
+        "eventMatchScore": 95,
+        "supportedCoreClaimIds": ["claim-vne-01-1"]
+      }
+    ],
+    "originalUrls": [
+      "https://en.vneconomy.vn/vietnam-pilots-low-altitude-economy-in-dien-bien-using-drones.htm"
+    ],
+    "aiModelUsed": "Gemini-1.5-Pro",
+    "dateCollected": "2026-10-08",
+    "collectionTimestamp": "2026-10-08T08:30:00.000Z",
+    "aiAnalysisTimestamp": "2026-10-08T08:30:00.000Z",
+    "isHighPriority": true,
+    "isEditorApproved": true,
+    "isPublished": true,
+    "verifiedSourceCount": 1,
+    "sourcePublicationDateLocal": "2026-10-08",
+    "dailyBriefDate": "2026-10-08",
+    "eventDate": "2026-10-08",
+    "firstSeenAt": "2026-10-08T08:00:00.000Z",
+    "lastVerifiedAt": "2026-10-08T08:30:00.000Z",
+    "sourceGrounded": true
+  },
+  {
+    "id": "11111111-0411-4444-8888-000000000002",
+    "title": "Ninh Binh Approves $44.5 Million GMP Medical Manufacturing Plant",
+    "slug": "ninh-binh-approves-445-million-gmp-medical-manufacturing-plant",
+    "publicationDate": "2026-10-08",
+    "storyDate": "2026-10-08",
+    "country": "Vietnam",
+    "category": "Healthcare",
+    "primarySectorId": "6eea2808-35dc-49ed-b900-8f8ea2391b3e",
+    "primarySectorName": "Healthcare",
+    "primarySectorSlug": "healthcare",
+    "secondarySectors": [
+      "4db7fccb-593e-4f3a-b6d2-5f25c3ad9dbc",
+      "00e17d71-ab18-443e-b6e6-6564b0459d24"
+    ],
+    "companiesMentioned": [
+      {
+        "id": "comp-emj",
+        "name": "EMJ Ha Nam Co., Ltd.",
+        "slug": "emj-ha-nam",
+        "origin": "VIETNAM",
+        "role": "DEVELOPER"
+      }
+    ],
+    "summary": "The People's Committee of Ninh Binh Province has approved the investment policy for a VND 1.1 trillion ($44.5 million) high-tech medical manufacturing complex by EMJ Ha Nam Co., Ltd. located in Kim Binh Industrial Cluster. The facility will be constructed to WHO-GMP standards to produce medical supplies, pharmaceuticals, and health supplements across a 4.5-hectare site.",
+    "whyItMattersToSojitz": "Directly aligns with Sojitz Corporation's Healthcare Division expansion in Southeast Asia. Offers concrete collaboration avenues in pharmaceutical distribution, cold-chain medical logistics, and chemical raw material sourcing (via Sojitz Chemicals).",
+    "suggestedBdAction": "Initiate contact with EMJ Ha Nam leadership to explore specialized medical supply chain partnership, cold-chain distribution, and potential tenant requirements for high-spec industrial facilities.",
+    "businessImpact": "OPPORTUNITY",
+    "relevanceScore": 8.5,
+    "verificationStatus": "VERIFIED",
+    "confidenceScore": 95,
+    "verificationRationale": "Confirmed by official investment approval notice reported on VnEconomy English edition, detailing project capex, site boundaries, and licensing timeline.",
+    "extractedFacts": {
+      "location": "Ninh Bình",
+      "dealValueUsd": 44500000,
+      "dealValueText": "$44.5 million (VND 1.1 trillion)",
+      "capacityOrSize": "4.5 hectares",
+      "announcedTimeline": "October 2026",
+      "materialUpdates": [
+        {
+          "facts": [
+            "Total investment capital of VND 1.1 trillion ($44.5 million) by EMJ Ha Nam Co., Ltd.",
+            "Project situated on 4.5 hectares in Kim Binh Industrial Cluster, Ninh Binh.",
+            "Built to WHO-GMP standards to manufacture medical supplies, pharmaceuticals, and functional foods."
+          ],
+          "rationale": "Approved investment project.",
+          "timestamp": "2026-10-08T09:30:00.000Z",
+          "sourceTitle": "Ninh Binh approves $44.5 million GMP medical manufacturing plant"
+        }
+      ]
+    },
+    "detectedConflicts": [],
+    "sources": [
+      {
+        "id": "src-w41-vne-02",
+        "sourceId": "src-vneconomy-en",
+        "sourceName": "VnEconomy (English)",
+        "sourceTier": "TIER_1",
+        "articleTitle": "Ninh Binh approves $44.5 million GMP medical manufacturing plant",
+        "articleUrl": "https://en.vneconomy.vn/ninh-binh-approves-445-million-gmp-medical-manufacturing-plant.htm",
+        "validatedUrl": "https://en.vneconomy.vn/ninh-binh-approves-445-million-gmp-medical-manufacturing-plant.htm",
+        "canonicalUrl": "https://en.vneconomy.vn/ninh-binh-approves-445-million-gmp-medical-manufacturing-plant.htm",
+        "publishedAt": "2026-10-08T09:30:00.000Z",
+        "sourcePublicationDateLocal": "2026-10-08",
+        "isPrimaryClaimSource": true,
+        "linkStatus": "VERIFIED",
+        "contentMatchScore": 96,
+        "sourceRole": "PRIMARY",
+        "eventMatchScore": 96,
+        "supportedCoreClaimIds": ["claim-vne-02-1"]
+      }
+    ],
+    "originalUrls": [
+      "https://en.vneconomy.vn/ninh-binh-approves-445-million-gmp-medical-manufacturing-plant.htm"
+    ],
+    "aiModelUsed": "Gemini-1.5-Pro",
+    "dateCollected": "2026-10-08",
+    "collectionTimestamp": "2026-10-08T10:00:00.000Z",
+    "aiAnalysisTimestamp": "2026-10-08T10:00:00.000Z",
+    "isHighPriority": true,
+    "isEditorApproved": true,
+    "isPublished": true,
+    "verifiedSourceCount": 1,
+    "sourcePublicationDateLocal": "2026-10-08",
+    "dailyBriefDate": "2026-10-08",
+    "eventDate": "2026-10-08",
+    "firstSeenAt": "2026-10-08T09:30:00.000Z",
+    "lastVerifiedAt": "2026-10-08T10:00:00.000Z",
+    "sourceGrounded": true
+  },
+  {
+    "id": "11111111-0411-4444-8888-000000000003",
+    "title": "Power Tariffs to Be Frozen, Service Fee Hikes Capped to Curb Inflation",
+    "slug": "power-tariffs-to-be-frozen-service-fee-hikes-capped-to-curb-inflation",
+    "publicationDate": "2026-10-08",
+    "storyDate": "2026-10-08",
+    "country": "Vietnam",
+    "category": "Energy",
+    "primarySectorId": "9f76fb2a-a1d2-4b17-b668-26808b9fdf7d",
+    "primarySectorName": "Energy",
+    "primarySectorSlug": "energy",
+    "secondarySectors": [
+      "eeba2312-4c6a-4201-8d5c-1ffede309135",
+      "00e17d71-ab18-443e-b6e6-6564b0459d24"
+    ],
+    "companiesMentioned": [
+      {
+        "id": "comp-evn",
+        "name": "EVN",
+        "slug": "evn",
+        "origin": "VIETNAM",
+        "role": "GRID_OPERATOR"
+      }
+    ],
+    "summary": "The Ministry of Finance and Steering Committee for Price Management announced that Vietnam will freeze electricity retail tariffs and cap public service price adjustments through the remainder of 2026. With CPI reaching 4.52% in September near the statutory 4.5% ceiling, the price freeze aims to stabilize production input costs for industrial enterprises and control inflation pressures in Q4.",
+    "whyItMattersToSojitz": "Crucial cost-certainty signal for Sojitz Energy Division and manufacturing tenants in Long Duc Industrial Park. While freezing short-term utility overhead, it intensifies financial pressure on EVN, strongly accelerating tenant demand for private rooftop solar and DPPA direct off-take.",
+    "suggestedBdAction": "Brief Long Duc Industrial Park tenants on 2026 power tariff freeze and leverage price stability window to market Sojitz on-site rooftop solar PPA solutions ahead of anticipated 2027 tariff restructuring.",
+    "businessImpact": "MARKET_INTELLIGENCE",
+    "relevanceScore": 8.0,
+    "verificationStatus": "VERIFIED",
+    "confidenceScore": 94,
+    "verificationRationale": "Official government price management directive issued by Ministry of Finance and reported on VnEconomy English edition.",
+    "extractedFacts": {
+      "location": "Nationwide Vietnam",
+      "announcedTimeline": "Q4 2026",
+      "materialUpdates": [
+        {
+          "facts": [
+            "Ministry of Finance and Steering Committee for Price Management decided to freeze electricity retail tariffs for Q4 2026.",
+            "Public service fee adjustments capped to keep CPI below the statutory 4.5% target.",
+            "Headline CPI recorded at 4.52% in September, driving stringent price controls on state-managed goods."
+          ],
+          "rationale": "Price control decision.",
+          "timestamp": "2026-10-08T11:00:00.000Z",
+          "sourceTitle": "Power tariffs to be frozen, service fee hikes capped to curb inflation"
+        }
+      ]
+    },
+    "detectedConflicts": [],
+    "sources": [
+      {
+        "id": "src-w41-vne-03",
+        "sourceId": "src-vneconomy-en",
+        "sourceName": "VnEconomy (English)",
+        "sourceTier": "TIER_1",
+        "articleTitle": "Power tariffs to be frozen, service fee hikes capped to curb inflation",
+        "articleUrl": "https://en.vneconomy.vn/power-tariffs-to-be-frozen-service-fee-hikes-capped-to-curb-inflation.htm",
+        "validatedUrl": "https://en.vneconomy.vn/power-tariffs-to-be-frozen-service-fee-hikes-capped-to-curb-inflation.htm",
+        "canonicalUrl": "https://en.vneconomy.vn/power-tariffs-to-be-frozen-service-fee-hikes-capped-to-curb-inflation.htm",
+        "publishedAt": "2026-10-08T11:00:00.000Z",
+        "sourcePublicationDateLocal": "2026-10-08",
+        "isPrimaryClaimSource": true,
+        "linkStatus": "VERIFIED",
+        "contentMatchScore": 94,
+        "sourceRole": "PRIMARY",
+        "eventMatchScore": 94,
+        "supportedCoreClaimIds": ["claim-vne-03-1"]
+      }
+    ],
+    "originalUrls": [
+      "https://en.vneconomy.vn/power-tariffs-to-be-frozen-service-fee-hikes-capped-to-curb-inflation.htm"
+    ],
+    "aiModelUsed": "Gemini-1.5-Pro",
+    "dateCollected": "2026-10-08",
+    "collectionTimestamp": "2026-10-08T11:30:00.000Z",
+    "aiAnalysisTimestamp": "2026-10-08T11:30:00.000Z",
+    "isHighPriority": true,
+    "isEditorApproved": true,
+    "isPublished": true,
+    "verifiedSourceCount": 1,
+    "sourcePublicationDateLocal": "2026-10-08",
+    "dailyBriefDate": "2026-10-08",
+    "eventDate": "2026-10-08",
+    "firstSeenAt": "2026-10-08T11:00:00.000Z",
+    "lastVerifiedAt": "2026-10-08T11:30:00.000Z",
+    "sourceGrounded": true
+  },
+  {
+    "id": "11111111-0411-4444-8888-000000000004",
+    "title": "Triple Helix Collaboration Roadmap Established for Semiconductors",
+    "slug": "triple-helix-collaboration-roadmap-established-for-semiconductors",
+    "publicationDate": "2026-10-08",
+    "storyDate": "2026-10-08",
+    "country": "Vietnam",
+    "category": "Technology",
+    "primarySectorId": "4db7fccb-593e-4f3a-b6d2-5f25c3ad9dbc",
+    "primarySectorName": "Manufacturing",
+    "primarySectorSlug": "manufacturing",
+    "secondarySectors": [
+      "55135ad2-7bae-43a7-af0f-ccb6cebf1858",
+      "00e17d71-ab18-443e-b6e6-6564b0459d24"
+    ],
+    "companiesMentioned": [],
+    "summary": "A national semiconductor symposium in Da Nang established a formal 'Triple Helix' collaboration roadmap linking the State, Academia, and Industry to implement Prime Ministerial Decisions 1018/QD-TTg and 1017/QD-TTg. The initiative outlines specialized IC design training, testing labs, and state incentives to cultivate 50,000 semiconductor engineers by 2030.",
+    "whyItMattersToSojitz": "Directly impacts Sojitz's Automotive & Machinery Division and high-tech industrial park positioning. Expanding semiconductor fabrication, testing, and packaging (ATP) clusters in Vietnam drives high demand for Japanese precision manufacturing equipment, electronic chemicals, and reliable cleanroom infrastructure.",
+    "suggestedBdAction": "Engage Da Nang Semiconductor and Artificial Intelligence Center (DSAC) and leading technical universities to explore semiconductor ecosystem partnerships and industrial park infrastructure readiness for Japanese chip suppliers.",
+    "businessImpact": "OPPORTUNITY",
+    "relevanceScore": 8.5,
+    "verificationStatus": "VERIFIED",
+    "confidenceScore": 93,
+    "verificationRationale": "Confirmed by official ministerial and municipal proceedings reported on VnEconomy English edition referencing Decisions 1018/QD-TTg and 1017/QD-TTg.",
+    "extractedFacts": {
+      "location": "Đà Nẵng",
+      "announcedTimeline": "2026 - 2030",
+      "materialUpdates": [
+        {
+          "facts": [
+            "Triple Helix framework links State, Academia, and Industry to implement Decisions 1018/QD-TTg and 1017/QD-TTg.",
+            "Aims to train 50,000 semiconductor engineers and establish advanced testing and packaging labs by 2030.",
+            "Symposium organized with participation of Da Nang People's Committee, Ministry of Planning and Investment, and tech leaders."
+          ],
+          "rationale": "National strategy roadmap.",
+          "timestamp": "2026-10-08T14:15:00.000Z",
+          "sourceTitle": "Triple Helix collaboration roadmap established for semiconductors"
+        }
+      ]
+    },
+    "detectedConflicts": [],
+    "sources": [
+      {
+        "id": "src-w41-vne-04",
+        "sourceId": "src-vneconomy-en",
+        "sourceName": "VnEconomy (English)",
+        "sourceTier": "TIER_1",
+        "articleTitle": "Triple Helix collaboration roadmap established for semiconductors",
+        "articleUrl": "https://en.vneconomy.vn/triple-helix-collaboration-roadmap-established-for-semiconductors.htm",
+        "validatedUrl": "https://en.vneconomy.vn/triple-helix-collaboration-roadmap-established-for-semiconductors.htm",
+        "canonicalUrl": "https://en.vneconomy.vn/triple-helix-collaboration-roadmap-established-for-semiconductors.htm",
+        "publishedAt": "2026-10-08T14:15:00.000Z",
+        "sourcePublicationDateLocal": "2026-10-08",
+        "isPrimaryClaimSource": true,
+        "linkStatus": "VERIFIED",
+        "contentMatchScore": 95,
+        "sourceRole": "PRIMARY",
+        "eventMatchScore": 95,
+        "supportedCoreClaimIds": ["claim-vne-04-1"]
+      }
+    ],
+    "originalUrls": [
+      "https://en.vneconomy.vn/triple-helix-collaboration-roadmap-established-for-semiconductors.htm"
+    ],
+    "aiModelUsed": "Gemini-1.5-Pro",
+    "dateCollected": "2026-10-08",
+    "collectionTimestamp": "2026-10-08T14:45:00.000Z",
+    "aiAnalysisTimestamp": "2026-10-08T14:45:00.000Z",
+    "isHighPriority": true,
+    "isEditorApproved": true,
+    "isPublished": true,
+    "verifiedSourceCount": 1,
+    "sourcePublicationDateLocal": "2026-10-08",
+    "dailyBriefDate": "2026-10-08",
+    "eventDate": "2026-10-08",
+    "firstSeenAt": "2026-10-08T14:15:00.000Z",
+    "lastVerifiedAt": "2026-10-08T14:45:00.000Z",
+    "sourceGrounded": true
+  },
   {
     "id": "af381a91-be25-40c7-825c-ffd99eae1934",
     "title": "Accelerating Toward APEC 2027: Gia Binh Airport and High-Tech Aviation Logistics Development",

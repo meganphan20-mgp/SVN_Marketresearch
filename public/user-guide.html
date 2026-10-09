@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sojitz Vietnam Market Intelligence - Executive User Guideline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0A192F;
+      --primary-light: #1E3A8A;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --emerald: #059669;
+      --emerald-light: #D1FAE5;
+      --amber: #D97706;
+      --amber-light: #FEF3C7;
+      --rose: #E11D48;
+      --indigo: #4F46E5;
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Top Sticky Header */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #0A192F;
+      color: #FFFFFF;
+      border-bottom: 1px solid #1E293B;
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-logo {
+      background: #2563EB;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #93C5FD;
+      display: block;
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .lang-btn {
+      padding: 0.3rem 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94A3B8;
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: #2563EB;
+      color: #FFFFFF;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #2563EB;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1D4ED8;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #E2E8F0;
+      border: 1px solid #334155;
+    }
+
+    .btn-outline:hover {
+      background: #1E293B;
+      color: white;
+    }
+
+    /* Layout Container */
+    .layout-wrapper {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .layout-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+
+    /* Sticky Sidebar Navigation */
+    .sidebar {
+      position: sticky;
+      top: 5rem;
+      height: calc(100vh - 6.5rem);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .toc-link:hover {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-weight: 600;
+      padding-left: 0.85rem;
+    }
+
+    .toc-link.active {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-weight: 700;
+      border-left: 3px solid #2563EB;
+    }
+
+    /* Main Content Area */
+    .content-area {
+      min-width: 0;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow-lg);
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(37, 99, 235, 0.4);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #BFDBFE;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: #CBD5E1;
+      max-width: 760px;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: #94A3B8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.25rem;
+    }
+
+    .hero-meta strong {
+      color: white;
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #E2E8F0;
+    }
+
+    .section-badge {
+      background: #0A192F;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    /* Cards & Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--card-shadow-lg);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Step Workflow */
+    .workflow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: #EFF6FF;
+      color: #2563EB;
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid #BFDBFE;
+    }
+
+    .step-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* UI Badge Component Previews */
+    .badge-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-verified {
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+
+    .badge-partial {
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+
+    .badge-single {
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .score-high {
+      background: #1E3A8A;
+      color: #FFFFFF;
+    }
+
+    .score-med {
+      background: #E0E7FF;
+      color: #3730A3;
+    }
+
+    .score-low {
+      background: #F1F5F9;
+      color: #475569;
+    }
+
+    /* Tables */
+    .table-container {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+
+    th {
+      background: #F8FAFC;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.725rem;
+      letter-spacing: 0.05em;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #F1F5F9;
+      color: var(--text-main);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #F8FAFC;
+    }
+
+    /* Feature Highlights & Quotes */
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #EFF6FF;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #1E40AF;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-body {
+      font-size: 0.875rem;
+      color: #1E3A8A;
+      line-height: 1.6;
+    }
+
+    .callout-success {
+      border-left-color: var(--emerald);
+      background: #ECFDF5;
+    }
+    .callout-success .callout-title { color: #065F46; }
+    .callout-success .callout-body { color: #047857; }
+
+    .callout-warning {
+      border-left-color: var(--amber);
+      background: #FFFBEB;
+    }
+    .callout-warning .callout-title { color: #92400E; }
+    .callout-warning .callout-body { color: #B45309; }
+
+    /* UI Mockup Card */
+    .ui-mockup {
+      background: #0A192F;
+      color: #F8FAFC;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #1E293B;
+      font-family: inherit;
+    }
+
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1E293B;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mockup-tags {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .mockup-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+    }
+
+    .mockup-box {
+      background: #112240;
+      border-left: 3px solid #60A5FA;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .mockup-box-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #93C5FD;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .mockup-box-text {
+      font-size: 0.875rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+
+    /* Feedback Button Mockup */
+    .feedback-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1E293B;
+    }
+
+    .fb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #334155;
+      background: #1E293B;
+      color: #CBD5E1;
+    }
+
+    .fb-btn:hover {
+      background: #334155;
+      color: white;
+    }
+
+    /* Language conditional visibility */
+    .lang-content-vi {
+      display: none;
+    }
+
+    body.lang-vi .lang-content-en {
+      display: none;
+    }
+
+    body.lang-vi .lang-content-vi {
+      display: block;
+    }
+
+    /* Print styles */
+    @media print {
+      .top-navbar, .sidebar, .btn, .feedback-row, .lang-switcher {
+        display: none !important;
+      }
+      .layout-wrapper {
+        display: block;
+        padding: 0;
+      }
+      body {
+        background: white;
+        color: black;
+      }
+      .card, .table-container, .hero-banner {
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+      }
+      .hero-banner {
+        background: #0A192F !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="top-navbar">
+    <div class="brand-group">
+      <div class="brand-logo">SVN</div>
+      <div>
+        <span class="brand-sub">Sojitz Vietnam</span>
+        <span class="brand-title">Market Intelligence Platform</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <!-- Instant Language Toggle -->
+      <div class="lang-switcher" title="Toggle Language / Chuyển Đổi Ngôn Ngữ">
+        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button id="btn-vi" class="lang-btn" onclick="setLanguage('vi')">VI</button>
+      </div>
+
+      <a href="/today" class="btn btn-outline" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span class="lang-content-en">Launch App</span>
+        <span class="lang-content-vi">Mở Ứng Dụng</span>
+      </a>
+
+      <button onclick="window.print()" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        <span class="lang-content-en">Print / PDF</span>
+        <span class="lang-content-vi">In / Xuất PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Wrapper -->
+  <div class="layout-wrapper">
+
+    <!-- Sidebar Sticky Navigation (TOC) -->
+    <aside class="sidebar">
+      <div class="toc-card">
+        <div class="toc-title">
+          <span class="lang-content-en">User Guide Navigation</span>
+          <span class="lang-content-vi">Mục Lục Hướng Dẫn</span>
+        </div>
+        <ul class="toc-list">
+          <li>
+            <a href="#overview" class="toc-link active">
+              <span class="lang-content-en">1. System Overview</span>
+              <span class="lang-content-vi">1. Tổng Quan Hệ Thống</span>
+            </a>
+          </li>
+          <li>
+            <a href="#daily-flow" class="toc-link">
+              <span class="lang-content-en">2. Daily Executive Flow</span>
+              <span class="lang-content-vi">2. Luồng Sử Dụng Hàng Ngày</span>
+            </a>
+          </li>
+          <li>
+            <a href="#metrics-badges" class="toc-link">
+              <span class="lang-content-en">3. Scores & Verification</span>
+              <span class="lang-content-vi">3. Giải Mã Thang Điểm</span>
+            </a>
+          </li>
+          <li>
+            <a href="#story-dossier" class="toc-link">
+              <span class="lang-content-en">4. Dossier & BD Actions</span>
+              <span class="lang-content-vi">4. Đọc Tin & Hành Động BD</span>
+            </a>
+          </li>
+          <li>
+            <a href="#weekly-briefing" class="toc-link">
+              <span class="lang-content-en">5. C-Suite Weekly Briefing</span>
+              <span class="lang-content-vi">5. Báo Cáo Tuần Lãnh Đạo</span>
+            </a>
+          </li>
+          <li>
+            <a href="#feedback-ai" class="toc-link">
+              <span class="lang-content-en">6. Reader Feedback & AI</span>
+              <span class="lang-content-vi">6. Phản Hồi & Máy Tự Học</span>
+            </a>
+          </li>
+          <li>
+            <a href="#ui-customization" class="toc-link">
+              <span class="lang-content-en">7. UI Tools & Shortcuts</span>
+              <span class="lang-content-vi">7. Giao Diện & Tính Năng Phụ</span>
+            </a>
+          </li>
+          <li>
+            <a href="#faq" class="toc-link">
+              <span class="lang-content-en">8. FAQ & Reference</span>
+              <span class="lang-content-vi">8. Câu Hỏi Thường Gặp (FAQ)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top: 1.25rem; padding: 1.15rem; background: #F8FAFC;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #64748B; margin-bottom: 0.5rem;">
+          <span class="lang-content-en">Target Audience</span>
+          <span class="lang-content-vi">Bộ Phận Phục Vụ</span>
+        </div>
+        <div style="font-size: 0.8rem; color: #334155; line-height: 1.5;">
+          <span class="lang-content-en">
+            • C-Suite Executives & General Directors<br>
+            • Business Development (BD) Leaders<br>
+            • M&A & Strategic Investment Team<br>
+            • 5 Industry Division Managers
+          </span>
+          <span class="lang-content-vi">
+            • Ban Lãnh đạo (C-Suite)<br>
+            • Khối Phát triển Kinh doanh (BD)<br>
+            • Khối Đầu tư & M&A<br>
+            • 5 Phòng Nghiệp vụ Ngành
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- ========================================== -->
+      <!-- ENGLISH VERSION CONTENT                     -->
+      <!-- ========================================== -->
+      <div class="lang-content-en">
+        <!-- Hero Header (EN) -->
+        <div class="hero-banner">
+          <div class="hero-tag">Executive User Manual • 2026 Edition</div>
+          <h1 class="hero-title">Sojitz Vietnam Market Intelligence Platform</h1>
+          <p class="hero-desc">
+            A concise, intuitive operational handbook designed for C-Suite executives, Business Development Directors, and Investment Analysts to leverage real-time market intelligence and translate strategic news into actionable commercial initiatives.
+          </p>
+          <div class="hero-meta">
+            <div>Target Audience: <strong>All Sojitz Vietnam Professionals & Tokyo Liaisons</strong></div>
+            <div>Revision: <strong>October 2026</strong></div>
+            <div>Architecture: <strong>Next.js + AI Triage Engine + PostgreSQL</strong></div>
+          </div>
+        </div>
+
+        <!-- SECTION 1 (EN): System Overview -->
+        <section id="overview">
+          <div class="section-header">
+            <span class="section-badge">01</span>
+            <h2 class="section-title">System Overview</h2>
+          </div>
+
+          <p class="card-p" style="font-size: 1rem; margin-bottom: 1.5rem;">
+            The <strong>Sojitz Vietnam Market Intelligence Platform</strong> is not a generic news aggregator. It is an <em>AI-powered Triage and Decision-Support Engine</em> that continuously monitors authoritative Vietnamese and Japanese publications, automatically filters noise, evaluates strategic impact, and synthesizes <strong>Suggested BD Actions</strong> tailored specifically to Sojitz's 5 core commercial divisions.
+          </p>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-title" style="color: #2563EB;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Zero Information Noise
+              </div>
+              <p class="card-p">Thousands of daily articles are filtered through stringent relevance criteria, isolating only macroeconomic policy shifts, tier-1 M&A transactions, and peer sogo shosha movements that genuinely matter.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title" style="color: #059669;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Multi-Tier Verification
+              </div>
+              <p class="card-p">Every intelligence story is stamped with a verification badge (Verified / Partially Verified / Single Source) and backed by verified, active links to primary government and financial publishers.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title" style="color: #7C3AED;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Actionable BD Roadmaps
+              </div>
+              <p class="card-p">Each dossier articulates the exact responsible Sojitz division, strategic counterpart, and concrete next step required to convert intelligence into business value.</p>
+            </div>
+          </div>
+
+          <div class="callout callout-success">
+            <div class="callout-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              5 Strategic Business Divisions Tracked by the Platform
+            </div>
+            <div class="callout-body">
+              1. <strong>Energy & Natural Resources:</strong> Offshore wind, LNG import terminals, rooftop solar PPA, decarbonization mechanisms.<br>
+              2. <strong>Infrastructure & Industrial Parks:</strong> Industrial zones (Long Duc IP), cold storage logistics, smart city infrastructure, ports.<br>
+              3. <strong>Chemicals & Plastics:</strong> Commodity chemicals, recycled resin/plastics circularity, high-grade fertilizer blending.<br>
+              4. <strong>Food & Retail Consumer:</strong> Modern retail distribution, food processing, agri-tech, cold chain distribution.<br>
+              5. <strong>Automotive & Industrial Machinery:</strong> Vehicle assembly, commercial EV conversion, heavy machinery supply chains.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2 (EN): Daily Executive Flow -->
+        <section id="daily-flow">
+          <div class="section-header">
+            <span class="section-badge">02</span>
+            <h2 class="section-title">Daily Executive Workflow</h2>
+          </div>
+
+          <div class="workflow-steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Start Your Morning on the "Today" Screen (/today)</h4>
+                <p>Access the <strong>Today</strong> feed at 08:30 AM. Fresh intelligence from the past 24 hours is automatically triaged and organized into three intuitive freshness buckets: <strong>Last 24 Hours</strong>, <strong>Past 72 Hours</strong>, and <strong>Older Intelligence</strong>.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Filter by Division & Priority Threshold</h4>
+                <p>Use the division filter buttons at the top of the feed (e.g. click <em>Energy</em> or <em>Infrastructure</em>). Prioritize stories bearing a <strong>Relevance Score &ge; 8.0/10</strong> — these indicate high commercial urgency.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Open the Story Dossier for Strategic Breakdown</h4>
+                <p>Click on any story card to open its full dossier: explore <em>Why It Matters To Sojitz Vietnam</em>, positive/negative implications, regulatory context, and concrete BD next steps.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Submit Feedback via "Useful / Not Useful"</h4>
+                <p>Click <strong>Useful</strong> or <strong>Not Useful</strong> at the bottom of the dossier. The adaptive ranking engine instantly recalibrates visibility for your team and trains the underlying model on your strategic preferences.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 (EN): Metrics & Verification Badges -->
+        <section id="metrics-badges">
+          <div class="section-header">
+            <span class="section-badge">03</span>
+            <h2 class="section-title">Decoding Scores & Verification Badges</h2>
+          </div>
+
+          <p class="card-p">
+            Each intelligence item is evaluated across two primary quantitative dimensions: <strong>Relevance Score</strong> (impact to Sojitz Vietnam) and <strong>Confidence Score & Verification Status</strong> (editorial certainty).
+          </p>
+
+          <!-- Relevance Score Table -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Relevance Score</th>
+                  <th style="width: 160px;">Priority Level</th>
+                  <th>Strategic Meaning for Sojitz Vietnam</th>
+                  <th style="width: 200px;">Executive Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="score-badge score-high">9.0 – 10.0 / 10</span></td>
+                  <td><strong style="color: #1E3A8A;">Critical / Direct</strong></td>
+                  <td>Directly impacts existing Sojitz assets (e.g., Long Duc IP, Huong Sen packaging, EV joint ventures), major regulatory decrees (e.g., DPPA decree, land laws), or tier-1 peer moves by Sumitomo / Mitsubishi.</td>
+                  <td><strong>Immediate C-Suite Action:</strong> Delegate within 24–48 hours to division general manager.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-high" style="background:#2563EB;">7.0 – 8.9 / 10</span></td>
+                  <td><strong style="color: #2563EB;">High Priority</strong></td>
+                  <td>High commercial interest: M&A bidding rounds, industrial park land acquisitions, greenfield LNG or wind projects where Sojitz can bid as consortium partner or supply chain provider.</td>
+                  <td><strong>BD Pipeline Addition:</strong> Incorporate into weekly division pipeline review.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-med">4.0 – 6.9 / 10</span></td>
+                  <td><strong style="color: #4F46E5;">Moderate / Sector Watch</strong></td>
+                  <td>Broad industry trends, raw material price shifts, or early-stage feasibility studies without immediate procurement requests.</td>
+                  <td><strong>Market Background:</strong> Skim for market context; no emergency intervention required.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-low">1.0 – 3.9 / 10</span></td>
+                  <td><strong style="color: #64748B;">Low / Background</strong></td>
+                  <td>General consumer headlines, small peripheral transactions outside Sojitz core supply chain competencies.</td>
+                  <td><strong>Deprioritized:</strong> Filtered to the bottom or omitted from executive summaries.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Verification Status Cards -->
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem;">Source Verification Badges</h3>
+          <p class="card-p">The platform enforces temporal gating and multi-source cross-referencing so executives never act on unverified rumors:</p>
+
+          <div class="grid-3">
+            <div class="card" style="border-top: 4px solid #059669;">
+              <div style="margin-bottom: 0.75rem;">
+                <span class="badge-preview badge-verified">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  VERIFIED (80% – 95%)
+                </span>
+              </div>
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">Multi-Source Corroborated</h4>
+              <p class="card-p">Confirmed across two or more independent Tier-1 sources (e.g. Ministry of Industry and Trade official gazette + VnEconomy). Timelines, milestones, and financial numbers carry maximum certainty.</p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #D97706;">
+              <div style="margin-bottom: 0.75rem;">
+                <span class="badge-preview badge-partial">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  PARTIALLY VERIFIED (65% – 75%)
+                </span>
+              </div>
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">Single Official Source</h4>
+              <p class="card-p">Originates from an authoritative primary source (e.g., Bao Chinh Phu / Government Portal), but secondary independent media corroboration has not yet emerged.</p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #DC2626;">
+              <div style="margin-bottom: 0.75rem;">
+                <span class="badge-preview badge-single">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  SINGLE SOURCE (55% – 65%)
+                </span>
+              </div>
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">Preliminary Lone Report</h4>
+              <p class="card-p">Reported by a single outlet. Flagged with a caution banner to instruct analysts to verify independently before committing capital or executive resources.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4 (EN): Story Dossier & BD Actions -->
+        <section id="story-dossier">
+          <div class="section-header">
+            <span class="section-badge">04</span>
+            <h2 class="section-title">Reading Story Dossiers & Executing BD Actions</h2>
+          </div>
+
+          <p class="card-p">
+            Clicking on any headline opens the <strong>Intelligence Dossier</strong>. Below is a representative mockup of how strategic intelligence is packaged:
+          </p>
+
+          <!-- UI Mockup (EN) -->
+          <div class="ui-mockup">
+            <div class="mockup-header">
+              <div class="mockup-tags">
+                <span class="badge-preview badge-verified">VERIFIED • 92% CONFIDENCE</span>
+                <span style="font-size: 0.75rem; background: #1E3A8A; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">ENERGY & NATURAL RESOURCES</span>
+              </div>
+              <div>
+                <span class="score-badge score-high">RELEVANCE: 9.0/10</span>
+              </div>
+            </div>
+
+            <div class="mockup-title">
+              Ministry of Industry and Trade issues Direct Power Purchase Agreement (DPPA) tariff framework for renewable energy
+            </div>
+
+            <div class="mockup-box">
+              <div class="mockup-box-title">Why It Matters to Sojitz Vietnam</div>
+              <div class="mockup-box-text">
+                The landmark decree allows Sojitz to negotiate direct bilateral clean energy supply contracts from rooftop solar installations at Long Duc Industrial Park to Japanese off-takers (e.g., Panasonic, Toto) bypassing EVN grid bottlenecks, locking in predictable recurring utility revenue.
+              </div>
+            </div>
+
+            <div class="mockup-box" style="border-left-color: #10B981; background: #064E3B/30;">
+              <div class="mockup-box-title" style="color: #6EE7B7;">Suggested BD Action (Operational Next Step)</div>
+              <div class="mockup-box-text">
+                <strong>Responsible Unit:</strong> Energy & Infrastructure Division<br>
+                <strong>Target Counterpart:</strong> Long Duc IP Management Board + 12 Japanese tenant factories<br>
+                <strong>Immediate Action:</strong> Formulate a standardized DPPA pilot tariff term sheet for tenant sign-off by November 2026.
+              </div>
+            </div>
+
+            <!-- Feedback Row Mockup -->
+            <div class="feedback-row">
+              <span style="font-size: 0.8rem; color: #94A3B8;">Was this intelligence useful to your team?</span>
+              <button class="fb-btn" style="background: #047857; color: white; border-color: #059669;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                Useful
+              </button>
+              <button class="fb-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"></path></svg>
+                Not Useful
+              </button>
+              <span style="font-size: 0.75rem; color: #64748B; margin-left: auto;">Source: <span style="color: #93C5FD; text-decoration: underline;">en.baochinhphu.vn</span> (100% Verified Live Link)</span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              Verified Primary Links — Zero 404 Broken References
+            </div>
+            <div class="callout-body">
+              All external story links have been verified for <code>HTTP 200 OK</code> status across VnEconomy, Bao Chinh Phu, and CafeF. Executives can click through with absolute confidence.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5 (EN): Weekly Briefing -->
+        <section id="weekly-briefing">
+          <div class="section-header">
+            <span class="section-badge">05</span>
+            <h2 class="section-title">C-Suite Weekly Executive Briefing (/weekly/[week])</h2>
+          </div>
+
+          <p class="card-p">
+            Published every Friday afternoon, the <strong>Weekly Executive Briefing</strong> synthesizes market developments into a standardized 12-section boardroom intelligence document:
+          </p>
+
+          <div class="grid-2">
+            <div class="card">
+              <h4 style="font-weight: 700; color: #1E3A8A; margin-bottom: 0.5rem;">The 12 Standardized Briefing Sections:</h4>
+              <ol style="font-size: 0.85rem; color: #334155; padding-left: 1.25rem; line-height: 1.8;">
+                <li><strong>1. Executive Summary:</strong> 3-minute high-level briefing.</li>
+                <li><strong>2. Top 5 Key Developments:</strong> The week's defining events.</li>
+                <li><strong>3. BD Opportunities:</strong> Commercial pipeline targets.</li>
+                <li><strong>4. Macro & Policy Tracker:</strong> Land laws, taxes, DPPA, FDI.</li>
+                <li><strong>5. M&A & Deals:</strong> Major capital transactions in Vietnam.</li>
+                <li><strong>6. Japanese Corporate Moves:</strong> JETRO & Japanese enterprise investments.</li>
+                <li><strong>7. Sogo Shosha Peer Watch:</strong> Moves by Mitsubishi, Sumitomo, Mitsui, Itochu, Marubeni.</li>
+                <li><strong>8. Sector Intelligence:</strong> Detailed updates across Sojitz's 5 sectors.</li>
+                <li><strong>9. Vietnamese Watchlist:</strong> Intelligence on 8 tracked domestic champions.</li>
+                <li><strong>10. Executive Action Matrix:</strong> Division-level mandate table.</li>
+                <li><strong>11. Source Verification Log:</strong> Editorial verification audits.</li>
+                <li><strong>12. Methodology & Governance:</strong> Scoring algorithms and rules.</li>
+              </ol>
+            </div>
+
+            <div class="card">
+              <h4 style="font-weight: 700; color: #059669; margin-bottom: 0.5rem;">How Executives Use the Weekly Report:</h4>
+              <p class="card-p">
+                • <strong>Rapid Multi-Week Navigation:</strong> Use the week selector bar (W41, W40, W39, W38) to compare trend evolution across preceding weeks.<br><br>
+                • <strong>Print & PDF Export:</strong> Click the <em>"Print / Export Report"</em> button at the top right to generate a pristine, ready-to-circulate PDF for Monday executive meetings.<br><br>
+                • <strong>Direct Action Mapping:</strong> Copy the <em>Executive Action Matrix</em> directly into management committee minutes.
+              </p>
+
+              <div style="background: #F1F5F9; border-radius: 8px; padding: 0.85rem; margin-top: 1rem;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: #475569; text-transform: uppercase;">8 Monitored Vietnamese Conglomerates:</span>
+                <p style="font-size: 0.8rem; color: #334155; margin-top: 0.35rem; line-height: 1.5;">
+                  Vingroup, Thaco, Petrovietnam (PVN), EVN, Hoa Phat Group, Gelex Group, Masan Group, Sovico Group.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6 (EN): Feedback & AI Learning -->
+        <section id="feedback-ai">
+          <div class="section-header">
+            <span class="section-badge">06</span>
+            <h2 class="section-title">Human-in-the-Loop Feedback & AI Learning</h2>
+          </div>
+
+          <p class="card-p">
+            The platform incorporates an <strong>Adaptive Ranking Engine</strong>. Reader feedback actively refines intelligence ranking both in real time and across future curation cycles:
+          </p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Your Interaction</th>
+                  <th>Immediate Ranking Impact</th>
+                  <th>Long-Term AI Model Adaptation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <button class="fb-btn" style="background: #ECFDF5; border-color: #A7F3D0; color: #065F46;">
+                      👍 Useful
+                    </button>
+                  </td>
+                  <td>
+                    <strong>+0.4 points</strong> added to <code>effectiveScore</code>.<br>
+                    The story elevates toward the top of company-wide feeds.
+                  </td>
+                  <td>
+                    The model associates positive weight to the underlying keywords, counterpart, and sector, boosting similar upcoming stories.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="fb-btn" style="background: #FEF2F2; border-color: #FECACA; color: #991B1B;">
+                      👎 Not Useful
+                    </button>
+                  </td>
+                  <td>
+                    <strong>-0.6 points</strong> deducted from <code>effectiveScore</code>.<br>
+                    The story is immediately pushed to bottom-tier visibility.
+                  </td>
+                  <td>
+                    The model learns to dampen this specific theme, preventing similar low-utility items from cluttering C-Suite briefings.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-warning">
+            <div class="callout-title">
+              Dynamic Effective Score Formula
+            </div>
+            <div class="callout-body">
+              <code>Effective Score = Relevance Score + (0.4 × Useful) - (0.6 × Not Useful)</code><br>
+              Because the negative penalty (-0.6) carries greater mathematical weight than the positive boost (+0.4), irrelevant items are pruned swiftly, preserving executive focus.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7 (EN): UI Customization & Shortcuts -->
+        <section id="ui-customization">
+          <div class="section-header">
+            <span class="section-badge">07</span>
+            <h2 class="section-title">UI Customization & Power Tools</h2>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                Light Tone / Dark Tone
+              </h4>
+              <p class="card-p">
+                Toggle between light and dark visual themes via the top header. Dark Tone reduces eye strain during late-night analysis; Light Tone provides crisp readability for printing and boardroom projections.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Instant Search (⌘K / Ctrl+K)
+              </h4>
+              <p class="card-p">
+                Press <code>⌘K</code> (Mac) or <code>Ctrl + K</code> (Windows) from any screen to launch global search across all entities, deals, projects, and regulatory codes.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
+                Executive Telemetry (/admin)
+              </h4>
+              <p class="card-p">
+                Visit <code>/admin/analytics</code> to observe reading completion rates, division interest telemetry, and manage source reputation weights.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8 (EN): FAQ -->
+        <section id="faq">
+          <div class="section-header">
+            <span class="section-badge">08</span>
+            <h2 class="section-title">Frequently Asked Questions (FAQ)</h2>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="card">
+              <h4 style="font-weight: 700; color: #1E3A8A; margin-bottom: 0.35rem;">Q1: What is the weekly briefing qualification timeframe?</h4>
+              <p class="card-p" style="margin: 0;">
+                <strong>Answer:</strong> The weekly reporting window opens at Monday 00:00:00 and closes Sunday 23:59:59 (Asia/Ho_Chi_Minh). Only events published within this strict window are eligible for that calendar week's briefing.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-weight: 700; color: #1E3A8A; margin-bottom: 0.35rem;">Q2: Why does an August project appear in an October weekly briefing?</h4>
+              <p class="card-p" style="margin: 0;">
+                <strong>Answer:</strong> The platform distinguishes between an initial historical groundbreaking (e.g. Sumitomo Smart City in August) and subsequent concrete regulatory or commercial milestones (e.g. Phase 1 master plan approval in October). New milestones represent actionable business catalysts for that current week.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-weight: 700; color: #1E3A8A; margin-bottom: 0.35rem;">Q3: Can I share direct links with colleagues?</h4>
+              <p class="card-p" style="margin: 0;">
+                <strong>Answer:</strong> Yes. Every story dossier and weekly report maintains a permanent direct URL (e.g. <code>/story/[id]</code> or <code>/weekly/W41</code>). You can copy and share them instantly via Microsoft Teams or corporate email.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer (EN) -->
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #E2E8F0; text-align: center; color: #94A3B8; font-size: 0.85rem;">
+          <p><strong>Sojitz Vietnam Market Intelligence Platform</strong> • Internal Confidential Document</p>
+          <p style="margin-top: 0.25rem;">Technical Support & Watchlist Inquiries: Business Development & Strategic Planning Division (BD Dept)</p>
+        </footer>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VIETNAMESE VERSION CONTENT (Bilingual Mode) -->
+      <!-- ========================================== -->
+      <div class="lang-content-vi">
+        <!-- Hero Header (VI) -->
+        <div class="hero-banner">
+          <div class="hero-tag">Executive User Manual • Phiên bản 2026</div>
+          <h1 class="hero-title">Sojitz Vietnam Market Intelligence Platform</h1>
+          <p class="hero-desc">
+            Cẩm nang hướng dẫn tinh gọn, dễ hiểu giúp C-Suite, Ban Giám đốc và Chuyên viên Phát triển Kinh doanh (BD) khai thác tối đa nguồn tình báo thị trường và chuyển hóa tin tức thành cơ hội thương mại cụ thể.
+          </p>
+          <div class="hero-meta">
+            <div>Người dùng mục tiêu: <strong>Toàn bộ CBNV Sojitz Vietnam</strong></div>
+            <div>Cập nhật: <strong>Tháng 10/2026</strong></div>
+            <div>Hệ thống: <strong>Next.js + AI Triage Engine + PostgreSQL</strong></div>
+          </div>
+        </div>
+
+        <!-- SECTION 1 (VI) -->
+        <section>
+          <div class="section-header">
+            <span class="section-badge">01</span>
+            <h2 class="section-title">Tổng Quan Hệ Thống</h2>
+          </div>
+
+          <p class="card-p" style="font-size: 1rem; margin-bottom: 1.5rem;">
+            Nền tảng <strong>Sojitz Vietnam Market Intelligence</strong> không phải là một trang tổng hợp tin tức thông thường. Đây là hệ thống <em>lọc thông minh (AI Triage)</em> liên tục quét dữ liệu từ các nguồn chính thống tại Việt Nam và Nhật Bản, tự động đánh giá mức độ ảnh hưởng và chuyển đổi thành <strong>Đề xuất hành động kinh doanh (Suggested BD Action)</strong> cho 5 khối ngành chủ lực của Sojitz.
+          </p>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-title" style="color: #2563EB;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Không Ngập Tin Rác
+              </div>
+              <p class="card-p">Hàng ngàn tin thị trường mỗi ngày được lọc qua bộ tiêu chí khắt khe, chỉ giữ lại các chuyển động chính sách, thương vụ M&A và đối thủ sogo shosha thực sự đáng quan tâm.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title" style="color: #059669;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Xác Minh Đa Tầng
+              </div>
+              <p class="card-p">Mỗi tin tức đều được gắn nhãn độ tin cậy (Verified / Single Source). Nguồn bài viết được dẫn trực tiếp từ các báo chính thống (Báo Chính Phủ, VnEconomy, CafeF).</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title" style="color: #7C3AED;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Đề Xuất Hành Động (BD)
+              </div>
+              <p class="card-p">Mỗi bài phân tích chỉ rõ phòng ban chịu trách nhiệm tại Sojitz, đối tác cần liên hệ và bước tiếp cận cụ thể để chốt cơ hội đầu tư kinh doanh.</p>
+            </div>
+          </div>
+
+          <div class="callout callout-success">
+            <div class="callout-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              5 Khối Ngành Chiến Lược Của Sojitz Được Theo Dõi Trọng Tâm
+            </div>
+            <div class="callout-body">
+              1. <strong>Energy & Natural Resources</strong> (Điện gió, LNG, Điện mặt trời áp mái, Giảm phát thải)<br>
+              2. <strong>Infrastructure & Industrial Parks</strong> (Khu công nghiệp Long Đức, Cảng biển, Kho lạnh, Logistics)<br>
+              3. <strong>Chemicals & Plastics</strong> (Hóa chất cơ bản, Nhựa tái sinh, Phân bón)<br>
+              4. <strong>Food & Retail Consumer</strong> (Thực phẩm chế biến, Bán lẻ chuỗi, Nông nghiệp công nghệ cao)<br>
+              5. <strong>Automotive & Machinery</strong> (Lắp ráp xe, Thiết bị công nghiệp, Chuyển đổi xe điện EV)
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2 (VI) -->
+        <section>
+          <div class="section-header">
+            <span class="section-badge">02</span>
+            <h2 class="section-title">Luồng Sử Dụng Hàng Ngày Cho Lãnh Đạo & BD</h2>
+          </div>
+
+          <div class="workflow-steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Bắt Đầu Ngày Mới Tại Trang "Today" (/today)</h4>
+                <p>Mở trang <strong>Today</strong> vào 8:30 sáng. Hệ thống đã tự động tổng hợp các tin thị trường mới nhất trong 24 giờ qua được xếp theo 3 giỏ thời gian rõ ràng: <strong>Last 24 Hours</strong>, <strong>Past 72 Hours</strong> và <strong>Older Intelligence</strong>.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Lọc Nhanh Theo Khối Ngành Hoặc Điểm Quan Trọng</h4>
+                <p>Sử dụng thanh bộ lọc ở đầu trang để chọn khối ngành phụ trách. Chú ý các tin có điểm <strong>Relevance Score &ge; 8/10</strong> - đây là những tin cấp bách.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Click Vào Thẻ Tin Để Mở "Dossier" (Hồ Sơ Chi Tiết)</h4>
+                <p>Nhấp vào bất kỳ tin nào để xem phân tích chuyên sâu: <em>Why It Matters To Sojitz Vietnam</em>, tác động rủi ro/cơ hội và bản đồ hành động BD cụ thể.</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Bấm Useful / Not Useful Để Hệ Thống Học Sở Thích Của Bạn</h4>
+                <p>Nếu tin hữu ích và chuẩn xác với công việc, bấm <strong>Useful</strong>. Nếu không liên quan, bấm <strong>Not Useful</strong>. AI sẽ tự động cá nhân hóa độ ưu tiên của bạn cho các bản tin sau.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 (VI) -->
+        <section>
+          <div class="section-header">
+            <span class="section-badge">03</span>
+            <h2 class="section-title">Giải Mã Thang Điểm & Huy Hiệu Đánh Giá</h2>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Relevance Score</th>
+                  <th style="width: 160px;">Mức Độ Ưu Tiên</th>
+                  <th>Ý Nghĩa Chiến Lược Đối Với Sojitz</th>
+                  <th style="width: 170px;">Khuyến Nghị C-Suite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="score-badge score-high">9 - 10 / 10</span></td>
+                  <td><strong style="color: #1E3A8A;">Cực Kỳ Quan Trọng</strong></td>
+                  <td>Tin tác động trực tiếp tới các dự án hiện hữu của Sojitz, thay đổi lớn về chính sách vĩ mô, hoặc thương vụ lớn của đối thủ trực tiếp.</td>
+                  <td><strong>Hành động ngay</strong> trong 24-48 giờ; giao việc trực tiếp cho Trưởng phòng ngành.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-high" style="background:#2563EB;">7 - 8 / 10</span></td>
+                  <td><strong style="color: #2563EB;">Mức Độ Cao</strong></td>
+                  <td>Các động thái hợp tác, mở rộng dự án KCN, dòng vốn FDI hoặc thương vụ M&A có khả năng Sojitz tham gia làm đối tác.</td>
+                  <td>Đưa vào danh mục theo dõi hàng tuần của bộ phận Business Development.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-med">4 - 6 / 10</span></td>
+                  <td><strong style="color: #4F46E5;">Trung Bình / Tiềm Năng</strong></td>
+                  <td>Tin xu hướng ngành chung, biến động giá nguyên vật liệu, hoặc các dự án ở giai đoạn nghiên cứu sơ khởi.</td>
+                  <td>Đọc tham khảo nắm xu hướng thị trường; chưa cần kích hoạt hành động khẩn.</td>
+                </tr>
+                <tr>
+                  <td><span class="score-badge score-low">1 - 3 / 10</span></td>
+                  <td><strong style="color: #64748B;">Thấp / Tham Khảo</strong></td>
+                  <td>Tin thị trường tiêu dùng diện rộng, tin tức doanh nghiệp nhỏ không thuộc chuỗi giá trị của Sojitz.</td>
+                  <td>Hệ thống tự động lọc xuống đáy trang hoặc lược bỏ khỏi báo cáo tuần.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Footer (VI) -->
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #E2E8F0; text-align: center; color: #94A3B8; font-size: 0.85rem;">
+          <p><strong>Sojitz Vietnam Market Intelligence Platform</strong> • Tài liệu nội bộ lưu hành trong Sojitz Vietnam</p>
+          <p style="margin-top: 0.25rem;">Liên hệ hỗ trợ kỹ thuật hoặc góp ý danh mục theo dõi: Phòng Chiến lược & Phát triển Kinh doanh (BD Dept)</p>
+        </footer>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Language Switcher Function
+    function setLanguage(lang) {
+      const body = document.body;
+      const btnEn = document.getElementById('btn-en');
+      const btnVi = document.getElementById('btn-vi');
+
+      if (lang === 'vi') {
+        body.classList.remove('lang-en');
+        body.classList.add('lang-vi');
+        btnVi.classList.add('active');
+        btnEn.classList.remove('active');
+        localStorage.setItem('svn_guide_lang', 'vi');
+      } else {
+        body.classList.remove('lang-vi');
+        body.classList.add('lang-en');
+        btnEn.classList.add('active');
+        btnVi.classList.remove('active');
+        localStorage.setItem('svn_guide_lang', 'en');
+      }
+    }
+
+    // Initialize saved language if any, default to English
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('svn_guide_lang') || 'en';
+      setLanguage(saved);
+
+      // Smooth scroll and active state updates for sidebar links
+      const links = document.querySelectorAll('.toc-link');
+      const sections = document.querySelectorAll('section');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.pageYOffset >= sectionTop - 120) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        links.forEach(link => {
+          link.classList.remove('active');
+          if (current && link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

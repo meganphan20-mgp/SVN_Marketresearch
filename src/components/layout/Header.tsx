@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search, ShieldCheck, Menu, X, Globe, Settings } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, Globe, Settings, BookOpen } from 'lucide-react';
 
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
@@ -71,6 +71,17 @@ export function Header() {
               <span className="text-xs font-mono font-bold text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-800/80 bg-indigo-950/50">ANALYTICS</span>
             </Link>
 
+            <a
+              href="/user-guide.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="User Guideline - Hướng dẫn sử dụng"
+              className="flex items-center gap-1.5 px-2 py-1 bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 hover:text-white rounded text-xs border border-emerald-800/80 transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="font-semibold text-[11px]">GUIDE</span>
+            </a>
+
             <Link
               href="/admin"
               title="Admin & Taxonomy Management"
@@ -137,13 +148,23 @@ export function Header() {
             </Link>
           ))}
           <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
+            <a
+              href="/user-guide.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 px-3 py-1.5 font-medium"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>User Guide</span>
+            </a>
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5"
             >
               <Settings className="w-3.5 h-3.5" />
-              <span>Admin Console</span>
+              <span>Admin</span>
             </Link>
             <Link
               href="/weekly"

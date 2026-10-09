@@ -13,6 +13,7 @@ interface FilterState {
   impact: string;
   verificationStatus: string;
   minRelevance: number;
+  timeframe: string;
 }
 
 interface Props {
@@ -24,6 +25,12 @@ interface Props {
 }
 
 export function FilterBar({ sectors, companies, filters, onFilterChange, onReset }: Props) {
+  const timeframes = [
+    { label: 'All Time', value: 'all' },
+    { label: 'Past 24 Hours / Today', value: 'today' },
+    { label: 'This Week', value: 'week' },
+  ];
+
   const categories = [
     'All Categories',
     'M&A / Investment',
@@ -88,7 +95,23 @@ export function FilterBar({ sectors, companies, filters, onFilterChange, onReset
       </div>
 
       {/* Filter Select Controls */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+        {/* Timeframe Filter */}
+        <div>
+          <label className="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">
+            Timeframe
+          </label>
+          <select
+            value={filters.timeframe}
+            onChange={(e) => handleUpdateFilter('timeframe', e.target.value)}
+            className="w-full text-xs bg-slate-50 border border-slate-200 rounded p-1.5 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-600 font-medium"
+          >
+            {timeframes.map((tf) => (
+              <option key={tf.value} value={tf.value}>{tf.label}</option>
+            ))}
+          </select>
+        </div>
+
         {/* Sector Filter */}
         <div>
           <label className="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">

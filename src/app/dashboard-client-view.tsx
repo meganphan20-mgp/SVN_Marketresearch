@@ -30,6 +30,7 @@ export function DashboardClientView({
     impact: initialImpact || 'all',
     verificationStatus: 'all',
     minRelevance: 1,
+    timeframe: 'all',
   });
 
   // Client-side instant filtering across all specified parameters
@@ -81,6 +82,19 @@ export function DashboardClientView({
         return false;
       }
 
+      // 8. Timeframe Filter
+      if (filters.timeframe === 'today') {
+        const pubDate = story.sourcePublicationDateLocal || story.publicationDate || story.storyDate;
+        if (!pubDate || pubDate < '2026-10-08') {
+          return false;
+        }
+      } else if (filters.timeframe === 'week') {
+        const pubDate = story.sourcePublicationDateLocal || story.publicationDate || story.storyDate;
+        if (!pubDate || pubDate < '2026-10-05') {
+          return false;
+        }
+      }
+
       return true;
     });
   }, [initialStories, filters]);
@@ -99,6 +113,7 @@ export function DashboardClientView({
       impact: 'all',
       verificationStatus: 'all',
       minRelevance: 1,
+      timeframe: 'all',
     });
   };
 

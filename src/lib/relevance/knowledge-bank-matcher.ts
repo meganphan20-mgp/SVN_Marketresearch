@@ -88,18 +88,67 @@ export async function matchKnowledgeBank(
     }
 
     // Check specific event type affinity
-    if (div.code === 'ENERGY' && (extraction.primary_event_type === 'ENERGY_PROJECT' || extraction.secondary_event_types.includes('ENERGY_PROJECT') || fullText.toLowerCase().includes('dppa'))) {
+    if (div.code === 'ENERGY' && (
+      extraction.primary_event_type === 'ENERGY_PROJECT' || 
+      extraction.secondary_event_types.includes('ENERGY_PROJECT') || 
+      fullText.toLowerCase().includes('dppa') ||
+      fullText.toLowerCase().includes('power tariff') ||
+      fullText.toLowerCase().includes('giá điện') ||
+      fullText.toLowerCase().includes('electricity tariff') ||
+      fullText.toLowerCase().includes('biểu giá điện')
+    )) {
       divMatches = true;
     }
-    if (div.code === 'INFRA_LOGISTICS' && (extraction.primary_event_type === 'LOGISTICS_PROJECT' || extraction.primary_event_type === 'NEW_FACTORY' || fullText.toLowerCase().includes('long đức') || fullText.toLowerCase().includes('khu công nghiệp'))) {
+    if (div.code === 'INFRA_LOGISTICS' && (
+      extraction.primary_event_type === 'LOGISTICS_PROJECT' || 
+      extraction.primary_event_type === 'NEW_FACTORY' || 
+      fullText.toLowerCase().includes('long đức') || 
+      fullText.toLowerCase().includes('khu công nghiệp') ||
+      fullText.toLowerCase().includes('drone') ||
+      fullText.toLowerCase().includes('uav') ||
+      fullText.toLowerCase().includes('low-altitude') ||
+      fullText.toLowerCase().includes('kinh tế tầm thấp') ||
+      fullText.toLowerCase().includes('fdi') ||
+      fullText.toLowerCase().includes('supply chain') ||
+      fullText.toLowerCase().includes('chuỗi cung ứng')
+    )) {
       divMatches = true;
     }
-    if (div.code === 'FOOD_RETAIL' && (fullText.toLowerCase().includes('thực phẩm') || fullText.toLowerCase().includes('cà phê') || fullText.toLowerCase().includes('coffee') || fullText.toLowerCase().includes('fmcg') || fullText.toLowerCase().includes('bán lẻ') || fullText.toLowerCase().includes('retail') || fullText.toLowerCase().includes('f&b') || fullText.toLowerCase().includes('agri-processing') || fullText.toLowerCase().includes('nestlé') || fullText.toLowerCase().includes('nestle'))) {
+    if (div.code === 'FOOD_RETAIL' && (
+      fullText.toLowerCase().includes('thực phẩm') || 
+      fullText.toLowerCase().includes('cà phê') || 
+      fullText.toLowerCase().includes('coffee') || 
+      fullText.toLowerCase().includes('fmcg') || 
+      fullText.toLowerCase().includes('bán lẻ') || 
+      fullText.toLowerCase().includes('retail') || 
+      fullText.toLowerCase().includes('f&b') || 
+      fullText.toLowerCase().includes('agri-processing') || 
+      fullText.toLowerCase().includes('nestlé') || 
+      fullText.toLowerCase().includes('nestle')
+    )) {
       divMatches = true;
     }
-
-    if (divMatches) {
-      matchedDivCodes.add(div.code);
+    if (div.code === 'HEALTHCARE' && (
+      fullText.toLowerCase().includes('pharma') || 
+      fullText.toLowerCase().includes('dược phẩm') || 
+      fullText.toLowerCase().includes('medical') || 
+      fullText.toLowerCase().includes('gmp') || 
+      fullText.toLowerCase().includes('y tế') || 
+      fullText.toLowerCase().includes('functional food') || 
+      fullText.toLowerCase().includes('thực phẩm chức năng') || 
+      fullText.toLowerCase().includes('thực phẩm bảo vệ sức khỏe')
+    )) {
+      divMatches = true;
+    }
+    if (div.code === 'AUTOMOTIVE_MACHINERY' && (
+      fullText.toLowerCase().includes('semiconductor') || 
+      fullText.toLowerCase().includes('bán dẫn') || 
+      fullText.toLowerCase().includes('vi mạch') || 
+      fullText.toLowerCase().includes('triple helix') || 
+      fullText.toLowerCase().includes('microchip') || 
+      fullText.toLowerCase().includes('chip')
+    )) {
+      divMatches = true;
     }
   }
 

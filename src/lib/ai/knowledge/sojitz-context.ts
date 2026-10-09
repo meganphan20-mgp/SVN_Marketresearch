@@ -29,6 +29,7 @@ export const SOJITZ_VIETNAM_DIVISIONS: SojitzDivision[] = [
       'LNG-to-Power value chain co-investments',
       'Offshore wind concession partnerships and grid connection studies',
       'Biomass fuel sourcing and supply to Japanese coal co-firing plants',
+      'Monitoring EVN electricity tariff freezes and utility cost impacts across industrial park tenants',
     ],
     targetPartners: ['EVN', 'PV Gas', 'TTC Green Energy', 'Marubeni', 'JERA', 'Gelex Energy'],
   },
@@ -61,10 +62,12 @@ export const SOJITZ_VIETNAM_DIVISIONS: SojitzDivision[] = [
       'Cold-chain logistics joint ventures serving modern trade and pharmaceutical imports',
     ],
     strategicPriorities: [
-      'Attracting semiconductor, electronics tier-1, and green manufacturing tenants to Long Duc',
+      'Attracting semiconductor, electronics tier-1, and green manufacturing tenants to Long Duc under National Semiconductor Strategy',
       'Co-developing multi-modal logistics centers near Long Thanh International Airport',
       'Deep-water port logistics partnerships in Cai Mep - Thi Vai and Hai Phong',
       'Eco-industrial park accreditation with solar micro-grids and wastewater recycling',
+      'Exploring smart distribution, automated delivery, and low-altitude drone logistics models',
+      'Aligning industrial park vendor recruitment with Vietnam high-tech FDI and domestic supplier linkage strategy',
     ],
     targetPartners: ['Becamex IDC', 'Viglacera', 'VSIP', 'Saigon Newport (SNP)', 'Gemadept', 'Dong Nai People Committee'],
   },
@@ -100,6 +103,22 @@ export const SOJITZ_VIETNAM_DIVISIONS: SojitzDivision[] = [
       'Heavy machinery and industrial forklift leasing for industrial parks and logistics hubs',
     ],
     targetPartners: ['THACO Group', 'Isuzu Vietnam', 'Hino Motors', 'VinFast Commercial'],
+  },
+  {
+    name: 'Healthcare & Life Sciences',
+    code: 'HEALTHCARE',
+    leadExecutive: 'General Manager, Healthcare & Life Science Division',
+    coreFocus: 'Hospital operations, primary care clinics, GMP pharmaceuticals, medical devices, functional foods, and health supply chain distribution.',
+    existingAssetsAndPartnerships: [
+      'Strategic healthcare and hospital operations partnerships across Asia-Pacific',
+      'Medical equipment and pharmaceutical supply chain distribution',
+    ],
+    strategicPriorities: [
+      'Partnership with GMP-certified pharmaceutical and medical manufacturing facilities',
+      'Distribution of Japanese medical devices and premium functional foods in Vietnam',
+      'Healthcare logistics and temperature-controlled medical storage',
+    ],
+    targetPartners: ['Hau Giang Pharma', 'Traphaco', 'Vinmec', 'Domesco', 'Pharmacity', 'EMJ Ha Nam'],
   },
 ];
 

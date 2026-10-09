@@ -10,43 +10,63 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
     endDate: '2026-10-11',
     title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 41, 2026',
     slug: '2026-w41',
-    executiveSummary: 'During Week 41 (2026-10-05 to 2026-10-11), Vietnam\'s market demonstrated robust strategic momentum across infrastructure, energy transition, and domestic conglomerate restructuring. Sojitz Vietnam monitored 15 verified developments, identifying key commercial openings in industrial park expansion and green power direct purchase agreements (DPPA). Accelerated development of Gia Binh Airport and government mandates for double-digit Q4 growth across key industrial provinces set a decisive tone for year-end corporate capital deployment.',
+    executiveSummary: 'During Week 41 (2026-10-05 to 2026-10-11), Vietnam\'s market demonstrated decisive policy and industrial shifts across foreign investment strategy, high-tech supply chains, energy cost controls, and medical manufacturing. Sojitz Vietnam monitored 20 verified developments. Key structural highlights include Vietnam\'s official FDI strategic pivot mandating domestic vendor integration, pilot launch of the low-altitude drone economy in Dien Bien, price freezes on retail power tariffs through Q4 to curb inflation, a state-academia-industry Triple Helix roadmap for semiconductors, and licensing of a $44.5M GMP medical plant in Ninh Binh.',
     topDevelopments: [
       {
-        title: 'Accelerating Toward APEC 2027: Gia Binh Airport and High-Tech Aviation Logistics Development',
-        storyId: 'af381a91-be25-40c7-825c-ffd99eae1934',
-        summary: 'Development of the specialized Gia Binh Airport in Bac Ninh Province is being accelerated ahead of the APEC 2027 summit, laying the foundation for a high-tech aviation, maintenance, and air cargo economic hub in northern Vietnam.',
-        significance: 'High strategic significance for Infrastructure operations.'
+        title: 'Vietnam Shifts FDI Strategy Toward High-Tech Investment and Stronger Domestic Linkages',
+        storyId: '11111111-0411-4444-8888-000000000005',
+        summary: 'Deputy Minister Tran Quoc Phuong announced Vietnam\'s strategic shift in FDI attraction from low-cost assembly to selective high-tech manufacturing, mandating technology transfer and binding supply chain linkages with Vietnamese Tier-1 and Tier-2 suppliers.',
+        significance: 'Critical strategic opportunity for Sojitz as an industrial park developer (Long Duc IP) and trading house to bridge Japanese multinational tenants with vetted Vietnamese manufacturers.'
       },
       {
-        title: 'Government Directs 9 Key Economic Provinces to Exceed 15% GRDP Growth in Q4',
-        storyId: '74e32d9d-d434-4949-a550-f43f0072d79f',
-        summary: 'Under Resolution 312, the Government of Vietnam has mandated that 9 key industrial provinces—including Dong Nai, Hai Phong, and Bac Ninh—achieve double-digit growth exceeding 15% in Q4 to ensure the national annual growth target of 10% is attained.',
-        significance: 'High strategic significance for General operations.'
+        title: 'Vietnam Pilots Low-Altitude Economy in Dien Bien Using Drones',
+        storyId: '11111111-0411-4444-8888-000000000001',
+        summary: 'Vietnam completed over 6,000 UAV/drone test flights in Dien Bien under Ministry of Science and Technology guidance, establishing the country\'s first experimental regulatory sandbox for commercial drone cargo and remote logistics.',
+        significance: 'Opens future feeder logistics and rapid automated inventory transport corridors for Sojitz logistics facilities and regional retail distribution.'
       },
       {
-        title: 'Ministry of Industry and Trade: Weighs Establishment of National Strategic Power Generation Corporation',
-        storyId: '5bad090d-195a-49e2-9b72-ec952c3be122',
-        summary: 'MOIT is evaluating a restructuring proposal to establish a National Strategic Power Generation Corporation to oversee critical base-load power assets and ensure national energy security in alignment with Power Development Plan VIII (PDP8).',
-        significance: 'High strategic significance for General operations.'
+        title: 'Power Tariffs to Be Frozen, Service Fee Hikes Capped to Curb Inflation',
+        storyId: '11111111-0411-4444-8888-000000000003',
+        summary: 'Ministry of Finance and Steering Committee for Price Management froze electricity retail tariffs and capped public service fees for Q4 2026 to ensure inflation remains below the 4.5% statutory cap.',
+        significance: 'Provides utility cost stability for Long Duc IP tenants in Q4, while accelerating tenant appetite for private rooftop solar and DPPA solutions ahead of expected 2027 rate adjustments.'
+      },
+      {
+        title: 'Ninh Binh Approves $44.5 Million GMP Medical Manufacturing Plant',
+        storyId: '11111111-0411-4444-8888-000000000002',
+        summary: 'Provincial authorities approved a VND 1.1 trillion ($44.5M) WHO-GMP medical supplies, pharma, and health supplement production facility by EMJ Ha Nam in Kim Binh Industrial Cluster.',
+        significance: 'High strategic relevance for Sojitz Healthcare Division and specialized cold-chain pharmaceutical distribution.'
+      },
+      {
+        title: 'Triple Helix Collaboration Roadmap Established for Semiconductors',
+        storyId: '11111111-0411-4444-8888-000000000004',
+        summary: 'Symposium in Da Nang launched a State-Academia-Industry Triple Helix roadmap executing Decisions 1018 and 1017 to train 50,000 engineers and establish semiconductor test facilities by 2030.',
+        significance: 'Expands Vietnam\'s semiconductor ecosystem, creating demand for cleanrooms, high-purity chemicals, and Japanese precision machinery.'
       }
     ],
     topBusinessOpportunities: [
       {
-        sector: 'Renewable Energy',
-        headline: 'Direct Power Purchase Agreement (DPPA) Rooftop Expansion',
-        actionWindow: 'Q3-Q4 2026',
-        strategicRationale: 'Industrial park tenants seeking off-site renewable power offtake agreements under Decree 80/2024/ND-CP framework.',
-        targetCompanyOrProject: 'Long Duc Industrial Park Rooftop Solar',
-        storyId: '11111111-0401-4444-8888-000000000001',
+        sector: 'Industrial Parks & Supply Chain',
+        headline: 'Sojitz Supplier Localization Desk at Long Duc IP',
+        actionWindow: 'Immediate (Q4 2026)',
+        strategicRationale: 'Leverage the Ministry of Planning and Investment\'s new high-tech FDI mandate by establishing a dedicated localization desk to match Japanese tenants with certified local Tier-1/Tier-2 suppliers.',
+        targetCompanyOrProject: 'Long Duc Industrial Park & Domestic Vendor Network',
+        storyId: '11111111-0411-4444-8888-000000000005',
       },
       {
-        sector: 'Logistics',
-        headline: 'Cold-Chain Logistics Partnership in Southern Key Economic Zone',
-        actionWindow: 'Immediate (Next 60 Days)',
-        strategicRationale: 'Expanding temperature-controlled distribution networks connecting Long Duc IP to Cai Mep port.',
-        targetCompanyOrProject: 'Dong Nai Logistics Hub',
-        storyId: 'c4a56ebe-78ab-44b1-85b4-80b87ec20b77',
+        sector: 'Healthcare & Pharma',
+        headline: 'Pharma Cold-Chain & Medical Chemical Distribution',
+        actionWindow: 'Q4 2026 - Q1 2027',
+        strategicRationale: 'Partner with newly approved GMP pharmaceutical facilities in Northern industrial clusters for specialized distribution and raw materials supply.',
+        targetCompanyOrProject: 'EMJ Ha Nam & Northern GMP Medical Cluster',
+        storyId: '11111111-0411-4444-8888-000000000002',
+      },
+      {
+        sector: 'Renewable Energy',
+        headline: 'Direct Power Purchase Agreement (DPPA) Rooftop Expansion',
+        actionWindow: 'Q4 2026',
+        strategicRationale: 'Industrial park tenants seeking off-site renewable power offtake agreements under Decree 80/2024/ND-CP framework to hedge against future electricity rate hikes.',
+        targetCompanyOrProject: 'Long Duc Industrial Park Rooftop Solar',
+        storyId: '11111111-0401-4444-8888-000000000001',
       }
     ],
     macroPolicy: 'Macroeconomic indicators reflect steady GDP growth (6.8% YoY) with stable FX reserves. The State Bank of Vietnam maintained policy rates, prioritizing credit flow into green manufacturing and export-oriented processing.',
@@ -220,7 +240,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
     endDate: '2026-09-27',
     title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 39, 2026',
     slug: '2026-w39',
-    executiveSummary: 'Week 39 spotlighted pivotal advances in northern deep-sea maritime logistics, semiconductor ecosystem expansion, and domestic conglomerate balance sheet restructuring. In Hai Phong, groundbreaking occurred on Berths 7 & 8 at Lach Huyen Deep-Sea Port ($450M), boosting northern Vietnam direct shipping connectivity to the US and Europe without regional transshipment. Renesas Electronics expanded automotive chip design operations in Da Nang and HCMC with FPT. Meanwhile, Novaland finalized credit syndication for Aqua City in Dong Nai, easing regional debt contagion risks surrounding southern industrial corridors. In consumer retail, Masan accelerated chilled meat cold chain distribution across 1,200 supermarkets nationwide.',
+    executiveSummary: 'Week 39 spotlighted pivotal advances in northern deep-sea maritime logistics, semiconductor ecosystem expansion, and domestic conglomerate balance sheet restructuring. In Hai Phong, groundbreaking occurred on Berths 7 & 8 at Lach Huyen Deep-Sea Port ($450M), boosting northern Vietnam direct shipping connectivity to the US and Europe without regional transshipment. Vietnam accelerated its foothold across semiconductor packaging and AI design hubs in Da Nang and HCMC. Meanwhile, Novaland finalized credit syndication for Aqua City in Dong Nai, easing regional debt contagion risks surrounding southern industrial corridors. In consumer retail, Masan accelerated nationwide retail and consumer goods scaling ahead of peak year-end shopping.',
     topDevelopments: [
       {
         title: 'Lach Huyen Deep-Sea Port Berths 7 & 8 Groundbreaking: Northern Vietnam Logistics Capacity Surges',
@@ -229,8 +249,8 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         storyId: '22222222-0391-4444-8888-000000000001',
       },
       {
-        title: 'Renesas Electronics and FPT Software Expand Automotive Semiconductor R&D Hubs in Vietnam',
-        summary: 'Renesas expanded embedded automotive software and MCU design centers across Da Nang and HCMC, growing specialized local engineering headcount to 1,500.',
+        title: 'Vietnam Accelerates Foothold in Global Semiconductor & AI Design Ecosystem Across Da Nang and HCMC Hubs',
+        summary: 'Vietnam accelerates expansion across packaging, testing, and chip design hubs in Da Nang and Ho Chi Minh City, with major tech leaders scaling specialized engineering capacity.',
         significance: 'Signals rapid elevation of Vietnam position in precision global automotive electronics supply chains.',
         storyId: '22222222-0392-4444-8888-000000000002',
       },
@@ -251,10 +271,10 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         storyId: '22222222-0391-4444-8888-000000000001',
       },
       {
-        headline: 'Chilled FMCG Co-Distribution Agreement with Masan MEATDeli',
+        headline: 'Joint Retail Distribution Partnership with WinCommerce for Japanese FMCG',
         targetCompanyOrProject: 'Masan Group / WinCommerce',
         sector: 'Retail & Consumer Goods',
-        strategicRationale: 'Leverage Masan newly expanded cold chain distribution network to market premium Japanese food and packaged goods nationwide.',
+        strategicRationale: 'Leverage Masan expanding nationwide retail network and consumer goods logistics to market premium Japanese food and packaged goods ahead of peak year-end demand.',
         actionWindow: 'Next 45 Days',
         storyId: '22222222-0394-4444-8888-000000000004',
       },
@@ -330,7 +350,7 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
     endDate: '2026-09-20',
     title: 'SOJITZ VIETNAM WEEKLY INTELLIGENCE BRIEFING | Week 38, 2026',
     slug: '2026-w38',
-    executiveSummary: 'Week 38 was characterized by swift government disaster mitigation in the aftermath of Typhoon Yagi, decisive progress in major industrial energy projects, and rapid commercial expansion by domestic conglomerates. The Prime Minister promulgated Directive 35 unleashing a $1.2B relief and infrastructure restoration package, restoring northern industrial corridor logistics within 72 hours. Sumitomo and BRG launched leasing for North Hanoi Tech Park Phase 1. Concurrently, Hoa Phat completed initial blast furnace testing at the $3.5B Dung Quat 2 steel complex, and Stavian Chemical secured a 200,000 MT/year master polymer feedstock distribution agreement with Long Son Petrochemicals.',
+    executiveSummary: 'Week 38 was characterized by swift government disaster mitigation in the aftermath of Typhoon Yagi, decisive progress in major industrial energy projects, and rapid commercial expansion by domestic conglomerates. The Prime Minister promulgated Directive 35 unleashing a $1.2B relief and infrastructure restoration package, restoring northern industrial corridor logistics within 72 hours. Sumitomo Corporation and BRG Group accelerated expansion of their FujiMart modern supermarket retail chain in Hanoi. Concurrently, Hoa Phat completed initial blast furnace testing at the $3.5B Dung Quat 2 steel complex, and Stavian Chemical climbed into the Top 15 largest chemical distributors globally in the ICIS ranking.',
     topDevelopments: [
       {
         title: 'Typhoon Yagi Aftermath: Government Launches $1.2B Industrial Corridor Restoration & Resilience Package',
@@ -339,9 +359,9 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         storyId: '33333333-0381-4444-8888-000000000001',
       },
       {
-        title: 'Sumitomo Corporation and BRG Group Commence Commercial Leasing for North Hanoi Tech Park Phase 1',
-        summary: 'Opened reservations for 50 hectares of dedicated high-tech R&D and clean manufacturing plots equipped with 110kV dedicated power connections.',
-        significance: 'Elevates regional competition for Japanese electronics and precision automotive clients looking for northern industrial land.',
+        title: 'Sumitomo Corporation and BRG Group Expand FujiMart Supermarket Retail Chain Across Northern Vietnam',
+        summary: 'Accelerating expansion of Japanese-standard FujiMart supermarkets across Hanoi and northern provinces, blending Japanese service quality with Vietnamese retail demand.',
+        significance: 'Key peer intelligence for Sojitz Food & Retail Consumer Division tracking Japanese trading house modern retail footprints in Vietnam.',
         storyId: '33333333-0382-4444-8888-000000000002',
       },
       {
@@ -369,10 +389,10 @@ export const INITIAL_WEEKLY_REPORTS: WeeklyReport[] = [
         storyId: '33333333-0383-4444-8888-000000000003',
       },
       {
-        headline: 'Polymer Distribution Agreement with Stavian for Southern Plastic Converters',
-        targetCompanyOrProject: 'Stavian Chemical / Long Son Petrochemicals',
+        headline: 'Strategic Trading & Co-Distribution Collaboration with Stavian Chemical',
+        targetCompanyOrProject: 'Stavian Chemical',
         sector: 'Plastics & Chemicals',
-        strategicRationale: 'Partner with Stavian to supply locally produced PP/PE resins from Long Son complex to Japanese injection molding clients in Dong Nai and Binh Duong.',
+        strategicRationale: 'Explore regional trading agency collaboration and supply chain synergies with Stavian following its elevation into the Top 15 largest chemical distributors globally.',
         actionWindow: 'Q4 2026',
         storyId: '33333333-0384-4444-8888-000000000004',
       },

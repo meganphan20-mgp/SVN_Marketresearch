@@ -453,18 +453,12 @@ export async function getIntelligenceStoriesFromPostgres(
       sql += ` AND s.daily_brief_date = $${pIdx++}`;
       params.push(filters.dailyBriefDate);
     } else if (filters?.timeframe === 'today') {
-      const todayVN = getTodayLocal();
-      const countRes = await pool.query(
-        'SELECT count(*) FROM public.intelligence_stories WHERE daily_brief_date = $1 AND is_publishable = true AND source_grounded = true',
-        [todayVN]
-      );
-      if (parseInt(countRes.rows[0].count, 10) > 0) {
-        sql += ` AND s.daily_brief_date = $${pIdx++}`;
-        params.push(todayVN);
-      } else {
-        // Fall back to most recent published daily brief date in PostgreSQL
-        sql += ` AND s.daily_brief_date = (SELECT MAX(daily_brief_date) FROM public.intelligence_stories WHERE is_publishable = true AND source_grounded = true)`;
-      }
+      // Past 24 hours window (24 tiếng qua: includes stories published within the rolling 24-hour cycle)
+      sql += ` AND (
+        s.daily_brief_date >= (CURRENT_DATE - INTERVAL '1 day')
+        OR s.source_publication_date_local >= (CURRENT_DATE - INTERVAL '1 day')
+        OR s.publication_date >= (CURRENT_DATE - INTERVAL '1 day')
+      )`;
     } else if (filters?.timeframe === 'week') {
       const { weekStart, weekEnd } = getCalendarWeekBoundariesLocal();
       sql += ` AND s.source_publication_date_local >= $${pIdx++} AND s.source_publication_date_local <= $${pIdx++}`;

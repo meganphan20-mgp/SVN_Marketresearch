@@ -7,8 +7,8 @@ import { getTodayLocal } from '@/lib/verification/temporal-gating';
 import { Clock, ArrowLeft, ShieldCheck, Flame, CalendarCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'News Published Today | Sojitz Vietnam Market Intelligence',
-  description: 'Strict calendar-date gated daily intelligence feed. Displays exclusively news articles published on this calendar day in Asia/Ho_Chi_Minh.',
+  title: 'News in Past 24 Hours | Sojitz Vietnam Market Intelligence',
+  description: 'Rolling 24-hour verified intelligence feed. Displays exclusively news articles published within the last 24 hours in Asia/Ho_Chi_Minh.',
 };
 
 export default async function TodayPage() {
@@ -18,9 +18,6 @@ export default async function TodayPage() {
     getSectors(),
     getCompanies(),
   ]);
-
-  const displayDate = stories.length > 0 && stories[0].dailyBriefDate ? stories[0].dailyBriefDate : todayDate;
-  const isLatestCycle = displayDate !== todayDate;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
@@ -43,22 +40,20 @@ export default async function TodayPage() {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-blue-900 font-bold mb-1">
               <CalendarCheck className="w-4 h-4 text-blue-700" />
-              <span>Strict Calendar-Date Gated • Asia/Ho_Chi_Minh</span>
+              <span>Rolling 24-Hour Intelligence Window • 24 Tiếng Qua</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              {isLatestCycle ? `Daily Briefing (${displayDate})` : `News Published Today (${todayDate})`}
+              News Published in the Past 24 Hours ({todayDate})
             </h1>
             <p className="text-xs text-slate-500 mt-1 max-w-3xl leading-relaxed">
-              {isLatestCycle 
-                ? `Displaying latest verified daily cycle (${displayDate}). Feed contains exclusively stories whose qualifying primary source was verified in Asia/Ho_Chi_Minh.`
-                : `Feed contains exclusively stories whose primary qualifying source was published on this calendar day in Asia/Ho_Chi_Minh. Zero rolling 24-hour discovery leakage.`}
+              Displaying all verified intelligence stories published within the last 24 hours in Asia/Ho_Chi_Minh. Grounded in 100% verified primary sources with zero synthetic claims.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-xs font-mono text-emerald-700 font-semibold bg-emerald-50 px-3 py-1 rounded border border-emerald-200 flex items-center gap-1.5 whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              {stories.length} Verified Stories
+              {stories.length} Verified Stories (Past 24h)
             </span>
           </div>
         </div>
@@ -68,7 +63,7 @@ export default async function TodayPage() {
           <div className="lg:col-span-3">
             {stories.length === 0 ? (
               <div className="bg-white border border-slate-200 rounded-lg p-10 text-center text-slate-500 text-sm">
-                No intelligence stories with qualifying primary sources published on {todayDate} (Asia/Ho_Chi_Minh) yet.
+                No intelligence stories with qualifying primary sources published in the past 24 hours ({todayDate}) yet.
               </div>
             ) : (
               <div className="space-y-4">
